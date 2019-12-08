@@ -1,15 +1,17 @@
 ﻿using Microsoft.AspNetCore.Http;
-using System.Threading.Tasks;
 
 namespace Free.Pay.Core.Hosting
 {
-    public interface IEndpointHandler
+    /// <summary>
+    ///     The endpoint router
+    /// </summary>
+    public interface IEndpointRouter
     {
         /// <summary>
-        ///      Processes the request
+        /// Finds a matching endpoint.
         /// </summary>
         /// <param name="context">The HTTP context.</param>
         /// <returns></returns>
-        Task<IEndpointResult> ProcessAsync(HttpContext context);
+        IEndpointHandler Find(HttpContext context);
     }
 }
