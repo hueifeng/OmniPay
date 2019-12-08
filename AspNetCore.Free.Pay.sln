@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3642F616-626D-4205-8F66-68615D3F7D6C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Free.Pay.Wechatpay", "src\Free.Pay.Wechatpay\Free.Pay.Wechatpay.csproj", "{4F57892F-25E8-4244-A8F8-7C84C7BE1A5C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{719D3223-895D-4B19-B7EF-B37BE5F8017C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DB6BE635-1CE8-4DB5-AE37-C8FB10A6EA26}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Free.Pay", "test\AspNetCore.Free.Pay\AspNetCore.Free.Pay.csproj", "{12020D59-4378-4849-99CC-9FEF818B0864}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Free.Pay.Core", "src\Free.Pay.Core\Free.Pay.Core.csproj", "{4EE2E97F-7070-4C78-A382-D7C4F7CCA3F7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4F57892F-25E8-4244-A8F8-7C84C7BE1A5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F57892F-25E8-4244-A8F8-7C84C7BE1A5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F57892F-25E8-4244-A8F8-7C84C7BE1A5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F57892F-25E8-4244-A8F8-7C84C7BE1A5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12020D59-4378-4849-99CC-9FEF818B0864}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12020D59-4378-4849-99CC-9FEF818B0864}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12020D59-4378-4849-99CC-9FEF818B0864}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12020D59-4378-4849-99CC-9FEF818B0864}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EE2E97F-7070-4C78-A382-D7C4F7CCA3F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EE2E97F-7070-4C78-A382-D7C4F7CCA3F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EE2E97F-7070-4C78-A382-D7C4F7CCA3F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EE2E97F-7070-4C78-A382-D7C4F7CCA3F7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4F57892F-25E8-4244-A8F8-7C84C7BE1A5C} = {3642F616-626D-4205-8F66-68615D3F7D6C}
+		{12020D59-4378-4849-99CC-9FEF818B0864} = {719D3223-895D-4B19-B7EF-B37BE5F8017C}
+		{4EE2E97F-7070-4C78-A382-D7C4F7CCA3F7} = {3642F616-626D-4205-8F66-68615D3F7D6C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7E7D1B2E-48E6-4A24-8815-2CF293AA888E}
+	EndGlobalSection
+EndGlobal
