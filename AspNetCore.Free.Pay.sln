@@ -10,10 +10,16 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{719D3223-895D-4B19-B7EF-B37BE5F8017C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DB6BE635-1CE8-4DB5-AE37-C8FB10A6EA26}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Free.Pay", "test\AspNetCore.Free.Pay\AspNetCore.Free.Pay.csproj", "{12020D59-4378-4849-99CC-9FEF818B0864}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Free.Pay.Core", "src\Free.Pay.Core\Free.Pay.Core.csproj", "{4EE2E97F-7070-4C78-A382-D7C4F7CCA3F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Free.Pay.Core", "src\Free.Pay.Core\Free.Pay.Core.csproj", "{4EE2E97F-7070-4C78-A382-D7C4F7CCA3F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

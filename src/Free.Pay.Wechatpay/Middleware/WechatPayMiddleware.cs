@@ -1,44 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Free.Pay.Core.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Threading.Tasks;
 
-namespace AspNetCore.Free.Pay
+namespace Free.Pay.Wechatpay
 {
     public class WechatPayMiddleware
     {
-        private readonly RequestDelegate _next;
         private readonly ILogger _logger;
-        public WechatPayMiddleware(RequestDelegate next, ILogger<WechatPayMiddleware> logger)
+
+        public WechatPayMiddleware(ILogger<WechatPayMiddleware> logger)
         {
-            _next = next;
             _logger = logger;
         }
 
-        public async Task Invoke(HttpContext context)
+        public async Task Invoke(HttpContext context, IEndpointRouter router)
         {
             try
             {
-                _logger.LogInformation("Invoking endpoint:  {url}", context.Request.Path.ToString());
+                var endpoint = router.Find(context);
+                if (endpoint != null)
+                {
+                    _logger.LogInformation("Invoking WechatPay endpoint: {endpointType} for {url}", endpoint.GetType().FullName, context.Request.Path.ToString());
+
+                    var result = await endpoint.ProcessAsync(context);
+
+                    if (result != null)
+                    {
+                        _logger.LogTrace("Invoking result: {type}", result.GetType().FullName);
+                        await result.ExecuteAsync(context);
+                    }
+                    return;
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                _logger.LogCritical(ex, "Unhandled exception: {exception}", ex.Message);
             }
-            await context.Response.WriteAsync("`");
-        }
-    }
-
-    // Extension method used to add the middleware to the HTTP request pipeline.
-    public static class WechatPayMiddlewareExtensions
-    {
-        public static IApplicationBuilder UseWechatPayMiddleware(this IApplicationBuilder builder)
-        {
-            return builder.UseMiddleware<WechatPayMiddleware>();
         }
     }
 }

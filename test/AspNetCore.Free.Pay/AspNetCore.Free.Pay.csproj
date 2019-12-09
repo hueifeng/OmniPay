@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Free.Pay.Core\Free.Pay.Core.csproj" />
     <ProjectReference Include="..\..\src\Free.Pay.Wechatpay\Free.Pay.Wechatpay.csproj" />
   </ItemGroup>
 

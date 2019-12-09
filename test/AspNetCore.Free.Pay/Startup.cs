@@ -1,17 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Free.Pay.Wechatpay.Middleware;
+using Free.Pay.Core.Hosting;
+using Free.Pay.Wechatpay.Endpoints;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace AspNetCore.Free.Pay
 {
@@ -27,6 +20,7 @@ namespace AspNetCore.Free.Pay
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddWeChat();
             services.AddControllers();
         }
 
@@ -38,8 +32,6 @@ namespace AspNetCore.Free.Pay
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
 
             app.UseAuthorization();
@@ -47,9 +39,9 @@ namespace AspNetCore.Free.Pay
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.Map("/pay-api/{action}",endpoints.CreateApplicationBuilder()
-                .UseMiddleware<WechatPayMiddleware>().Build()).WithDisplayName("Wechatpay-api");
+                endpoints.UseWeChatPay();
             });
         }
+
     }
 }
