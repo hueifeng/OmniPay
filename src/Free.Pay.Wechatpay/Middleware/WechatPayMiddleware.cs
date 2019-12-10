@@ -9,10 +9,12 @@ namespace Free.Pay.Wechatpay
     public class WechatPayMiddleware
     {
         private readonly ILogger _logger;
+        private readonly RequestDelegate _next;
 
-        public WechatPayMiddleware(ILogger<WechatPayMiddleware> logger)
+        public WechatPayMiddleware(RequestDelegate next, ILogger<WechatPayMiddleware> logger)
         {
             _logger = logger;
+            _next = next;
         }
 
         public async Task Invoke(HttpContext context, IEndpointRouter router)

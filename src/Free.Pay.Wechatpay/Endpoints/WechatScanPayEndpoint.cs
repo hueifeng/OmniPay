@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Free.Pay.Wechatpay.Endpoints
 {
-    internal class WechatScanPayEndpoint : IEndpointHandler
+    public class WechatScanPayEndpoint : IEndpointHandler
     {
         private readonly ILogger<WechatScanPayEndpoint> _logger;
         public WechatScanPayEndpoint(ILogger<WechatScanPayEndpoint> logger) {
