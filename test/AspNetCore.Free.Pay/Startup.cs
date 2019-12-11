@@ -21,8 +21,9 @@ namespace AspNetCore.Free.Pay
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddWeChatEndpoints();
-            services.AddWeChatPay(options=>{ 
-                
+            services.AddWeChatPay(options=>{
+                options.AppId = "wx07b4c7c1ea0d7d60";
+                options.AppSecret = "14881640369951f200b84549e906e0e4";
             });
             services.AddControllers();
         }
