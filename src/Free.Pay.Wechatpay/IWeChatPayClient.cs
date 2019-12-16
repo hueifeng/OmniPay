@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using Free.Pay.Core.Request;
+using System.Threading.Tasks;
 
 namespace Free.Pay.Wechatpay
 {
@@ -10,7 +11,7 @@ namespace Free.Pay.Wechatpay
         /// <typeparam name="T"></typeparam>
         /// <param name="request"></param>
         /// <returns></returns>
-        Task<T> ExecuteAsync<T>(T request);
+        Task<string> ExecuteAsync<TModel, TResponse>(BaseRequest<TModel, TResponse> request);
 
     }
 }

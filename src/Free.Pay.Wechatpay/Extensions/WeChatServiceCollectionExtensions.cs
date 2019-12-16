@@ -19,6 +19,7 @@ namespace Microsoft.Extensions.DependencyInjection
             {
                 services.Configure(action);
             }
+            services.AddSingleton<IWeChatPayClient, WeChatPayClient>();
             return services;
         }
     }

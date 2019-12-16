@@ -9,7 +9,7 @@
         /// <summary>
         ///     机器IP
         /// </summary>
-        public string SpbillCreateIp { get; set; }
+        public string spbill_create_ip { get; set; }
         /// <summary>
         ///     商品ID
         /// </summary>

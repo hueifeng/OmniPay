@@ -10,7 +10,7 @@ namespace Free.Pay.Wechatpay.Domain
         /// <summary>
         ///     随机字符串
         /// </summary>
-        public string NonceStr { get; set; }
+        public string nonce_str { get; set; }
         /// <summary>
         ///     设备号
         /// </summary>
@@ -30,7 +30,7 @@ namespace Free.Pay.Wechatpay.Domain
         /// <summary>
         ///     商户系统内部订单号
         /// </summary>
-        public string OutTradeNO { get; set; }
+        public string Out_trade_no { get; set; }
         /// <summary>
         ///     标价币种
         /// </summary>
@@ -38,7 +38,7 @@ namespace Free.Pay.Wechatpay.Domain
         /// <summary>
         ///     标价金额，订单总金额，单位为分
         /// </summary>
-        public int Total_Free { get; set; }
+        public int Total_free { get; set; }
         /// <summary>
         /// 订单生成时间，格式为yyyyMMddHHmmss
         /// </summary>
@@ -59,5 +59,19 @@ namespace Free.Pay.Wechatpay.Domain
         /// 指定支付方式,上传此参数no_credit--可限制用户不能使用信用卡支付
         /// </summary>
         public string LimitPay { get; set; }
+
+        public string Mch_id { get; set; }
+
+        public string Appid { get; set; }
+        /// <summary>
+        ///     子商户
+        /// </summary>
+        public string sub_mch_id { get; set; }
+
+        public string sign { get; set; }
+
+        public string notify_url { get; set; }
+
+
     }
 }

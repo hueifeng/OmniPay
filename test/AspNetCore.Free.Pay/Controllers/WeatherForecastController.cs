@@ -32,8 +32,6 @@ namespace AspNetCore.Free.Pay.Controllers
         [HttpGet]
         public async Task<IEnumerable<WeatherForecast>> Get()
         {
-            var request = new ScanPayRequest();
-            await _client.ExecuteAsync(request);
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
