@@ -14,5 +14,6 @@ namespace Free.Pay.Wechatpay
         {
             throw new System.NotImplementedException();
         }
+
     }
 }
