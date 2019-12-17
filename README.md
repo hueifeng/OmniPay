@@ -9,13 +9,8 @@ Free支付SDK，主要打造微信支付，支付宝支付，以及银联支付�
 # Wiki
 
 支付宝支付文档：
-
 https://openhome.alipay.com/developmentDocument.htm
-
 微信支付文档：
-
 https://pay.weixin.qq.com/wiki/doc/api/index.html
-
 银联支付文档：
-
 https://open.unionpay.com/ajweb/product
