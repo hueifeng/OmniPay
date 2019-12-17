@@ -5,7 +5,7 @@
         /// <summary>
         ///     交易类型
         /// </summary>
-        public string TradeType { get;private set; }
+        public string trade_type { get; set; }
         /// <summary>
         ///     机器IP
         /// </summary>
@@ -13,7 +13,7 @@
         /// <summary>
         ///     商品ID
         /// </summary>
-        public string ProductId { get; set; }
+        public string product_id { get; set; }
         /// <summary>
         ///     用户标识
         /// </summary>
@@ -22,5 +22,7 @@
         ///     场景信息
         /// </summary>
         public string SceneInfo { get; set; }
+
+        public string goods_tag { get; set; }
     }
 }

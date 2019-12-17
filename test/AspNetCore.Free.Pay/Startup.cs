@@ -1,4 +1,5 @@
 using Free.Pay.Core.Hosting;
+using Free.Pay.Wechatpay;
 using Free.Pay.Wechatpay.Endpoints;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -22,10 +23,10 @@ namespace AspNetCore.Free.Pay
         {
             services.AddWeChatEndpoints();
             services.AddWeChatPay(options=>{
-                options.AppId = "wx07b4c7c1ea0d7d60";
-                options.AppSecret = "14881640369951f200b84549e906e0e4";
+                Configuration.GetSection("WeChatPays").Bind(options);
             });
-            services.AddControllers();
+        
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,15 +37,20 @@ namespace AspNetCore.Free.Pay
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
             app.UseRouting();
 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}");
+     
                 endpoints.UseWeChatPayEndpoints();
             });
+            app.UseFreePay();
         }
 
     }

@@ -1,44 +1,66 @@
-﻿using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using Free.Pay.Core.Request;
+﻿using Free.Pay.Core.Request;
+using Free.Pay.Core.Utils;
 using Free.Pay.Wechatpay.Response;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading;
+using System.Threading.Tasks;
+using Free.Pay.Core.Exceptions;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace Free.Pay.Wechatpay
 {
-    public class WeChatPayClient:IWeChatPayClient
+    public class WeChatPayClient : IWeChatPayClient
     {
+        private readonly WeChatPayOptions _weChatPayOptions;
+        private readonly ILogger<WeChatPayClient> _logger;
+        public WeChatPayClient(IOptionsMonitor<WeChatPayOptions> weChatPayOptions, ILogger<WeChatPayClient> logger)
+        {
+            _weChatPayOptions = weChatPayOptions.CurrentValue;
+            
+            _logger = logger;
+
+        }
+
         /// <summary>
         ///     Execute WeChatPay API request implementation
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TModel"></typeparam>
+        /// <typeparam name="TResponse"></typeparam>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<string> ExecuteAsync<TModel, TResponse>(BaseRequest<TModel, TResponse> request)
+        public async Task<TResponse> ExecuteAsync<TModel, TResponse>(BaseRequest<TModel, TResponse> request)
         {
+            BuildParams(request);
+            string result = await HttpUtil.PostAsync(request.RequestUrl, request.ToXml());
+            request.FromXml(result);
+            BaseResponse baseResponse = (BaseResponse)(object)request.ToObject<TResponse>();
+            baseResponse.Raw = result;
 
-            var dataByte = Encoding.UTF8.GetBytes(request.ToXml());
-            var request1 = (HttpWebRequest)WebRequest.Create("https://api.mch.weixin.qq.com/pay/unifiedorder");
-            request1.Method = "POST";
-            request1.ContentType = "application/x-www-form-urlencoded;charset=utf-8";
-            request1.ContentLength = dataByte.Length;
+            var sign = request.GetStringValue("sign");
 
-          
-            using (var outStream = request1.GetRequestStream())
+            if (string.IsNullOrEmpty(sign))
             {
-                outStream.Write(dataByte, 0, dataByte.Length);
+                _logger.LogError("Signature verification failed:{0}",result);
+                throw new FreePayException("Signature verification failed.");
+            }
+            return (TResponse)(object)baseResponse;
+        }
+
+
+        private void BuildParams<TModel, TResponse>(BaseRequest<TModel, TResponse> request)
+        {
+            if (string.IsNullOrEmpty(_weChatPayOptions.AppId))
+            {
+                throw new FreePayException(nameof(_weChatPayOptions.AppId));
             }
 
-            using var response = (HttpWebResponse)request1.GetResponse();
-            using var reader = new StreamReader(response.GetResponseStream());
-            return reader.ReadToEnd().Trim();
-
-            return request.ToXml();
-          
-           // throw new System.NotImplementedException();
+            request.Add("appid", _weChatPayOptions.AppId);
+            request.Add("mch_id", _weChatPayOptions.Key);
+            request.Add("sign", request.GetSign());
+            request.RequestUrl = _weChatPayOptions.BaseUrl + request.RequestUrl;
         }
+
 
     }
 }

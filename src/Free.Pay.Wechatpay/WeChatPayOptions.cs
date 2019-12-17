@@ -6,10 +6,11 @@
         ///   Application ID
         /// </summary>
         public string AppId { get; set; }
+
         /// <summary>
         ///     Signature type
         /// </summary>
-        public string SignType=>"MD5";
+        public string SignType=>"MD5"; 
         /// <summary>
         ///    WeChat pay API keys
         /// </summary>
@@ -34,5 +35,9 @@
         ///     Merchants public key
         /// </summary>
         public string PublicKey { get; set; }
+        /// <summary>
+        ///     BaseUrl
+        /// </summary>
+        public string BaseUrl { get; set; }
     }
 }

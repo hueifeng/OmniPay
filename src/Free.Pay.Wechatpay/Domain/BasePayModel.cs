@@ -31,24 +31,22 @@ namespace Free.Pay.Wechatpay.Domain
         ///     商户系统内部订单号
         /// </summary>
         public string Out_trade_no { get; set; }
-        /// <summary>
-        ///     标价币种
-        /// </summary>
-        public string Free_Type { get; set; } = "CNY";
+   
         /// <summary>
         ///     标价金额，订单总金额，单位为分
         /// </summary>
-        public int Total_free { get; set; }
+        public int total_fee { get; set; }
+
         /// <summary>
         /// 订单生成时间，格式为yyyyMMddHHmmss
         /// </summary>
-        public string TimeStart => DateTime.Now.ToString("yyyyMMddHHmmss");
+        public string time_start { get; set; }
 
         /// <summary>
         /// 订单失效时间，格式为yyyyMMddHHmmss
         /// 注意：最短失效时间间隔必须大于5分钟
         /// </summary>
-        public string TimeExpire { get; set; }
+        public string time_expire { get; set; }
 
         /// <summary>
         /// 订单优惠标记,使用代金券或立减优惠功能时需要的参数，说明详见代金券或立减优惠
@@ -69,6 +67,8 @@ namespace Free.Pay.Wechatpay.Domain
         public string sub_mch_id { get; set; }
 
         public string sign { get; set; }
+
+        public string sign_type { get; set; }
 
         public string notify_url { get; set; }
 

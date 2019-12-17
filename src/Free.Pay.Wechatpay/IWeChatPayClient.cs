@@ -11,7 +11,7 @@ namespace Free.Pay.Wechatpay
         /// <typeparam name="T"></typeparam>
         /// <param name="request"></param>
         /// <returns></returns>
-        Task<string> ExecuteAsync<TModel, TResponse>(BaseRequest<TModel, TResponse> request);
+        Task<TResponse> ExecuteAsync<TModel, TResponse>(BaseRequest<TModel, TResponse> request);
 
     }
 }

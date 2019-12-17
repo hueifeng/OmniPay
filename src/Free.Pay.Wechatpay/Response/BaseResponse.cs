@@ -5,52 +5,52 @@
         /// <summary>
         ///     应用ID
         /// </summary>
-        public string AppId { get; set; }
+        public string appid { get; set; }
 
         /// <summary>
         /// 商户号
         /// </summary>
-        public string MchId { get; set; }
+        public string mch_id { get; set; }
 
         /// <summary>
         /// 设备号
         /// </summary>
-        public string DeviceInfo { get; set; }
+        public string device_info { get; set; }
 
         /// <summary>
         /// 随机字符串
         /// </summary>
-        public string NonceStr { get; set; }
+        public string nonce_str { get; set; }
 
         /// <summary>
         /// 签名
         /// </summary>
-        public string Sign { get; set; }
+        public string sign { get; set; }
 
         /// <summary>
         /// 业务结果
         /// </summary>
-        public string ResultCode { get; set; }
+        public string return_code { get; set; }
 
         /// <summary>
         /// 错误代码
         /// </summary>
-        public string ErrCode { get; set; }
+        public string err_code { get; set; }
 
         /// <summary>
         /// 错误代码描述
         /// </summary>
-        public string ErrCodeDes { get; set; }
+        public string err_code_des { get; set; }
 
         /// <summary>
         /// 返回状态码
         /// </summary>
-        public string ReturnCode { get; set; }
+        public string result_code { get; set; }
 
         /// <summary>
         /// 返回信息
         /// </summary>
-        public string ReturnMsg { get; set; }
+        public string return_msg { get; set; }
 
         /// <summary>
         /// 原始值

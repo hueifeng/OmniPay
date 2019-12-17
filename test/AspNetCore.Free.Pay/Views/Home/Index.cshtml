@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "FreePay.Demo";
+}
+
+<div id="wrapper">
+
+    <div id="header">
+        <h2>@ViewData["Title"]</h2>
+    </div>
+
+<div id="tabs-api">
+    <ul>
+        <li><a href="#tabs-api-wechatpay">微信支付</a></li>
+    </ul>
+    <div id="tabs-api-wechatpay">
+        <div id="tabs-purchase-wechatpay">
+            <ul>
+                <li><a href="#tabs-purchase-1">扫码支付</a></li>
+               
+            </ul>
+
+            <div id="tabs-purchase-1">
+                <form class="api-form" asp-controller="Wechatpay" asp-action="ScanPay" method="post" target="_blank">
+                    <p>
+                        <label>订单号：</label>
+                        <input type="text" name="out_trade_no" value="@DateTime.Now.ToString("yyyyMMddHHmmssfff")">
+                    </p>
+                    <p>
+                        <label>订单描述：</label>
+                        <input type="text" name="body" value="微信扫码支付测试">
+                    </p>
+                    <p>
+                        <label>金额：</label>
+                        <input type="text" name="total_amount" value="1" title="单位为分。">
+                    </p>
+                    <p>
+                        <label>&nbsp;</label>
+                        <input type="submit" class="button" value="提交">
+                    </p>
+                </form>
+                <hr />
+                <p class="faq">
+                    <a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_1" target="_blank">* 查看接口 请求参数、响应参数</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    @section Scripts {
+        <script src="~/demo.js" asp-append-version="true"></script>
+    }
+    @section Styles {
+        <link rel="stylesheet" href="~/demo.css" asp-append-version="true">
+    }

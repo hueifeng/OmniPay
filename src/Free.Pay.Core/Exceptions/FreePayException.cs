@@ -2,9 +2,9 @@
 
 namespace Free.Pay.Core.Exceptions
 {
-    public class GatewayException:Exception
+    public class FreePayException:Exception
     {
-        public GatewayException(string message)
+        public FreePayException(string message)
          : base(message)
         {
         }

@@ -6,5 +6,9 @@ namespace Free.Pay.Wechatpay.Request
 {
     public class ScanPayRequest:BaseRequest<ScanPayModel, ScanPayResponse>
     {
+        public ScanPayRequest()
+        {
+            RequestUrl = "/pay/unifiedorder";
+        }
     }
 }

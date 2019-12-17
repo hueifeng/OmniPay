@@ -2,6 +2,8 @@
 using Free.Pay.Wechatpay;
 using Free.Pay.Wechatpay.Endpoints;
 using System;
+using Microsoft.AspNetCore.Http;
+using Endpoint = Free.Pay.Core.Hosting.Endpoint;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -17,8 +19,9 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AddWeChatPay(this IServiceCollection services,Action<WeChatPayOptions> action) {
             if (action!=null)
             {
-                services.Configure(action);
+                services.Configure<WeChatPayOptions>(action.Invoke);
             }
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IWeChatPayClient, WeChatPayClient>();
             return services;
         }

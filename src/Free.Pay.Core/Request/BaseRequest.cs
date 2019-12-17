@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text;
+using System.Xml;
 
 namespace Free.Pay.Core.Request
 {
@@ -9,26 +12,16 @@ namespace Free.Pay.Core.Request
     {
         private readonly SortedDictionary<string, object> _values;
 
-        public SortedDictionary<string, object>.KeyCollection Keys => _values.Keys;
-
-        public SortedDictionary<string, object>.ValueCollection Values => _values.Values;
-
-        public BaseRequest()
+        protected BaseRequest()
         {
-            _values=new SortedDictionary<string, object>();
+            _values = new SortedDictionary<string, object>();
         }
-
-
-        public string RequestUrl { get; set; }
 
         /// <summary>
-        ///     获取所有Key-value形式的文本请求参数字典。
+        ///     请求地址
         /// </summary>
-        /// <returns></returns>
-        public IDictionary<string, string> GetParameters()
-        {
-            throw new NotImplementedException("stack not Implement");
-        }
+        public string RequestUrl { get; set; }
+
         /// <summary>
         ///     添加参数
         /// </summary>
@@ -37,8 +30,8 @@ namespace Free.Pay.Core.Request
         public bool AddParameters(object obj)
         {
             var type = obj.GetType();
-            var properties = type.GetProperties();
-            var fields = type.GetFields();
+            MemberInfo[] properties = type.GetProperties();
+            MemberInfo[] fields = type.GetFields();
 
             Add(properties);
             Add(fields);
@@ -64,7 +57,6 @@ namespace Free.Pay.Core.Request
                     _values.Add(key, value);
                 }
 
-
             }
         }
 
@@ -74,31 +66,154 @@ namespace Free.Pay.Core.Request
         /// <returns></returns>
         public string ToXml()
         {
-            if (_values.Count == 0)
+            if (_values.Count != 0)
             {
-                return string.Empty;
-            }
-            var sb = new StringBuilder();
-            sb.Append("<xml>");
-            foreach (var item in _values)
-            {
-                if (item.Value is string)
+                var sb = new StringBuilder();
+                sb.Append("<xml>");
+                foreach (var (key, value) in _values)
                 {
-                    sb.AppendFormat("<{0}><![CDATA[{1}]]></{0}>", item.Key, item.Value);
+                    sb.AppendFormat(value is string ? "<{0}><![CDATA[{1}]]></{0}>" : "<{0}>{1}</{0}>", key,
+                        value);
+                }
 
+                sb.Append("</xml>");
+
+                return sb.ToString();
+            }
+
+            return string.Empty;
+        }
+        /// <summary>
+        /// 添加参数
+        /// </summary>
+        /// <param name="key">参数名</param>
+        /// <param name="value">参数值</param>
+        /// <returns></returns>
+        public bool Add(string key, object value)
+        {
+            if (string.IsNullOrEmpty(key))
+                throw new ArgumentNullException("key", "参数名不能为空");
+
+            if (!(value is null) && !string.IsNullOrEmpty(value.ToString()))
+            {
+                if (Exists(key))
+                {
+                    _values[key] = value;
                 }
                 else
                 {
-                    sb.AppendFormat("<{0}>{1}</{0}>", item.Key, item.Value);
+                    _values.Add(key, value);
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+        /// <summary>
+        ///     将xml数据加起来
+        /// </summary>
+        /// <param name="xml"></param>
+        public void FromXml(string xml)
+        {
+            Clear();
+            try
+            {
+                if (!string.IsNullOrEmpty(xml))
+                {
+                    var xmlDoc = new XmlDocument()
+                    {
+                        XmlResolver = null
+                    };
+                    xmlDoc.LoadXml(xml);
+                    var xmlElement = xmlDoc.DocumentElement;
+                    if (xmlElement == null) return;
+                    var nodes = xmlElement.ChildNodes;
+                    foreach (var item in nodes)
+                    {
+                        var xe = (XmlElement)item;
+                        Add(xe.Name, xe.InnerText);
+                    }
                 }
             }
-            sb.Append("</xml>");
+            catch
+            {
+                // ignored
+            }
+        }
+        /// <summary>
+        /// 将参数转为类型
+        /// </summary>
+        /// <typeparam name="T">类型</typeparam>
+        /// <returns></returns>
+        public T ToObject<T>()
+        {
+            var type = typeof(T);
+            var obj = Activator.CreateInstance(type);
+            var properties = type.GetProperties();
 
-            return sb.ToString();
+            foreach (var item in properties)
+            {
+                string key;
+                key = item.Name;
+                _values.TryGetValue(key, out var value);
+
+                if (value != null)
+                {
+                    item.SetValue(obj, Convert.ChangeType(value, item.PropertyType));
+                }
+            }
+            return (T)obj;
+        }
+        public string GetSign()
+        {
+            var key = "b7c996fbda5a9633ee4feb6b991c3919";
+            var data = string.Join("&",
+                _values
+                    .Select(a => $"{a.Key}={a.Value}"));
+            data += $"&key={key}";
+
+            var byteData = Encoding.UTF8.GetBytes(data);
+            var byteKey = Encoding.UTF8.GetBytes(key);
+            var hmacsha256 = new HMACSHA256(byteKey);
+            var result = hmacsha256.ComputeHash(byteData);
+            return BitConverter.ToString(result).Replace("-", "").ToUpper();
         }
 
+        /// <summary>
+        ///     清空数据
+        /// </summary>
+        public void Clear()
+        {
+            _values.Clear();
+        }
 
+        /// <summary>
+        /// 是否存在指定参数名
+        /// </summary>
+        /// <param name="key">参数名</param>
+        /// <returns></returns>
+        public bool Exists(string key) => _values.ContainsKey(key);
 
+        /// <summary>
+        /// 根据参数名获取值
+        /// </summary>
+        /// <param name="key">参数名</param>
+        /// <returns></returns>
+        public object GetValue(string key)
+        {
+            _values.TryGetValue(key, out var value);
+            return value;
+        }
+        /// <summary>
+        ///     根据参数名获取值
+        /// </summary>
+        /// <param name="key">参数名</param>
+        /// <returns></returns>
+        public string GetStringValue(string key)
+        {
+           return GetValue(key)?.ToString();
+        }
 
     }
 }
