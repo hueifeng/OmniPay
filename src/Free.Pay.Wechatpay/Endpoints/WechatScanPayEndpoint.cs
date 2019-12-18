@@ -14,7 +14,7 @@ namespace Free.Pay.Wechatpay.Endpoints
         public WechatScanPayEndpoint(ILogger<WechatScanPayEndpoint> logger) {
             this._logger = logger;
         }
-        public async Task<IEndpointResult> ProcessAsync(HttpContext context)
+        public IEndpointResult Process(HttpContext context)
         {
             if (!HttpMethods.IsPost(context.Request.Method))
             {

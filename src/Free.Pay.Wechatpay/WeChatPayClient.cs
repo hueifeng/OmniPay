@@ -14,12 +14,11 @@ namespace Free.Pay.Wechatpay
     {
         private readonly WeChatPayOptions _weChatPayOptions;
         private readonly ILogger<WeChatPayClient> _logger;
-        public WeChatPayClient(IOptionsMonitor<WeChatPayOptions> weChatPayOptions, ILogger<WeChatPayClient> logger)
-        {
-            _weChatPayOptions = weChatPayOptions.CurrentValue;
-            
-            _logger = logger;
 
+        public WeChatPayClient(IOptions<WeChatPayOptions> weChatPayOptions, ILogger<WeChatPayClient> logger)
+        {
+            _weChatPayOptions = weChatPayOptions.Value;
+            _logger = logger;
         }
 
         /// <summary>
@@ -32,14 +31,13 @@ namespace Free.Pay.Wechatpay
         public async Task<TResponse> ExecuteAsync<TModel, TResponse>(BaseRequest<TModel, TResponse> request)
         {
             BuildParams(request);
+            var reqsign= request.GetStringValue("sign");
             string result = await HttpUtil.PostAsync(request.RequestUrl, request.ToXml());
             request.FromXml(result);
-            BaseResponse baseResponse = (BaseResponse)(object)request.ToObject<TResponse>();
+            var baseResponse = (BaseResponse)(object)request.ToObject<TResponse>();
             baseResponse.Raw = result;
-
             var sign = request.GetStringValue("sign");
-
-            if (string.IsNullOrEmpty(sign))
+            if (string.IsNullOrEmpty(sign)&&reqsign==sign)
             {
                 _logger.LogError("Signature verification failed:{0}",result);
                 throw new FreePayException("Signature verification failed.");
@@ -54,9 +52,10 @@ namespace Free.Pay.Wechatpay
             {
                 throw new FreePayException(nameof(_weChatPayOptions.AppId));
             }
-
+   
             request.Add("appid", _weChatPayOptions.AppId);
             request.Add("mch_id", _weChatPayOptions.Key);
+            request.Add("notify_url",_weChatPayOptions.NotifyUrl);
             request.Add("sign", request.GetSign());
             request.RequestUrl = _weChatPayOptions.BaseUrl + request.RequestUrl;
         }

@@ -26,7 +26,7 @@ namespace Free.Pay.Wechatpay
                 {
                     _logger.LogInformation("Invoking WechatPay endpoint: {endpointType} for {url}", endpoint.GetType().FullName, context.Request.Path.ToString());
 
-                    var result = await endpoint.ProcessAsync(context);
+                    var result =  endpoint.Process(context);
 
                     if (result != null)
                     {

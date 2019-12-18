@@ -10,6 +10,6 @@ namespace Free.Pay.Core.Hosting
         /// </summary>
         /// <param name="context">The HTTP context.</param>
         /// <returns></returns>
-        Task<IEndpointResult> ProcessAsync(HttpContext context);
+        IEndpointResult Process(HttpContext context);
     }
 }

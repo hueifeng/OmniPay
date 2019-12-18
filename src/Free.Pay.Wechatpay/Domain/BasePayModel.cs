@@ -1,4 +1,5 @@
 ﻿using System;
+using Free.Pay.Core.Utils;
 
 namespace Free.Pay.Wechatpay.Domain
 {
@@ -10,7 +11,7 @@ namespace Free.Pay.Wechatpay.Domain
         /// <summary>
         ///     随机字符串
         /// </summary>
-        public string nonce_str { get; set; }
+        public string nonce_str { get; set; }= Extensions.GetNonceStr();
         /// <summary>
         ///     设备号
         /// </summary>
@@ -40,7 +41,7 @@ namespace Free.Pay.Wechatpay.Domain
         /// <summary>
         /// 订单生成时间，格式为yyyyMMddHHmmss
         /// </summary>
-        public string time_start { get; set; }
+        public string time_start { get; set; }=DateTime.Now.ToString("yyyyMMddHHmmss");
 
         /// <summary>
         /// 订单失效时间，格式为yyyyMMddHHmmss
@@ -68,7 +69,7 @@ namespace Free.Pay.Wechatpay.Domain
 
         public string sign { get; set; }
 
-        public string sign_type { get; set; }
+        public string sign_type { get; set; } = "HMAC-SHA256";
 
         public string notify_url { get; set; }
 

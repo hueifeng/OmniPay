@@ -1,15 +1,23 @@
-﻿namespace Free.Pay.Wechatpay.Domain
+﻿using Free.Pay.Core.Utils;
+
+namespace Free.Pay.Wechatpay.Domain
 {
     public class ScanPayModel:BasePayModel
     {
+        public ScanPayModel()
+        {
+            trade_type = "NATIVE";
+        }
+
         /// <summary>
         ///     交易类型
         /// </summary>
         public string trade_type { get; set; }
+
         /// <summary>
         ///     机器IP
         /// </summary>
-        public string spbill_create_ip { get; set; }
+        public string spbill_create_ip { get; set; } = HttpUtil.LocalIpAddress;
         /// <summary>
         ///     商品ID
         /// </summary>

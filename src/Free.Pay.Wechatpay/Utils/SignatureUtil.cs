@@ -23,20 +23,6 @@ namespace Free.Pay.Wechatpay.Utils
         {
             return true;
         }
-        //public string GetSign(string data)
-        //{
-        //    var key = "b7c996fbda5a9633ee4feb6b991c3919";
-        //    var data = string.Join("&",
-        //        data
-        //            .Select(a => $"{a.Key}={a.Value.ToString()}"));
-        //    data += $"&key={key}";
-
-        //    var byteData = Encoding.UTF8.GetBytes(data);
-        //    var byteKey = Encoding.UTF8.GetBytes(key);
-        //    var hmacsha256 = new HMACSHA256(byteKey);
-        //    var result = hmacsha256.ComputeHash(byteData);
-        //    return BitConverter.ToString(result).Replace("-", "").ToUpper();
-        //}
 
         #endregion
     }
