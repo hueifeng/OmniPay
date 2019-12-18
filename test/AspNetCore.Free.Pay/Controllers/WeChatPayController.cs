@@ -22,19 +22,24 @@ namespace AspNetCore.Free.Pay.Controllers
         {
             _client = client;
         }
-
+        /// <summary>
+        ///     扫码支付
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         public async Task<OkObjectResult> ScanPay()
         {
             var request = new ScanPayRequest();
             request.AddParameters(new ScanPayModel()
             {
-                Body = "hahaha",
-                Out_trade_no = "20150806125346",
-                total_fee = 10
+                Body = "腾讯充值中心-QQ会员充值",
+                OutTradeNo = "20150806125342",
+                TotalFee = 10
             });
             return Ok(await _client.ExecuteAsync(request));
         }
+
+        
 
     }
 }

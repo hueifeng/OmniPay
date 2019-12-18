@@ -11,7 +11,7 @@ namespace Free.Pay.Wechatpay.Domain
         /// <summary>
         ///     随机字符串
         /// </summary>
-        public string nonce_str { get; set; }= Extensions.GetNonceStr();
+        public string NonceStr { get; set; }= Extensions.GetNonceStr();
         /// <summary>
         ///     设备号
         /// </summary>
@@ -31,23 +31,23 @@ namespace Free.Pay.Wechatpay.Domain
         /// <summary>
         ///     商户系统内部订单号
         /// </summary>
-        public string Out_trade_no { get; set; }
+        public string OutTradeNo { get; set; }
    
         /// <summary>
         ///     标价金额，订单总金额，单位为分
         /// </summary>
-        public int total_fee { get; set; }
+        public int TotalFee { get; set; }
 
         /// <summary>
         /// 订单生成时间，格式为yyyyMMddHHmmss
         /// </summary>
-        public string time_start { get; set; }=DateTime.Now.ToString("yyyyMMddHHmmss");
+        public string TimeStart { get; set; }=DateTime.Now.ToString("yyyyMMddHHmmss");
 
         /// <summary>
         /// 订单失效时间，格式为yyyyMMddHHmmss
         /// 注意：最短失效时间间隔必须大于5分钟
         /// </summary>
-        public string time_expire { get; set; }
+        public string TimeExpire { get; set; }
 
         /// <summary>
         /// 订单优惠标记,使用代金券或立减优惠功能时需要的参数，说明详见代金券或立减优惠
@@ -58,20 +58,11 @@ namespace Free.Pay.Wechatpay.Domain
         /// 指定支付方式,上传此参数no_credit--可限制用户不能使用信用卡支付
         /// </summary>
         public string LimitPay { get; set; }
-
-        public string Mch_id { get; set; }
-
-        public string Appid { get; set; }
         /// <summary>
-        ///     子商户
+        /// 签名类型，默认为MD5，支持HMAC-SHA256和MD5。
         /// </summary>
-        public string sub_mch_id { get; set; }
+        public string SignType { get; set; } = "HMAC-SHA256";
 
-        public string sign { get; set; }
-
-        public string sign_type { get; set; } = "HMAC-SHA256";
-
-        public string notify_url { get; set; }
 
 
     }

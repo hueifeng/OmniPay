@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Free.Pay.Core.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -8,7 +9,7 @@ using System.Xml;
 
 namespace Free.Pay.Core.Request
 {
-    public abstract class BaseRequest<TModel, Response>
+    public abstract class BaseRequest<TModel, TResponse>
     {
         private readonly SortedDictionary<string, object> _values;
 
@@ -26,8 +27,9 @@ namespace Free.Pay.Core.Request
         ///     添加参数
         /// </summary>
         /// <param name="obj">对象</param>
+        /// <param name="stringCase">字符串规则策略</param>
         /// <returns></returns>
-        public bool AddParameters(object obj)
+        public bool AddParameters(object obj, StringCase stringCase=StringCase.Snake)
         {
             var type = obj.GetType();
             MemberInfo[] properties = type.GetProperties();
@@ -42,7 +44,19 @@ namespace Free.Pay.Core.Request
 
                 foreach (var item in info)
                 {
-                    var key = item.Name.ToLower();
+                    string key;
+                    if (stringCase is StringCase.Camel)
+                    {
+                        key = item.Name.ToCamelCase();
+                    }
+                    else if (stringCase is StringCase.Snake)
+                    {
+                        key = item.Name.ToSnakeCase();
+                    }
+                    else
+                    {
+                        key = item.Name;
+                    }
 
                     var value = item.MemberType switch
                     {

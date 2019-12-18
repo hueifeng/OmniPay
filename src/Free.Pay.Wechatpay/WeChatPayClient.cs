@@ -36,14 +36,18 @@ namespace Free.Pay.Wechatpay
             request.FromXml(result);
             var baseResponse = (BaseResponse)(object)request.ToObject<TResponse>();
             baseResponse.Raw = result;
-            var sign = request.GetStringValue("sign");
-            if (string.IsNullOrEmpty(sign)&&reqsign==sign)
+            var repsign = request.GetStringValue("sign");
+
+            if (string.IsNullOrEmpty(repsign) &&reqsign== repsign)
             {
                 _logger.LogError("Signature verification failed:{0}",result);
                 throw new FreePayException("Signature verification failed.");
             }
             return (TResponse)(object)baseResponse;
         }
+
+
+
 
 
         private void BuildParams<TModel, TResponse>(BaseRequest<TModel, TResponse> request)

@@ -6,22 +6,22 @@ namespace Free.Pay.Wechatpay.Domain
     {
         public ScanPayModel()
         {
-            trade_type = "NATIVE";
+            TradeType = "NATIVE";
         }
 
         /// <summary>
         ///     交易类型
         /// </summary>
-        public string trade_type { get; set; }
+        public string TradeType { get; set; }
 
         /// <summary>
         ///     机器IP
         /// </summary>
-        public string spbill_create_ip { get; set; } = HttpUtil.LocalIpAddress;
+        public string SpbillCreateIp { get; set; } = HttpUtil.LocalIpAddress;
         /// <summary>
         ///     商品ID
         /// </summary>
-        public string product_id { get; set; }
+        public string ProductId { get; set; }
         /// <summary>
         ///     用户标识
         /// </summary>
@@ -30,7 +30,5 @@ namespace Free.Pay.Wechatpay.Domain
         ///     场景信息
         /// </summary>
         public string SceneInfo { get; set; }
-
-        public string goods_tag { get; set; }
     }
 }
