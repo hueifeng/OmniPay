@@ -160,16 +160,20 @@ namespace Free.Pay.Core.Request
         /// </summary>
         /// <typeparam name="T">类型</typeparam>
         /// <returns></returns>
-        public T ToObject<T>()
+        public T ToObject<T>(StringCase stringCase=StringCase.Snake)
         {
             var type = typeof(T);
             var obj = Activator.CreateInstance(type);
             var properties = type.GetProperties();
-
+            
             foreach (var item in properties)
             {
-                string key;
-                key = item.Name;
+                var key = stringCase switch
+                {
+                    StringCase.Camel => item.Name.ToCamelCase(),
+                    StringCase.Snake => item.Name.ToSnakeCase(),
+                    _ => item.Name
+                };
                 _values.TryGetValue(key, out var value);
 
                 if (value != null)
