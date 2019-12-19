@@ -1,6 +1,7 @@
 # AspNetCore.Free.Pay
 
-Free支付SDK，主要打造微信支付，支付宝支付，以及银联支付等，使用Free.Pay可以简化订单的创建、查询、退款和回调通知等操作
+AspNetCore.Free.Pay支付SDK，主要打造微信支付，支付宝支付，以及银联支付等，使用Free.Pay可以简化订单的创建、查询、退款和回调通知等操作
+
 
 # 代码贡献
 
@@ -19,3 +20,7 @@ https://pay.weixin.qq.com/wiki/doc/api/index.html
 银联支付文档：
 
 https://open.unionpay.com/ajweb/product
+
+# LICENSE
+
+MIT
