@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Free.Pay.Wechatpay;
+﻿using Free.Pay.Wechatpay;
 using Free.Pay.Wechatpay.Domain;
 using Free.Pay.Wechatpay.Request;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using System.Threading.Tasks;
 
 namespace AspNetCore.Free.Pay.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class WeChatPayController : ControllerBase
     {
@@ -27,19 +21,33 @@ namespace AspNetCore.Free.Pay.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public async Task<OkObjectResult> ScanPay()
+        public async Task<OkObjectResult> ScanPay(string Body,string Out_Trade_No,int Total_Amount)
         {
             var request = new ScanPayRequest();
             request.AddParameters(new ScanPayModel()
             {
-                Body = "腾讯充值中心-QQ会员充值",
-                OutTradeNo = "20150806125342",
-                TotalFee = 10
+                Body = Body,
+                OutTradeNo = Out_Trade_No,
+                TotalFee = Total_Amount
             });
             return Ok(await _client.ExecuteAsync(request));
         }
 
-        
+        [HttpPost]
+        public async Task<OkObjectResult> WapPay(string Body, string Out_Trade_No, int Total_Amount)
+        {
+            var request = new WapPayRequest();
+            request.AddParameters(new WapPayModel()
+            {
+                Body = Body,
+                OutTradeNo = Out_Trade_No,
+                TotalFee = Total_Amount
+            });
+            return Ok(await _client.ExecuteAsync(request));
+        }
+
+
+
 
     }
 }
