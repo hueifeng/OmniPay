@@ -5,7 +5,7 @@
 
 trigger:
 - master
-    - job: Source_Build
+    - job: Ubuntu_16_04
     displayName: 'Test: Linux Source Build'
     container: centos:7
     pool:
