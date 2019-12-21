@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace AspNetCore.Free.Pay.Controllers
 {
-    [Route("api/[controller]/[action]")]
-    [ApiController]
+
     public class WeChatPayController : ControllerBase
     {
         private readonly IWeChatPayClient _client;
@@ -32,7 +31,13 @@ namespace AspNetCore.Free.Pay.Controllers
             });
             return Ok(await _client.ExecuteAsync(request));
         }
-
+        /// <summary>
+        ///     H5支付
+        /// </summary>
+        /// <param name="Body"></param>
+        /// <param name="Out_Trade_No"></param>
+        /// <param name="Total_Amount"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<OkObjectResult> WapPay(string Body, string Out_Trade_No, int Total_Amount)
         {
@@ -45,7 +50,65 @@ namespace AspNetCore.Free.Pay.Controllers
             });
             return Ok(await _client.ExecuteAsync(request));
         }
+        /// <summary>
+        ///     App支付
+        /// </summary>
+        /// <param name="Body"></param>
+        /// <param name="Out_Trade_No"></param>
+        /// <param name="Total_Amount"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<OkObjectResult> AppPay(string Body,string Out_Trade_No,int Total_Amount)
+        {
+            var request=new AppPayRequest();
+            request.AddParameters(new AppPayModel()
+            {
+                Body = Body,
+                OutTradeNo = Out_Trade_No,
+                TotalFee = Total_Amount
+            });
+            return Ok(await _client.ExecuteAsync(request));
+        }
 
+        /// <summary>
+        ///     公众号支付
+        /// </summary>
+        /// <param name="Body"></param>
+        /// <param name="OutTradeNo"></param>
+        /// <param name="TotalAmount"></param>
+        /// <param name="OpenId"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<OkObjectResult> PublicPay(string Body,string OutTradeNo,int TotalAmount,string OpenId)
+        {
+            var request=new PublicPayRequest();
+            request.AddParameters(new PublicPayModel()
+            {
+                Body = Body,
+                OutTradeNo = OutTradeNo,
+                TotalFee = TotalAmount,
+                OpenId = OpenId
+            });
+            return Ok(await  _client.ExecuteAsync(request));
+        }
+
+        /// <summary>
+        ///     小程序支付
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<OkObjectResult> AppletPay(string Body,string OutTradeNo,int TotalAmount,string OpenId)
+        {
+            var request=new AppletPayRequest();
+            request.AddParameters(new AppletPayModel()
+            {
+                Body = Body,
+                OutTradeNo = OutTradeNo,
+                TotalFee = TotalAmount,
+                OpenId = OpenId
+            });
+            return Ok(await _client.ExecuteAsync(request));
+        }
 
 
 

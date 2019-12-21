@@ -9,7 +9,7 @@ using System.Xml;
 
 namespace Free.Pay.Core.Request
 {
-    public abstract class BaseRequest<TModel, TResponse>
+    public abstract class BaseRequest<TModel, TResponse> 
     {
         private readonly SortedDictionary<string, object> _values;
 

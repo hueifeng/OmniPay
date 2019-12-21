@@ -1,12 +1,10 @@
-﻿using Free.Pay.Core.Request;
+﻿using Free.Pay.Core.Exceptions;
+using Free.Pay.Core.Request;
 using Free.Pay.Core.Utils;
 using Free.Pay.Wechatpay.Response;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading;
-using System.Threading.Tasks;
-using Free.Pay.Core.Exceptions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System.Threading.Tasks;
 
 namespace Free.Pay.Wechatpay
 {
@@ -56,7 +54,7 @@ namespace Free.Pay.Wechatpay
             {
                 throw new FreePayException(nameof(_weChatPayOptions.AppId));
             }
-   
+         
             request.Add("appid", _weChatPayOptions.AppId);
             request.Add("mch_id", _weChatPayOptions.Key);
             request.Add("notify_url",_weChatPayOptions.NotifyUrl);
