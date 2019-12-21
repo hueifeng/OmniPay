@@ -9,6 +9,10 @@ trigger:
 pool:
   vmImage: 'windows-latest'
 
+
+ pool:
+  vmImage: 'ubuntu-16.04'
+
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
