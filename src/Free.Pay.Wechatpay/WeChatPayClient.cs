@@ -57,7 +57,7 @@ namespace Free.Pay.Wechatpay
          
             request.Add("appid", _weChatPayOptions.AppId);
             request.Add("mch_id", _weChatPayOptions.Key);
-            request.Add("notify_url",_weChatPayOptions.NotifyUrl);
+            //request.Add("notify_url",_weChatPayOptions.NotifyUrl);
             request.Add("sign", request.GetSign());
             request.RequestUrl = _weChatPayOptions.BaseUrl + request.RequestUrl;
         }

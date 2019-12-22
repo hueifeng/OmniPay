@@ -20,6 +20,8 @@
                 <li><a href="#tabs-purchase-3">APP支付</a></li>
                 <li><a href="#tabs-purchase-4">公众号支付</a></li>
                 <li><a href="#tabs-purchase-5">小程序支付</a></li>
+                <li><a href="#tabs-purchase-6">查询订单</a></li>
+                <li><a href="#tabs-purchase-7">关闭订单</a></li>
             </ul>
 
             <div id="tabs-purchase-1">
@@ -139,6 +141,42 @@
                     <p>
                         <label>金额：</label>
                         <input type="text" name="TotalAmount" value="1" title="单位为分。">
+                    </p>
+                    <p>
+                        <label>&nbsp;</label>
+                        <input type="submit" class="button" value="提交">
+                    </p>
+                </form>
+                <hr />
+                <p class="faq">
+                    <a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_1" target="_blank">* 查看接口 请求参数、响应参数</a>
+                </p>
+            </div>
+            <div id="tabs-purchase-6">
+                <form class="api-form" asp-controller="Wechatpay" asp-action="Query" method="post" target="_blank">
+                    <p>
+                        <label>微信订单号：</label>
+                        <input type="text" name="tradeno">
+                    </p>
+                    <p>
+                        <label>订单号：</label>
+                        <input type="text" name="outtradeno">
+                    </p>
+                    <p>
+                        <label>&nbsp;</label>
+                        <input type="submit" class="button" value="提交">
+                    </p>
+                </form>
+                <hr />
+                <p class="faq">
+                    <a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_1" target="_blank">* 查看接口 请求参数、响应参数</a>
+                </p>
+            </div>
+            <div id="tabs-purchase-7">
+                <form class="api-form" asp-controller="Wechatpay" asp-action="Close" method="post" target="_blank">
+                    <p>
+                        <label>订单号：</label>
+                        <input type="text" name="outTradeNo">
                     </p>
                     <p>
                         <label>&nbsp;</label>

@@ -109,8 +109,39 @@ namespace AspNetCore.Free.Pay.Controllers
             });
             return Ok(await _client.ExecuteAsync(request));
         }
+        /// <summary>
+        ///     查询订单
+        /// </summary>
+        /// <param name="OuttradeNo"></param>
+        /// <param name="TradeNo"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<OkObjectResult> Query(string OuttradeNo, string TradeNo)
+        {
+            var request = new QueryRequest();
+            request.AddParameters(new QueryModel()
+            {
+                 TransactionId = TradeNo,
+                 OutTradeNo = OuttradeNo
+            });
+            return Ok(await _client.ExecuteAsync(request));
+        }
 
-
+        /// <summary>
+        ///     关闭订单
+        /// </summary>
+        /// <param name="OutTradeNo"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<OkObjectResult> Close(string OutTradeNo)
+        {
+            var request = new CloseRequest();
+            request.AddParameters(new CloseModel()
+            {
+                OutTradeNo = OutTradeNo
+            });
+            return Ok(await _client.ExecuteAsync(request));
+        }
 
     }
 }
