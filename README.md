@@ -1,6 +1,7 @@
 AspNetCore.Free.Pay
 ===============
 
+![GitHub](https://img.shields.io/github/license/hueifeng/AspNetCore.Free.Pay)
 [![Build Status](https://dev.azure.com/HueiFeng/AspNetCore.Free.Pay/_apis/build/status/hueifeng.AspNetCore.Free.Pay?branchName=master)](https://dev.azure.com/HueiFeng/AspNetCore.Free.Pay/_build/latest?definitionId=2&branchName=master)
 
 
