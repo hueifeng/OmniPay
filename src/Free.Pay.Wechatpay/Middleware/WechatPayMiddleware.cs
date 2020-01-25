@@ -10,7 +10,7 @@ namespace Free.Pay.Wechatpay
     {
         private readonly ILogger _logger;
         private readonly RequestDelegate _next;
-
+        
         public WechatPayMiddleware(RequestDelegate next, ILogger<WechatPayMiddleware> logger)
         {
             _logger = logger;
@@ -26,7 +26,7 @@ namespace Free.Pay.Wechatpay
                 {
                     _logger.LogInformation("Invoking WechatPay endpoint: {endpointType} for {url}", endpoint.GetType().FullName, context.Request.Path.ToString());
 
-                    var result =  endpoint.Process(context);
+                    var result =endpoint.Process(context);
 
                     if (result != null)
                     {

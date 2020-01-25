@@ -6,7 +6,6 @@ namespace Free.Pay.Wechatpay.Results
 {
     public class TestWxResult : IEndpointResult
     {
-
         public async Task ExecuteAsync(HttpContext context)
         {
             context.Response.ContentType = "application/json; charset=UTF-8";
