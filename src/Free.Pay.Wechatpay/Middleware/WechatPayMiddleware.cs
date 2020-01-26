@@ -34,7 +34,10 @@ namespace Free.Pay.Wechatpay
                         await result.ExecuteAsync(context);
                     }
                     return;
+                }else{
+                     context.Response.StatusCode = StatusCodes.Status404NotFound;
                 }
+
             }
             catch (Exception ex)
             {

@@ -23,12 +23,11 @@ namespace Free.Pay.Wechatpay.Endpoints
         {
             _logger.LogDebug("Start WechatScanPay request");
 
-            //TODO先注释
-            // if (!HttpMethods.IsPost(context.Request.Method))
-            // {
-            //     _logger.LogWarning("Invalid HTTP method for ScanPay endpoint.");
-            //     return new StatusCodeResult(HttpStatusCode.MethodNotAllowed);
-            // }
+            if (!HttpMethods.IsPost(context.Request.Method))
+            {
+                _logger.LogWarning("Invalid HTTP method for ScanPay endpoint.");
+                return new StatusCodeResult(HttpStatusCode.MethodNotAllowed);
+            }
             _logger.LogTrace("End WechatScanPay request. result type: {0}", this?.GetType().ToString() ?? "-none-");
             return new ScanPayResult(_client);
 
