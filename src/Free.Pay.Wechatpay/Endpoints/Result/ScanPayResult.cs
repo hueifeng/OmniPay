@@ -26,17 +26,13 @@ namespace Free.Pay.Wechatpay.Endpoints.Result {
                         OutTradeNo = body["Out_Trade_No"],
                         TotalFee = int.Parse (body["Total_Amount"])
                 });
-                context.Response.ContentType = "application/json; charset=UTF-8";
                 await context.Response.WriteAsync ((await _client.ExecuteAsync (request)).ToJson());
-
             } catch (System.Exception ex) {
                 context.Response.StatusCode = StatusCodes.Status500InternalServerError;
                 await context.Response.WriteAsync (ex.Message);
             }
-
+            context.Response.ContentType = "application/json; charset=UTF-8";
             await context.Response.Body.FlushAsync ();
-            // return await _client.ExecuteAsync(request);
-
         }
     }
 }
