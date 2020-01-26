@@ -2,7 +2,7 @@
 
 namespace Free.Pay.Core.Utils
 {
-    public class Extensions
+    public static partial class Extensions
     {
         public static string GetNonceStr()
         {

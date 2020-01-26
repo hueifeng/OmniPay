@@ -5,6 +5,7 @@ using Free.Pay.Core.Hosting;
 using Free.Pay.Wechatpay.Domain;
 using Free.Pay.Wechatpay.Request;
 using Microsoft.AspNetCore.Http;
+using Free.Pay.Core.Utils;
 
 namespace Free.Pay.Wechatpay.Endpoints.Result {
     public class ScanPayResult : IEndpointResult {
@@ -21,12 +22,12 @@ namespace Free.Pay.Wechatpay.Endpoints.Result {
                 }
                 var request = new ScanPayRequest ();
                 request.AddParameters (new ScanPayModel () {
-                    Body = body["Body"],
+                        Body = body["Body"],
                         OutTradeNo = body["Out_Trade_No"],
                         TotalFee = int.Parse (body["Total_Amount"])
                 });
                 context.Response.ContentType = "application/json; charset=UTF-8";
-                await context.Response.WriteAsync ((await _client.ExecuteAsync (request)).ToString ());
+                await context.Response.WriteAsync ((await _client.ExecuteAsync (request)).ToJson());
 
             } catch (System.Exception ex) {
                 context.Response.StatusCode = StatusCodes.Status500InternalServerError;
