@@ -22,10 +22,10 @@ namespace AspNetCore.Free.Pay
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddWeChatEndpoints();
+
             services.AddWeChatPay(options=>{
                 Configuration.GetSection("WeChatPays").Bind(options);
             });
-        
             services.AddControllersWithViews();
         }
 

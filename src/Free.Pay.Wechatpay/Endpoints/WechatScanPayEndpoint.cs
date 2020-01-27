@@ -30,7 +30,6 @@ namespace Free.Pay.Wechatpay.Endpoints
             }
             _logger.LogTrace("End WechatScanPay request. result type: {0}", this?.GetType().ToString() ?? "-none-");
             return new ScanPayResult(_client);
-
         }
 
     }
