@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using FluentAssertions;
 using Free.Pay.Core.Results;
+using Free.Pay.Wechatpay.Endpoints.Result;
 
 namespace Free.Pay.Wechatpay.Test.Endpoints
 {
@@ -28,15 +29,22 @@ namespace Free.Pay.Wechatpay.Test.Endpoints
             _client=new WeChatPayClient(someOptions,wechatpaylogger);
             _subject=new WechatScanPayEndpoint(logger,_client);
         }
-
+        public WechatScanPayEndpointTest(){
+            this.init();
+        }
         [Fact]
         public void Process_get_entry_point_shoud_return_405(){
-            init();
             _context.Request.Method="GET";
             var result=_subject.Process(_context);
             var statusCode = result as StatusCodeResult;
             statusCode.Should().NotBeNull();
             statusCode.StatusCode.Should().Be(405);
+        }
+        [Fact]
+        public void Process_scanpay_path_should_return_sanpay_result(){
+            _context.Request.Method="POST";
+            var result=_subject.Process(_context);
+            result.Should().BeOfType<ScanPayResult>();
         }
     }
 }
