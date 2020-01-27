@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/test/AspNetCore.Free.Pay/AspNetCore.Free.Pay.csproj",
+                "${workspaceFolder}/test/Wechatpay.Test/Wechatpay.Test.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/test/AspNetCore.Free.Pay/AspNetCore.Free.Pay.csproj",
+                "${workspaceFolder}/test/Wechatpay.Test/Wechatpay.Test.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -32,7 +32,7 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/test/AspNetCore.Free.Pay/AspNetCore.Free.Pay.csproj",
+                "${workspaceFolder}/test/Wechatpay.Test/Wechatpay.Test.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
