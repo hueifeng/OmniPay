@@ -16,15 +16,15 @@ namespace Free.Pay.Wechatpay.Endpoints.Result {
         }
         public async Task ExecuteAsync (HttpContext context) {
             try {
-                var body = await context.Request.ReadFormAsync ();
+                var body = (await context.Request.ReadFormAsync()).AsNameValueCollection();
                 if (body?.Count == 0) {
                     throw new ArgumentNullException (nameof (body));
                 }
                 var request = new ScanPayRequest ();
                 request.AddParameters (new ScanPayModel () {
-                        Body = body["Body"],
-                        OutTradeNo = body["Out_Trade_No"],
-                        TotalFee = int.Parse (body["Total_Amount"])
+                        Body = body.Get("Body"),
+                        OutTradeNo = body.Get("Out_Trade_No"),
+                        TotalFee = int.Parse (body.Get("Total_Amount"))
                 });
                 await context.Response.WriteAsync ((await _client.ExecuteAsync (request)).ToJson());
             } catch (System.Exception ex) {

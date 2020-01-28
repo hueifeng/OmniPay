@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using FluentAssertions;
 using Free.Pay.Core.Results;
 using Free.Pay.Wechatpay;
@@ -9,13 +8,15 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Xunit;
 
-namespace Wechatpay.Test.Endpoints {
-    public class WechatScanPayEndpointTest {
+namespace Wechatpay.Test.Endpoints
+{
+    public class WechatWapPayEndpointTest
+    {
         HttpContext _context = new DefaultHttpContext ();
         private ILogger<WeChatPayClient> wechatpaylogger = new LoggerFactory ().CreateLogger<WeChatPayClient> ();
-        private ILogger<WechatScanPayEndpoint> logger = new LoggerFactory ().CreateLogger<WechatScanPayEndpoint> ();
+        private ILogger<WechatWapPayEndpoint> logger = new LoggerFactory ().CreateLogger<WechatWapPayEndpoint> ();
         IWeChatPayClient _client;
-        private WechatScanPayEndpoint _subject;
+        private WechatWapPayEndpoint _subject;
 
         private void init () {
             var someOptions = Options.Create (new WeChatPayOptions {
@@ -25,9 +26,9 @@ namespace Wechatpay.Test.Endpoints {
                     Key = "1900009641"
             });
             _client = new WeChatPayClient (someOptions, wechatpaylogger);
-            _subject = new WechatScanPayEndpoint (logger, _client);
+            _subject = new WechatWapPayEndpoint (logger, _client);
         }
-        public WechatScanPayEndpointTest () {
+        public WechatWapPayEndpointTest () {
             this.init ();
         }
 
@@ -44,7 +45,7 @@ namespace Wechatpay.Test.Endpoints {
         public void Process_scanpay_path_should_return_sanpay_result () {
             _context.Request.Method = "POST";
             var result = _subject.Process (_context);
-            result.Should ().BeOfType<ScanPayResult> ();
+            result.Should ().BeOfType<WapPayResult> ();
         }
     }
 }
