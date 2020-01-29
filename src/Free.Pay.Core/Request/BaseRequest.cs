@@ -240,9 +240,6 @@ namespace Free.Pay.Core.Request
         public void Remove(string key) {
             _values.Remove(key);
         }
-        public virtual void Execute()
-        {
-
-        }
+        public virtual void Execute(){ }
     }
 }

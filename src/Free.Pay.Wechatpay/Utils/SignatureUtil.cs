@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using Free.Pay.Core.Request;
 
 namespace Free.Pay.Wechatpay.Utils
 {
@@ -17,11 +18,10 @@ namespace Free.Pay.Wechatpay.Utils
         /// </summary>
         /// <param name="data">数据</param>
         /// <param name="sign">签名</param>
-        /// <param name="signPubKeyCert">验证公钥</param>
         /// <returns></returns>
-        public static bool VerifyData(string data, string sign)
+        public static bool VerifyData<TModel,TResponse>(BaseRequest<TModel, TResponse> request, string sign)
         {
-            return true;
+           return request.GetSign()==sign;
         }
 
         #endregion

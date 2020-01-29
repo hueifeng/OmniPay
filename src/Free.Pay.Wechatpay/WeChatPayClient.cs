@@ -2,6 +2,7 @@
 using Free.Pay.Core.Request;
 using Free.Pay.Core.Utils;
 using Free.Pay.Wechatpay.Response;
+using Free.Pay.Wechatpay.Utils;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Threading.Tasks;
@@ -29,14 +30,13 @@ namespace Free.Pay.Wechatpay
         public async Task<TResponse> ExecuteAsync<TModel, TResponse>(BaseRequest<TModel, TResponse> request)
         {
             BuildParams(request);
-            var reqsign= request.GetStringValue("sign");
+            //var reqsign= request.GetStringValue("sign");
             string result = await HttpUtil.PostAsync(request.RequestUrl, request.ToXml());
             request.FromXml(result);
             var baseResponse = (BaseResponse)(object)request.ToObject<TResponse>();
             baseResponse.Raw = result;
             var repsign = request.GetStringValue("sign");
-
-            if (string.IsNullOrEmpty(repsign) &&reqsign== repsign)
+            if (string.IsNullOrEmpty(repsign) &&!SignatureUtil.VerifyData(request,repsign))
             {
                 _logger.LogError("Signature verification failed:{0}",result);
                 throw new FreePayException("Signature verification failed.");
