@@ -10,5 +10,9 @@ namespace Free.Pay.Wechatpay.Request
         {
             RequestUrl = "/pay/closeorder";
         }
+        public override void Execute()
+        {
+            Remove("notify_url");
+        }
     }
 }

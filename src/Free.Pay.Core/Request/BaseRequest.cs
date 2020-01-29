@@ -232,6 +232,17 @@ namespace Free.Pay.Core.Request
         {
            return GetValue(key)?.ToString();
         }
+        /// <summary>
+        ///     根据参数名删除
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public void Remove(string key) {
+            _values.Remove(key);
+        }
+        public virtual void Execute()
+        {
 
+        }
     }
 }

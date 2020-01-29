@@ -63,7 +63,5 @@ namespace Free.Pay.Wechatpay.Domain
         /// </summary>
         public string SignType { get; set; } = "HMAC-SHA256";
 
-
-
     }
 }

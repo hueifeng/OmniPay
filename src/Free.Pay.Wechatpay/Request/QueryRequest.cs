@@ -10,6 +10,9 @@ namespace Free.Pay.Wechatpay.Request
         {
             RequestUrl = "/pay/orderquery";
         }
-
+        public override void Execute()
+        {
+            Remove("notify_url");
+        }
     }
 }
