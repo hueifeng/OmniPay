@@ -13,8 +13,10 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddTransient<IEndpointRouter, EndpointRouter>();
             services.AddSingleton<WechatScanPayEndpoint>();
             services.AddSingleton<WechatWapPayEndpoint>();
+            services.AddSingleton<WechatAppPayEndpoint>();
             services.AddSingleton(new Endpoint("wechatScanPay", "/pay-api/Wechatpay/ScanPay", typeof(WechatScanPayEndpoint)));
             services.AddSingleton(new Endpoint("wechatWapPay", "/pay-api/Wechatpay/WapPay", typeof(WechatWapPayEndpoint)));
+            services.AddSingleton(new Endpoint("wechatAppPay", "/pay-api/Wechatpay/AppPay", typeof(WechatAppPayEndpoint)));
             return services;
         }
 
