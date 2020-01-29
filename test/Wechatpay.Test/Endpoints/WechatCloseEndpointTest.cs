@@ -26,7 +26,7 @@ namespace Wechatpay.Test.Endpoints
                     Key = "1900009641"
             });
             _client = new WeChatPayClient (someOptions, wechatpaylogger);
-            _subject = new WechatAppPayEndpoint (logger, _client);
+            _subject = new WechatCloseEndpoint (logger, _client);
         }
         public WechatCloseEndpointTest () {
             this.init ();
