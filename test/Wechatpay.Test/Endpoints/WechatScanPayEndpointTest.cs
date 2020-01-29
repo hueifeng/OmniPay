@@ -9,7 +9,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Xunit;
 
-namespace Wechatpay.Test.Endpoints {
+namespace Wechatpay.Test.Endpoints
+{
     public class WechatScanPayEndpointTest {
         HttpContext _context = new DefaultHttpContext ();
         private ILogger<WeChatPayClient> wechatpaylogger = new LoggerFactory ().CreateLogger<WeChatPayClient> ();
