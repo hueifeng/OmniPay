@@ -10,13 +10,13 @@ using Xunit;
 
 namespace Wechatpay.Test.Endpoints
 {
-    public class WechatWapPayEndpointTest
+    public class WechatAppPayEndpointTest
     {
-        HttpContext _context = new DefaultHttpContext ();
+         HttpContext _context = new DefaultHttpContext ();
         private ILogger<WeChatPayClient> wechatpaylogger = new LoggerFactory ().CreateLogger<WeChatPayClient> ();
-        private ILogger<WechatWapPayEndpoint> logger = new LoggerFactory ().CreateLogger<WechatWapPayEndpoint> ();
+        private ILogger<WechatAppPayEndpoint> logger = new LoggerFactory ().CreateLogger<WechatAppPayEndpoint> ();
         IWeChatPayClient _client;
-        private WechatWapPayEndpoint _subject;
+        private WechatAppPayEndpoint _subject;
 
         private void init () {
             var someOptions = Options.Create (new WeChatPayOptions {
@@ -26,9 +26,9 @@ namespace Wechatpay.Test.Endpoints
                     Key = "1900009641"
             });
             _client = new WeChatPayClient (someOptions, wechatpaylogger);
-            _subject = new WechatWapPayEndpoint (logger, _client);
+            _subject = new WechatAppPayEndpoint (logger, _client);
         }
-        public WechatWapPayEndpointTest () {
+        public WechatAppPayEndpointTest () {
             this.init ();
         }
 
@@ -42,10 +42,10 @@ namespace Wechatpay.Test.Endpoints
         }
 
         [Fact]
-        public void Process_scanpay_path_should_return_wappay_result () {
+        public void Process_scanpay_path_should_return_apppay_result () {
             _context.Request.Method = "POST";
             var result = _subject.Process (_context);
-            result.Should ().BeOfType<WapPayResult> ();
+            result.Should ().BeOfType<AppPayResult> ();
         }
     }
 }
