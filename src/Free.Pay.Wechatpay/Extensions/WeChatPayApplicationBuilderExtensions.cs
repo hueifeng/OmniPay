@@ -8,14 +8,14 @@ namespace Microsoft.AspNetCore.Builder
 {
     public static class WeChatPayApplicationBuilderExtensions
     { 
-        public static IEndpointConventionBuilder UseWeChatPayEndpoints(this IEndpointRouteBuilder endpoints) {
+        public static IEndpointConventionBuilder UseWeChatPayEndpoints(this IEndpointRouteBuilder endpoints,string pattern) {
             var pipeline = endpoints.CreateApplicationBuilder()
                  .UseMiddleware<WechatPayMiddleware>().Build();
-            return endpoints.Map("/pay-api/{controller}/{action}", pipeline).WithDisplayName("wechatpay") ;
+            return endpoints.Map(pattern, pipeline).WithDisplayName("wechatpay") ;
         }
 
         /// <summary>
-        /// 使用PaySharp
+        /// 使用FreePay
         /// </summary>
         /// <param name="app"></param>
         /// <returns></returns>

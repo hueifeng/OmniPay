@@ -11,7 +11,6 @@ namespace Free.Pay.Wechatpay.Utils
     /// </summary>
     public static class SignatureUtil
     {
-
         #region 验签
         /// <summary>
         /// 验签

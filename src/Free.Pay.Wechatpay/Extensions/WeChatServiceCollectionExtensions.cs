@@ -9,7 +9,7 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     public static class WeChatServiceCollectionExtensions
     {
-        public static IServiceCollection AddWeChatEndpoints(this IServiceCollection services) {
+        public static IServiceCollection AddWeChatPay(this IServiceCollection services,Action<WeChatPayOptions> action) {
             services.AddTransient<IEndpointRouter, EndpointRouter>();
             services.AddSingleton<WechatScanPayEndpoint>();
             services.AddSingleton<WechatWapPayEndpoint>();
@@ -19,12 +19,12 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddSingleton(new Endpoint("wechatScanPay", "/pay-api/Wechatpay/ScanPay", typeof(WechatScanPayEndpoint)));
             services.AddSingleton(new Endpoint("wechatWapPay", "/pay-api/Wechatpay/WapPay", typeof(WechatWapPayEndpoint)));
             services.AddSingleton(new Endpoint("wechatAppPay", "/pay-api/Wechatpay/AppPay", typeof(WechatAppPayEndpoint)));
-            services.AddSingleton(new Endpoint("wechatAppPay", "/pay-api/Wechatpay/PublicPay", typeof(WechatPublicPayEndpoint)));
-            services.AddSingleton(new Endpoint("wechatAppPay", "/pay-api/Wechatpay/AppletPay", typeof(WechatAppletPayEndpoint)));
-            return services;
+            services.AddSingleton(new Endpoint("wechatPublicPay", "/pay-api/Wechatpay/PublicPay", typeof(WechatPublicPayEndpoint)));
+            services.AddSingleton(new Endpoint("wechatAppletPay", "/pay-api/Wechatpay/AppletPay", typeof(WechatAppletPayEndpoint)));
+            return services.AddWeChatPayServices(action);
         }
 
-        public static IServiceCollection AddWeChatPay(this IServiceCollection services,Action<WeChatPayOptions> action) {
+        private static IServiceCollection AddWeChatPayServices(this IServiceCollection services,Action<WeChatPayOptions> action) {
             if (action!=null)
             {
                 services.Configure<WeChatPayOptions>(action.Invoke);

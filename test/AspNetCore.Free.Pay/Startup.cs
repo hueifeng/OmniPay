@@ -21,8 +21,6 @@ namespace AspNetCore.Free.Pay
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddWeChatEndpoints();
-
             services.AddWeChatPay(options=>{
                 Configuration.GetSection("WeChatPays").Bind(options);
             });
@@ -48,7 +46,9 @@ namespace AspNetCore.Free.Pay
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}");
      
-                endpoints.UseWeChatPayEndpoints();
+                endpoints.UseWeChatPayEndpoints(
+                    pattern:"/pay-api/{controller}/{action}"
+                );
             });
             app.UseFreePay();
         }
