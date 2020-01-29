@@ -30,7 +30,6 @@ namespace Free.Pay.Wechatpay
         {
             BuildParams(request);
             var reqsign= request.GetStringValue("sign");
-            request.Execute();
             string result = await HttpUtil.PostAsync(request.RequestUrl, request.ToXml());
             request.FromXml(result);
             var baseResponse = (BaseResponse)(object)request.ToObject<TResponse>();
@@ -53,6 +52,7 @@ namespace Free.Pay.Wechatpay
             request.Add("appid", _weChatPayOptions.AppId);
             request.Add("mch_id", _weChatPayOptions.Key);
             request.Add("notify_url",_weChatPayOptions.NotifyUrl);
+            request.Execute();
             request.Add("sign", request.GetSign());
             request.RequestUrl = _weChatPayOptions.BaseUrl + request.RequestUrl;
         }
