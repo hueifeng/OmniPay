@@ -7,26 +7,26 @@ using Microsoft.Extensions.Logging;
 
 namespace Free.Pay.Wechatpay.Endpoints
 {
-    public class WechatPublicPayEndpoint:IEndpointHandler
+    public class WechatQueryEndpoint:IEndpointHandler
     {
-        private readonly ILogger<WechatPublicPayEndpoint> _logger;
+        private readonly ILogger<WechatQueryEndpoint> _logger;
         private readonly IWeChatPayClient _client;
 
-        public WechatPublicPayEndpoint(ILogger<WechatPublicPayEndpoint> logger,IWeChatPayClient client){
+        public WechatQueryEndpoint(ILogger<WechatQueryEndpoint> logger,IWeChatPayClient client){
             this._logger=logger;
             this._client=client;
         }
         public IEndpointResult Process(HttpContext context)
         {
-             _logger.LogDebug("Start WechatPublicPay request");
+             _logger.LogDebug("Start WechatQuery request");
 
             if (!HttpMethods.IsPost(context.Request.Method))
             {
                 _logger.LogWarning("Invalid HTTP method for PublicPay endpoint.");
                 return new StatusCodeResult(HttpStatusCode.MethodNotAllowed);
             }
-            _logger.LogTrace("End WechatPublicPay request. result type: {0}", this?.GetType().ToString() ?? "-none-");
-            return new PublicPayResult(_client);
+            _logger.LogTrace("End WechatQuery request. result type: {0}", this?.GetType().ToString() ?? "-none-");
+            return new QueryResult(_client);
         }
     }
 }

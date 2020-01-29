@@ -42,7 +42,7 @@ namespace Wechatpay.Test.Endpoints
         }
 
         [Fact]
-        public void Process_scanpay_path_should_return_wappay_result () {
+        public void Process_apppay_path_should_return_wappay_result () {
             _context.Request.Method = "POST";
             var result = _subject.Process (_context);
             result.Should ().BeOfType<WapPayResult> ();

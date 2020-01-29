@@ -10,14 +10,13 @@ using Xunit;
 
 namespace Wechatpay.Test.Endpoints
 {
-    public class WechatPublicPayEndpointTest
+    public class WechatAppletPayEndpointTest
     {
-        
         HttpContext _context = new DefaultHttpContext ();
         private ILogger<WeChatPayClient> wechatpaylogger = new LoggerFactory ().CreateLogger<WeChatPayClient> ();
-        private ILogger<WechatPublicPayEndpoint> logger = new LoggerFactory ().CreateLogger<WechatPublicPayEndpoint> ();
+        private ILogger<WechatAppletPayEndpoint> logger = new LoggerFactory ().CreateLogger<WechatAppletPayEndpoint> ();
         IWeChatPayClient _client;
-        private WechatPublicPayEndpoint _subject;
+        private WechatAppletPayEndpoint _subject;
 
         private void init () {
             var someOptions = Options.Create (new WeChatPayOptions {
@@ -27,9 +26,9 @@ namespace Wechatpay.Test.Endpoints
                     Key = "1900009641"
             });
             _client = new WeChatPayClient (someOptions, wechatpaylogger);
-            _subject = new WechatPublicPayEndpoint (logger, _client);
+            _subject = new WechatAppletPayEndpoint (logger, _client);
         }
-        public WechatPublicPayEndpointTest () {
+        public WechatAppletPayEndpointTest () {
             this.init ();
         }
 
@@ -43,10 +42,10 @@ namespace Wechatpay.Test.Endpoints
         }
 
         [Fact]
-        public void Process_publicpay_path_should_return_publicpay_result () {
+        public void Process_appletpay_path_should_return_appletpay_result () {
             _context.Request.Method = "POST";
             var result = _subject.Process (_context);
-            result.Should ().BeOfType<PublicPayResult> ();
+            result.Should ().BeOfType<AppletPayResult> ();
         }
     }
 }

@@ -15,10 +15,12 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddSingleton<WechatWapPayEndpoint>();
             services.AddSingleton<WechatAppPayEndpoint>();
             services.AddSingleton<WechatPublicPayEndpoint>();
+            services.AddSingleton<WechatAppletPayEndpoint>();
             services.AddSingleton(new Endpoint("wechatScanPay", "/pay-api/Wechatpay/ScanPay", typeof(WechatScanPayEndpoint)));
             services.AddSingleton(new Endpoint("wechatWapPay", "/pay-api/Wechatpay/WapPay", typeof(WechatWapPayEndpoint)));
             services.AddSingleton(new Endpoint("wechatAppPay", "/pay-api/Wechatpay/AppPay", typeof(WechatAppPayEndpoint)));
             services.AddSingleton(new Endpoint("wechatAppPay", "/pay-api/Wechatpay/PublicPay", typeof(WechatPublicPayEndpoint)));
+            services.AddSingleton(new Endpoint("wechatAppPay", "/pay-api/Wechatpay/AppletPay", typeof(WechatAppletPayEndpoint)));
             return services;
         }
 
