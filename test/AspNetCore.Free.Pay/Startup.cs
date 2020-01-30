@@ -45,10 +45,6 @@ namespace AspNetCore.Free.Pay
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}");
-     
-                endpoints.UseWeChatPayEndpoints(
-                    pattern:"/pay-api/{controller}/{action}"
-                );
             });
             app.UseFreePay();
         }
