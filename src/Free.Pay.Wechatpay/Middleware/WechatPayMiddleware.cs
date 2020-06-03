@@ -33,7 +33,6 @@ namespace Free.Pay.Wechatpay
                         _logger.LogTrace("Invoking result: {type}", result.GetType().FullName);
                         await result.ExecuteAsync(context);
                     }
-                    return;
                 }else{
                      context.Response.StatusCode = StatusCodes.Status404NotFound;
                 }
