@@ -24,6 +24,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Free.Pay.Core", "src\Free.P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wechatpay.Test", "test\Wechatpay.Test\Wechatpay.Test.csproj", "{5CC0C897-2325-4851-958E-E00F8A28550E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Free.Pay.Alipay", "src\Free.Pay.Alipay\Free.Pay.Alipay.csproj", "{8DAD9EA3-4A61-4843-8697-BC4C5C9BFE9C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,10 @@ Global
 		{5CC0C897-2325-4851-958E-E00F8A28550E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CC0C897-2325-4851-958E-E00F8A28550E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CC0C897-2325-4851-958E-E00F8A28550E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DAD9EA3-4A61-4843-8697-BC4C5C9BFE9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DAD9EA3-4A61-4843-8697-BC4C5C9BFE9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DAD9EA3-4A61-4843-8697-BC4C5C9BFE9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DAD9EA3-4A61-4843-8697-BC4C5C9BFE9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +61,7 @@ Global
 		{12020D59-4378-4849-99CC-9FEF818B0864} = {719D3223-895D-4B19-B7EF-B37BE5F8017C}
 		{4EE2E97F-7070-4C78-A382-D7C4F7CCA3F7} = {3642F616-626D-4205-8F66-68615D3F7D6C}
 		{5CC0C897-2325-4851-958E-E00F8A28550E} = {719D3223-895D-4B19-B7EF-B37BE5F8017C}
+		{8DAD9EA3-4A61-4843-8697-BC4C5C9BFE9C} = {3642F616-626D-4205-8F66-68615D3F7D6C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7E7D1B2E-48E6-4A24-8815-2CF293AA888E}

@@ -37,8 +37,7 @@ namespace Free.Pay.Core.Hosting
 
         private IEndpointHandler GetEndpointHandler(Endpoint endpoint, HttpContext context)
         {
-            var handler = context.RequestServices.GetService(endpoint.Handler) as IEndpointHandler;
-            if (handler != null)
+            if (context.RequestServices.GetService(endpoint.Handler) is IEndpointHandler handler)
             {
                 _logger.LogDebug("Endpoint enabled: {endpoint}, successfully created handler: {endpointHandler}", endpoint.Name, endpoint.Handler.FullName);
                 return handler;
