@@ -22,9 +22,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Free.Pay", "test
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Free.Pay.Core", "src\Free.Pay.Core\Free.Pay.Core.csproj", "{4EE2E97F-7070-4C78-A382-D7C4F7CCA3F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wechatpay.Test", "test\Wechatpay.Test\Wechatpay.Test.csproj", "{5CC0C897-2325-4851-958E-E00F8A28550E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wechatpay.Test", "test\Wechatpay.Test\Wechatpay.Test.csproj", "{5CC0C897-2325-4851-958E-E00F8A28550E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Free.Pay.Alipay", "src\Free.Pay.Alipay\Free.Pay.Alipay.csproj", "{8DAD9EA3-4A61-4843-8697-BC4C5C9BFE9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Free.Pay.Alipay", "src\Free.Pay.Alipay\Free.Pay.Alipay.csproj", "{8DAD9EA3-4A61-4843-8697-BC4C5C9BFE9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
