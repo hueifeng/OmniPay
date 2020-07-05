@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29519.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3642F616-626D-4205-8F66-68615D3F7D6C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Free.Pay.Wechatpay", "src\Free.Pay.Wechatpay\Free.Pay.Wechatpay.csproj", "{4F57892F-25E8-4244-A8F8-7C84C7BE1A5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmniPay.Wechatpay", "src\OmniPay.Wechatpay\OmniPay.Wechatpay.csproj", "{4F57892F-25E8-4244-A8F8-7C84C7BE1A5C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{719D3223-895D-4B19-B7EF-B37BE5F8017C}"
 EndProject
@@ -18,13 +18,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Free.Pay", "test\AspNetCore.Free.Pay\AspNetCore.Free.Pay.csproj", "{12020D59-4378-4849-99CC-9FEF818B0864}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmniPay.Pay", "test\OmniPay.Pay\OmniPay.Pay.csproj", "{12020D59-4378-4849-99CC-9FEF818B0864}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Free.Pay.Core", "src\Free.Pay.Core\Free.Pay.Core.csproj", "{4EE2E97F-7070-4C78-A382-D7C4F7CCA3F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmniPay.Core", "src\OmniPay.Core\OmniPay.Core.csproj", "{4EE2E97F-7070-4C78-A382-D7C4F7CCA3F7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wechatpay.Test", "test\Wechatpay.Test\Wechatpay.Test.csproj", "{5CC0C897-2325-4851-958E-E00F8A28550E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Free.Pay.Alipay", "src\Free.Pay.Alipay\Free.Pay.Alipay.csproj", "{8DAD9EA3-4A61-4843-8697-BC4C5C9BFE9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmniPay.Alipay", "src\OmniPay.Alipay\OmniPay.Alipay.csproj", "{8DAD9EA3-4A61-4843-8697-BC4C5C9BFE9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Free.Pay.Wechatpay</RootNamespace>
   </PropertyGroup>
   
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
@@ -14,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Free.Pay.Core\Free.Pay.Core.csproj" />
+    <ProjectReference Include="..\OmniPay.Core\OmniPay.Core.csproj" />
   </ItemGroup>
 
 </Project>

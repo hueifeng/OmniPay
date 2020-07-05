@@ -13,7 +13,8 @@
     <PackageReference Include="coverlet.collector" Version="1.0.1" />
     <PackageReference Include="FluentAssertions" Version="5.10.0" />
   </ItemGroup>
+
   <ItemGroup>
-       <ProjectReference Include="..\..\src\Free.Pay.Wechatpay\Free.Pay.Wechatpay.csproj" />
+    <ProjectReference Include="..\..\src\OmniPay.Wechatpay\OmniPay.Wechatpay.csproj" />
   </ItemGroup>
 </Project>
