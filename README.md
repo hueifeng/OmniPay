@@ -4,7 +4,7 @@ OmniPay
 ![GitHub](https://img.shields.io/github/license/hueifeng/OmniPay)
 [![Build Status](https://dev.azure.com/HueiFeng/AspNetCore.Free.Pay/_apis/build/status/hueifeng.AspNetCore.Free.Pay?branchName=master)](https://dev.azure.com/HueiFeng/AspNetCore.Free.Pay/_build/latest?definitionId=2&branchName=master)
 
-OmniPay支付SDK，主要打造微信支付，支付宝支付，以及银联支付等，使用Free.Pay可以简化订单的创建、查询、退款和回调通知等操作
+OmniPay支付SDK，主要打造微信支付，支付宝支付，以及银联支付等，使用OmniPay可以简化订单的创建、查询、退款和回调通知等操作
 
 
 # 代码贡献
