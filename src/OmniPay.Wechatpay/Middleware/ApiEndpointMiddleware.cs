@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
 using System.Reflection;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
-namespace Free.Pay.Wechatpay.Middleware
+namespace OmniPay.Wechatpay.Middleware
 {
     /// <summary>
     ///    WeChat Pay middleware

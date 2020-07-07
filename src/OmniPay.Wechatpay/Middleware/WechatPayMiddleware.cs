@@ -1,10 +1,10 @@
-﻿using Free.Pay.Core.Hosting;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Threading.Tasks;
+using OmniPay.Core.Hosting;
 
-namespace Free.Pay.Wechatpay
+namespace OmniPay.Wechatpay.Middleware
 {
     public class WechatPayMiddleware
     {

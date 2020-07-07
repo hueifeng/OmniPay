@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>Free.Pay.Alipay</RootNamespace>
+    <RootNamespace>OmniPay.Alipay</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">

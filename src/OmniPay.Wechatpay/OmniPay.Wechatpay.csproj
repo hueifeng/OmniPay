@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>Free.Pay.Wechatpay</RootNamespace>
+    <RootNamespace>OmniPay.Wechatpay</RootNamespace>
   </PropertyGroup>
   
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">

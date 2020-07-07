@@ -1,11 +1,11 @@
-﻿using Free.Pay.Core.Hosting;
-using Free.Pay.Wechatpay;
-using Free.Pay.Wechatpay.Endpoints;
-using System;
+﻿using System;
 using Microsoft.AspNetCore.Http;
-using Endpoint = Free.Pay.Core.Hosting.Endpoint;
+using Microsoft.Extensions.DependencyInjection;
+using OmniPay.Core.Hosting;
+using OmniPay.Wechatpay.Endpoints;
+using Endpoint = OmniPay.Core.Hosting.Endpoint;
 
-namespace Microsoft.Extensions.DependencyInjection
+namespace OmniPay.Wechatpay.Extensions
 {
     public static class WeChatServiceCollectionExtensions
     {

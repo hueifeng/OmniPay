@@ -1,8 +1,8 @@
-﻿using Free.Pay.Core.Hosting;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using System.Threading.Tasks;
+using OmniPay.Core.Hosting;
 
-namespace Free.Pay.Wechatpay.Results
+namespace OmniPay.Wechatpay.Results
 {
     public class TestWxResult : IEndpointResult
     {

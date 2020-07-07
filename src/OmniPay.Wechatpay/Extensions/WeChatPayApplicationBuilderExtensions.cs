@@ -1,10 +1,10 @@
-﻿using Free.Pay.Core.Utils;
-using Free.Pay.Wechatpay;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
+using OmniPay.Core.Utils;
+using OmniPay.Wechatpay.Middleware;
 
-namespace Microsoft.AspNetCore.Builder
+namespace OmniPay.Wechatpay.Extensions
 {
     public static class WeChatPayApplicationBuilderExtensions
     {

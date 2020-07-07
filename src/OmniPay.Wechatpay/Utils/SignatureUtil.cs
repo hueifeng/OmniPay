@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using System.Text;
-using Free.Pay.Core.Request;
+﻿using OmniPay.Core.Request;
 
-namespace Free.Pay.Wechatpay.Utils
+namespace OmniPay.Wechatpay.Utils
 {
     /// <summary>
     ///     签名工具类

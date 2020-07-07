@@ -1,4 +1,4 @@
-﻿namespace Free.Pay.Wechatpay.Response
+﻿namespace OmniPay.Wechatpay.Response
 {
     public class AppPayResponse:BaseResponse
     {

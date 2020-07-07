@@ -1,10 +1,10 @@
-﻿using Free.Pay.Wechatpay;
-using Free.Pay.Wechatpay.Domain;
-using Free.Pay.Wechatpay.Request;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
+using OmniPay.Wechatpay;
+using OmniPay.Wechatpay.Domain;
+using OmniPay.Wechatpay.Request;
 
-namespace AspNetCore.Free.Pay.Controllers
+namespace OmniPay.Pay.Controllers
 {
 
     public class WeChatPayController : ControllerBase

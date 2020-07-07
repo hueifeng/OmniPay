@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
-namespace Free.Pay.Core.Hosting
+namespace OmniPay.Core.Hosting
 {
     public class EndpointRouter : IEndpointRouter
     {

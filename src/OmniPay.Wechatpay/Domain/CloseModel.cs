@@ -1,6 +1,4 @@
-﻿using Free.Pay.Core.Utils;
-
-namespace Free.Pay.Wechatpay.Domain
+﻿namespace OmniPay.Wechatpay.Domain
 {
     public class CloseModel
     {
@@ -12,7 +10,7 @@ namespace Free.Pay.Wechatpay.Domain
         /// <summary>
         /// 随机字符串
         /// </summary>
-        public string NonceStr { get; } = Extensions.GetNonceStr();
+        public string NonceStr { get; } = Core.Utils.Extensions.GetNonceStr();
         /// <summary>
         /// 签名类型，默认为MD5，支持HMAC-SHA256和MD5。
         /// </summary>

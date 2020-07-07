@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using System;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Free.Pay.Alipay.Extensions
+namespace OmniPay.Alipay.Extensions
 {
     public static class AlipayServiceCollectionExtensions
     {

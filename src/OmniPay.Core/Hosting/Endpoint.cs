@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
+using Microsoft.AspNetCore.Http;
 
-namespace Free.Pay.Core.Hosting
+namespace OmniPay.Core.Hosting
 {
     public class Endpoint
     {

@@ -1,9 +1,9 @@
-﻿using Free.Pay.Core.Hosting;
-using Microsoft.AspNetCore.Http;
-using System.Net;
+﻿using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using OmniPay.Core.Hosting;
 
-namespace Free.Pay.Core.Results
+namespace OmniPay.Core.Results
 {
     /// <summary>
     /// Result for a raw HTTP status code

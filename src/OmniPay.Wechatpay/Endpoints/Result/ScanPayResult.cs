@@ -1,13 +1,12 @@
 using System;
-using System.Collections.Specialized;
 using System.Threading.Tasks;
-using Free.Pay.Core.Hosting;
-using Free.Pay.Wechatpay.Domain;
-using Free.Pay.Wechatpay.Request;
 using Microsoft.AspNetCore.Http;
-using Free.Pay.Core.Utils;
+using OmniPay.Core.Hosting;
+using OmniPay.Core.Utils;
+using OmniPay.Wechatpay.Domain;
+using OmniPay.Wechatpay.Request;
 
-namespace Free.Pay.Wechatpay.Endpoints.Result {
+namespace OmniPay.Wechatpay.Endpoints.Result {
     public class ScanPayResult : IEndpointResult {
         private readonly IWeChatPayClient _client;
 

@@ -1,12 +1,12 @@
 using System.Threading.Tasks;
 using FluentAssertions;
-using Free.Pay.Core.Results;
-using Free.Pay.Wechatpay;
-using Free.Pay.Wechatpay.Endpoints;
-using Free.Pay.Wechatpay.Endpoints.Result;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using OmniPay.Core.Results;
+using OmniPay.Wechatpay;
+using OmniPay.Wechatpay.Endpoints;
+using OmniPay.Wechatpay.Endpoints.Result;
 using Xunit;
 
 namespace Wechatpay.Test.Endpoints

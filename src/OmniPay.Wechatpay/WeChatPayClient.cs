@@ -1,13 +1,13 @@
-﻿using Free.Pay.Core.Exceptions;
-using Free.Pay.Core.Request;
-using Free.Pay.Core.Utils;
-using Free.Pay.Wechatpay.Response;
-using Free.Pay.Wechatpay.Utils;
+﻿using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using System.Threading.Tasks;
+using OmniPay.Core.Exceptions;
+using OmniPay.Core.Request;
+using OmniPay.Core.Utils;
+using OmniPay.Wechatpay.Response;
+using OmniPay.Wechatpay.Utils;
 
-namespace Free.Pay.Wechatpay
+namespace OmniPay.Wechatpay
 {
     public class WeChatPayClient : IWeChatPayClient
     {

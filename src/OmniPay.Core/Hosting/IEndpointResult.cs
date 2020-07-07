@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
-namespace Free.Pay.Core.Hosting
+namespace OmniPay.Core.Hosting
 {
     /// <summary>
     ///     Endpoint result

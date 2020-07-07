@@ -1,4 +1,4 @@
-﻿namespace Free.Pay.Alipay.Response
+﻿namespace OmniPay.Alipay.Response
 {
     public class ScanPayResponse: BaseResponse
     {

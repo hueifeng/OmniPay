@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Free.Pay.Alipay.Response
+﻿namespace OmniPay.Alipay.Response
 {
     public abstract class BaseResponse
     {

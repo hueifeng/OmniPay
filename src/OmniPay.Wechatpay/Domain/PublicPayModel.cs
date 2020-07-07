@@ -1,6 +1,6 @@
-﻿using Free.Pay.Core.Utils;
+﻿using OmniPay.Core.Utils;
 
-namespace Free.Pay.Wechatpay.Domain
+namespace OmniPay.Wechatpay.Domain
 {
     public class PublicPayModel:BasePayModel
     {

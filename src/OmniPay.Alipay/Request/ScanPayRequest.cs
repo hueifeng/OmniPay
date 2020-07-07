@@ -1,8 +1,8 @@
-﻿using Free.Pay.Alipay.Domain;
-using Free.Pay.Alipay.Response;
-using Free.Pay.Core.Request;
+﻿using OmniPay.Alipay.Domain;
+using OmniPay.Alipay.Response;
+using OmniPay.Core.Request;
 
-namespace Free.Pay.Alipay.Request
+namespace OmniPay.Alipay.Request
 {
     public class ScanPayRequest: BaseRequest<ScanPayModel,ScanPayResponse>
     {

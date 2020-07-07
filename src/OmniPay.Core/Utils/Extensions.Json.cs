@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
-namespace Free.Pay.Core.Utils {
+namespace OmniPay.Core.Utils {
     public static partial class Extensions {
         /// <summary>
         ///     反序列化

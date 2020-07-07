@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Free.Pay.Alipay.Domain
+namespace OmniPay.Alipay.Domain
 {
     public class ScanPayModel
     {

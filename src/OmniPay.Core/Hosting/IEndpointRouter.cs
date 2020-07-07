@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace Free.Pay.Core.Hosting
+namespace OmniPay.Core.Hosting
 {
     /// <summary>
     ///     The endpoint router

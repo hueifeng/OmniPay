@@ -1,7 +1,6 @@
 ﻿using System;
-using Free.Pay.Core.Utils;
 
-namespace Free.Pay.Wechatpay.Domain
+namespace OmniPay.Wechatpay.Domain
 {
     /// <summary>
     ///     Pay base class
@@ -11,7 +10,7 @@ namespace Free.Pay.Wechatpay.Domain
         /// <summary>
         ///     随机字符串
         /// </summary>
-        public string NonceStr { get; set; }= Extensions.GetNonceStr();
+        public string NonceStr { get; set; }= Core.Utils.Extensions.GetNonceStr();
         /// <summary>
         ///     设备号
         /// </summary>

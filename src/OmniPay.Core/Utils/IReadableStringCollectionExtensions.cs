@@ -3,7 +3,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using Microsoft.Extensions.Primitives;
 
-namespace Free.Pay.Core.Utils
+namespace OmniPay.Core.Utils
 {
     public static class IReadableStringCollectionExtensions
     {

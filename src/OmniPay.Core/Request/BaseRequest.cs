@@ -1,13 +1,13 @@
-﻿using Free.Pay.Core.Extensions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Xml;
+using OmniPay.Core.Utils;
 
-namespace Free.Pay.Core.Request
+namespace OmniPay.Core.Request
 {
     public abstract class BaseRequest<TModel, TResponse> 
     {

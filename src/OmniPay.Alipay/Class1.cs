@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Free.Pay.Alipay
+﻿namespace OmniPay.Alipay
 {
     public class Class1
     {

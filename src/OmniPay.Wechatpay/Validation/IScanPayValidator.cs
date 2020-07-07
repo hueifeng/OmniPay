@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
-namespace Free.Pay.Wechatpay.Validation
+namespace OmniPay.Wechatpay.Validation
 {
     public interface IScanPayValidator
     {

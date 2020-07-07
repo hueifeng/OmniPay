@@ -1,4 +1,4 @@
-﻿namespace Free.Pay.Wechatpay
+﻿namespace OmniPay.Wechatpay
 {
     public class WeChatPayOptions
     {

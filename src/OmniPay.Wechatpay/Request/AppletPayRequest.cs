@@ -1,8 +1,8 @@
-﻿using Free.Pay.Core.Request;
-using Free.Pay.Wechatpay.Domain;
-using Free.Pay.Wechatpay.Response;
+﻿using OmniPay.Core.Request;
+using OmniPay.Wechatpay.Domain;
+using OmniPay.Wechatpay.Response;
 
-namespace Free.Pay.Wechatpay.Request
+namespace OmniPay.Wechatpay.Request
 {
     public class AppletPayRequest : BaseRequest<AppletPayModel, AppletPayResponse>
     {

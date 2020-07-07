@@ -1,4 +1,4 @@
-namespace Free.Pay.Wechatpay.Validation.Models
+namespace OmniPay.Wechatpay.Validation.Models
 {
     public class ScanPayRequestValidationResult
     {

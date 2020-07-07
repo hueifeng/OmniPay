@@ -1,6 +1,6 @@
 using System;
 
-namespace AspNetCore.Free.Pay
+namespace OmniPay.Pay
 {
     public class WeatherForecast
     {

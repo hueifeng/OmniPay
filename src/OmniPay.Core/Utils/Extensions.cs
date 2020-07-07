@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Free.Pay.Core.Utils
+namespace OmniPay.Core.Utils
 {
     public static partial class Extensions
     {

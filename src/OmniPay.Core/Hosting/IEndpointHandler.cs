@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
-using System.Threading.Tasks;
 
-namespace Free.Pay.Core.Hosting
+namespace OmniPay.Core.Hosting
 {
     public interface IEndpointHandler
     {

@@ -1,7 +1,7 @@
-﻿using Free.Pay.Core.Request;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using OmniPay.Core.Request;
 
-namespace Free.Pay.Wechatpay
+namespace OmniPay.Wechatpay
 {
     public interface IWeChatPayClient
     {

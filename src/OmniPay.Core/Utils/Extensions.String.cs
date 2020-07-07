@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Free.Pay.Core.Extensions
+namespace OmniPay.Core.Utils
 {
     public enum StringCase
     {
