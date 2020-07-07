@@ -44,7 +44,7 @@ namespace AspNetCore.Free.Pay
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}");
             });
-            app.UseFreePay();
+            app.UseOmniPay();
         }
 
     }

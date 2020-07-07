@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Microsoft.AspNetCore.Builder
 {
     public static class WeChatPayApplicationBuilderExtensions
-    { 
+    {
         //public static IEndpointConventionBuilder UseWeChatPayEndpoints(this IEndpointRouteBuilder endpoints,string pattern) {
         //    var pipeline = endpoints.CreateApplicationBuilder()
         //         .UseMiddleware<WechatPayMiddleware>().Build();
@@ -15,11 +15,11 @@ namespace Microsoft.AspNetCore.Builder
         //}
 
         /// <summary>
-        /// 使用FreePay
+        /// 使用OmniPay
         /// </summary>
         /// <param name="app"></param>
         /// <returns></returns>
-        public static IApplicationBuilder UseFreePay(this IApplicationBuilder app)
+        public static IApplicationBuilder UseOmniPay(this IApplicationBuilder app)
         {
             app.UseMiddleware<WechatPayMiddleware>();
             var httpContextAccessor = app.ApplicationServices.GetRequiredService<IHttpContextAccessor>();
