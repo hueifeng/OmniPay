@@ -2,7 +2,7 @@ OmniPay
 ===============
 
 ![GitHub](https://img.shields.io/github/license/hueifeng/OmniPay)
-[![Build Status](https://dev.azure.com/HueiFeng/AspNetCore.Free.Pay/_apis/build/status/hueifeng.AspNetCore.Free.Pay?branchName=master)](https://dev.azure.com/HueiFeng/AspNetCore.Free.Pay/_build/latest?definitionId=2&branchName=master)
+[![Build Status](https://dev.azure.com/dotnetserverprojects/OmniPay/_apis/build/status/omnipaypay20200709180728%20-%20CI?branchName=master)](https://dev.azure.com/dotnetserverprojects/OmniPay/_build/latest?definitionId=1&branchName=master)
 
 在线预览地址 https://omnipaypay20200709180728.azurewebsites.net/
 
