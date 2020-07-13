@@ -30,4 +30,4 @@ https://open.unionpay.com/ajweb/product
 
 # LICENSE
 
-MIT
+[MIT](https://github.com/hueifeng/OmniPay/blob/master/LICENSE)
