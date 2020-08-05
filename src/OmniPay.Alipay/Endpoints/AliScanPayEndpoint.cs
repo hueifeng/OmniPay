@@ -1,21 +1,23 @@
-﻿using System.Net;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using OmniPay.Alipay.Endpoints.Result;
 using OmniPay.Core.Hosting;
 using OmniPay.Core.Results;
-using OmniPay.Wechatpay.Endpoints.Result;
+using System.Net;
 
-namespace OmniPay.Wechatpay.Endpoints
+namespace OmniPay.Alipay.Endpoints
 {
-    public class WechatScanPayEndpoint : IEndpointHandler
+    public class AliScanPayEndpoint : IEndpointHandler
     {
-        private readonly ILogger<WechatScanPayEndpoint> _logger;
-        private readonly IWeChatPayClient _client;
-        public WechatScanPayEndpoint(ILogger<WechatScanPayEndpoint> logger, IWeChatPayClient client)
+        private readonly ILogger<AliScanPayEndpoint> _logger;
+        private readonly IAliPayClient _client;
+
+        public AliScanPayEndpoint(ILogger<AliScanPayEndpoint> logger, IAliPayClient client)
         {
             this._logger = logger;
             this._client = client;
         }
+
         public IEndpointResult Process(HttpContext context)
         {
             _logger.LogDebug("Start WechatScanPay request");
@@ -28,6 +30,5 @@ namespace OmniPay.Wechatpay.Endpoints
             _logger.LogTrace("End WechatScanPay request. result type: {0}", this?.GetType().ToString() ?? "-none-");
             return new ScanPayResult(_client);
         }
-
     }
 }

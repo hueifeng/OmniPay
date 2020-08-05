@@ -9,7 +9,8 @@ namespace OmniPay.Wechatpay.Extensions
 {
     public static class WeChatServiceCollectionExtensions
     {
-        public static IServiceCollection AddWeChatPay(this IServiceCollection services,Action<WeChatPayOptions> action) {
+        public static IServiceCollection AddWeChatPay(this IServiceCollection services, Action<WeChatPayOptions> action)
+        {
             services.AddTransient<IEndpointRouter, EndpointRouter>();
             services.AddSingleton<WechatScanPayEndpoint>();
             services.AddSingleton<WechatWapPayEndpoint>();
@@ -24,8 +25,9 @@ namespace OmniPay.Wechatpay.Extensions
             return services.AddWeChatPayServices(action);
         }
 
-        private static IServiceCollection AddWeChatPayServices(this IServiceCollection services,Action<WeChatPayOptions> action) {
-            if (action!=null)
+        private static IServiceCollection AddWeChatPayServices(this IServiceCollection services, Action<WeChatPayOptions> action)
+        {
+            if (action != null)
             {
                 services.Configure<WeChatPayOptions>(action.Invoke);
             }

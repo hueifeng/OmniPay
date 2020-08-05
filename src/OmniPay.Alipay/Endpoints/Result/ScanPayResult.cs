@@ -1,18 +1,18 @@
-using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using OmniPay.Core.Hosting;
+using System;
 using OmniPay.Core.Utils;
-using OmniPay.Wechatpay.Domain;
-using OmniPay.Wechatpay.Request;
+using System.Threading.Tasks;
+using OmniPay.Alipay.Request;
+using OmniPay.Alipay.Domain;
 
-namespace OmniPay.Wechatpay.Endpoints.Result
+namespace OmniPay.Alipay.Endpoints.Result
 {
     public class ScanPayResult : IEndpointResult
     {
-        private readonly IWeChatPayClient _client;
+        private readonly IAliPayClient _client;
 
-        public ScanPayResult(IWeChatPayClient client)
+        public ScanPayResult(IAliPayClient client)
         {
             this._client = client;
         }
@@ -31,7 +31,8 @@ namespace OmniPay.Wechatpay.Endpoints.Result
                 {
                     Body = body.Get("Body"),
                     OutTradeNo = body.Get("Out_Trade_No"),
-                    TotalFee = int.Parse(body.Get("Total_Amount"))
+                    TotalAmount = double.Parse(body.Get("Total_Amount")),
+                    Subject = body.Get("Subject")
                 });
                 await context.Response.WriteAsync((await _client.ExecuteAsync(request)).ToJson());
             }

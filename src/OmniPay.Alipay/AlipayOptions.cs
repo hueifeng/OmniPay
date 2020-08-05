@@ -54,5 +54,7 @@ namespace OmniPay.Alipay
         /// 网关回发通知URL
         /// </summary>
         public string NotifyUrl { get; set; }
+
+        public string BaseUrl { get; set; }
     }
 }

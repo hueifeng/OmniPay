@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\OmniPay.Alipay\OmniPay.Alipay.csproj" />
     <ProjectReference Include="..\..\src\OmniPay.Core\OmniPay.Core.csproj" />
     <ProjectReference Include="..\..\src\OmniPay.Wechatpay\OmniPay.Wechatpay.csproj" />
   </ItemGroup>

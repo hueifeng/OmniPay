@@ -217,14 +217,14 @@
             </li>
         </ul>
         <div id="tabs-purchase-1">
-            <form class="api-form" asp-controller="WeChatPay" asp-action="ScanPay" method="post" target="_blank">
+            <form class="api-form" asp-controller="AliPay" asp-action="ScanPay" method="post" target="_blank">
                 <p>
                     <label>订单号：</label>
                     <input type="text" name="out_trade_no" value="@DateTime.Now.ToString("yyyyMMddHHmmssfff")">
                 </p>
                 <p>
                     <label>订单描述：</label>
-                    <input type="text" name="body" value="微信扫码支付测试">
+                    <input type="text" name="body" value="支付宝扫码支付测试">
                 </p>
                 <p>
                     <label>金额：</label>

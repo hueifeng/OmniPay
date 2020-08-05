@@ -1,20 +1,20 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using OmniPay.Core.Hosting;
+using System;
+using System.Threading.Tasks;
 
-namespace OmniPay.Wechatpay.Middleware
+namespace OmniPay.Alipay.Middleware
 {
-    public class WechatPayMiddleware
+    public class AliPayMiddleware
     {
         private readonly ILogger _logger;
         private readonly RequestDelegate _next;
-        
-        public WechatPayMiddleware(RequestDelegate next, ILogger<WechatPayMiddleware> logger)
+
+        public AliPayMiddleware(ILogger<AliPayMiddleware> logger,RequestDelegate next)
         {
-            _logger = logger;
-            _next = next;
+            this._logger = logger;
+            this._next = next;
         }
 
         public async Task InvokeAsync(HttpContext context, IEndpointRouter router)
@@ -26,17 +26,18 @@ namespace OmniPay.Wechatpay.Middleware
                 {
                     _logger.LogInformation("Invoking WechatPay endpoint: {endpointType} for {url}", endpoint.GetType().FullName, context.Request.Path.ToString());
 
-                    var result =endpoint.Process(context);
+                    var result = endpoint.Process(context);
 
                     if (result != null)
                     {
                         _logger.LogTrace("Invoking result: {type}", result.GetType().FullName);
                         await result.ExecuteAsync(context);
                     }
-                }else{
-                     context.Response.StatusCode = StatusCodes.Status404NotFound;
                 }
-
+                else
+                {
+                    context.Response.StatusCode = StatusCodes.Status404NotFound;
+                }
             }
             catch (Exception ex)
             {
