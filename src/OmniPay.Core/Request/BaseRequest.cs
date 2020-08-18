@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
@@ -97,6 +98,7 @@ namespace OmniPay.Core.Request
 
             return string.Empty;
         }
+
         /// <summary>
         /// 添加参数
         /// </summary>
@@ -197,6 +199,20 @@ namespace OmniPay.Core.Request
             var result = hmacsha256.ComputeHash(byteData);
             return BitConverter.ToString(result).Replace("-", "").ToUpper();
         }
+
+
+        /// <summary>
+        /// 将网关数据转换为Url格式数据
+        /// </summary>
+        /// <param name="isUrlEncode">是否需要url编码</param>
+        /// <returns></returns>
+        public string ToUrl(bool isUrlEncode = true)
+        {
+            return string.Join("&",
+                _values
+                    .Select(a => $"{a.Key}={(isUrlEncode ? WebUtility.UrlEncode(a.Value.ToString()) : a.Value.ToString())}"));
+        }
+
 
         /// <summary>
         ///     清空数据

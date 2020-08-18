@@ -5,6 +5,7 @@ using OmniPay.Core.Exceptions;
 using OmniPay.Core.Request;
 using OmniPay.Core.Utils;
 using System;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace OmniPay.Alipay
@@ -19,6 +20,7 @@ namespace OmniPay.Alipay
             this._alipayOptions = alioptions.Value;
             this._logger = logger;
         }
+
         /// <summary>
         ///     Execute AliPay API request implementation
         /// </summary>
@@ -29,9 +31,9 @@ namespace OmniPay.Alipay
         public async Task<TResponse> ExecuteAsync<TModel, TResponse>(BaseRequest<TModel, TResponse> request)
         {
             BuildParams(request);
-            string result = await HttpUtil.PostAsync(request.RequestUrl, request.ToXml());
-            request.FromXml(result);
-            var baseResponse = (BaseResponse)(object)request.ToObject<TResponse>();
+            string result = await HttpUtil.PostAsync("https://openapi.alipaydev.com" + request.RequestUrl, request.ToUrl());
+            var url = request.ToUrl();
+            var baseResponse = (BaseResponse)(object)result.ToObject<TResponse>();
 
             throw new NotImplementedException();
         }
@@ -47,7 +49,13 @@ namespace OmniPay.Alipay
             request.Add("timestamp", DateTime.Now);
             request.Add("sign_type", _alipayOptions.SignType);
             request.Add("charset", _alipayOptions.Charset);
+            request.Add("version", "1.0");
+            request.Add("biz_content",request.ToObject<TModel>().ToJson());
+            request.Add("sign", EncryptUtil.RSA(request.ToUrl(false), _alipayOptions.PrivateKey, _alipayOptions.SignType));
             request.RequestUrl = _alipayOptions.BaseUrl + request.RequestUrl;
         }
+
+
+
     }
 }
