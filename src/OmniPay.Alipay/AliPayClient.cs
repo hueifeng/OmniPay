@@ -5,8 +5,8 @@ using OmniPay.Core.Exceptions;
 using OmniPay.Core.Request;
 using OmniPay.Core.Utils;
 using System;
-using System.Net;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 
 namespace OmniPay.Alipay
 {
@@ -32,10 +32,11 @@ namespace OmniPay.Alipay
         {
             BuildParams(request);
             string result = await HttpUtil.PostAsync("https://openapi.alipaydev.com" + request.RequestUrl, request.ToUrl());
-            var url = request.ToUrl();
-            var baseResponse = (BaseResponse)(object)result.ToObject<TResponse>();
-
-            throw new NotImplementedException();
+            var jObject = JObject.Parse(result);
+            var jToken = jObject.First.First;
+            //baseResponse.Raw = result;
+            var baseResponse = (BaseResponse)(object)jToken.ToObject<TResponse>();
+            return (TResponse)(object)baseResponse;
         }
 
         private void BuildParams<TModel, TResponse>(BaseRequest<TModel, TResponse> request)
@@ -46,11 +47,11 @@ namespace OmniPay.Alipay
             }
             request.Add("app_id", _alipayOptions.AppId);
             request.Add("format", _alipayOptions.Format);
-            request.Add("timestamp", DateTime.Now);
+            request.Add("timestamp", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
             request.Add("sign_type", _alipayOptions.SignType);
             request.Add("charset", _alipayOptions.Charset);
             request.Add("version", "1.0");
-            request.Add("biz_content",request.ToObject<TModel>().ToJson());
+            request.Add("biz_content", request.ToStringCaseObj(request).ToJson());
             request.Add("sign", EncryptUtil.RSA(request.ToUrl(false), _alipayOptions.PrivateKey, _alipayOptions.SignType));
             request.RequestUrl = _alipayOptions.BaseUrl + request.RequestUrl;
         }

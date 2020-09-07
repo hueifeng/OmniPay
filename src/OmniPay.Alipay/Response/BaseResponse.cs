@@ -1,4 +1,6 @@
-﻿namespace OmniPay.Alipay.Response
+﻿using Newtonsoft.Json;
+
+namespace OmniPay.Alipay.Response
 {
     public abstract class BaseResponse
     {
@@ -11,6 +13,7 @@
         /// <summary>
         ///     返回码描述
         /// </summary>
+        [JsonProperty("msg")]
         public string Message { get; set; }
 
         /// <summary>
@@ -21,6 +24,7 @@
         /// <summary>
         ///     明细返回码描述
         /// </summary>
+        [JsonProperty("sub_msg")]
         public string SubMessage { get; set; }
 
         /// <summary>

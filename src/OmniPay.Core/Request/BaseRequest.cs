@@ -10,7 +10,7 @@ using OmniPay.Core.Utils;
 
 namespace OmniPay.Core.Request
 {
-    public abstract class BaseRequest<TModel, TResponse> 
+    public abstract class BaseRequest<TModel, TResponse>
     {
         private readonly SortedDictionary<string, object> _values;
 
@@ -25,12 +25,45 @@ namespace OmniPay.Core.Request
         public string RequestUrl { get; set; }
 
         /// <summary>
+        ///     转换对象字符串规则策略
+        /// </summary>
+        /// <param name="obj">对象</param>
+        /// <param name="stringCase">字符串规则策略</param>
+        /// <returns></returns>
+        public object ToStringCaseObj(object obj, StringCase stringCase = StringCase.Snake)
+        {
+            dynamic dynamicObj = new System.Dynamic.ExpandoObject();
+            foreach (var (itemKey, value) in _values)
+            {
+                var key = "";
+                if (stringCase is StringCase.Camel)
+                {
+                    key = itemKey.ToCamelCase();
+                }
+                else if (stringCase is StringCase.Snake)
+                {
+                    key = itemKey.ToSnakeCase();
+                }
+                else
+                {
+                    key = itemKey;
+                }
+                if (value is null || string.IsNullOrEmpty(value.ToString()))
+                {
+                    continue;
+                }
+                ((IDictionary<string, object>)dynamicObj).Add(key, value);
+            }
+            return dynamicObj;
+        }
+
+        /// <summary>
         ///     添加参数
         /// </summary>
         /// <param name="obj">对象</param>
         /// <param name="stringCase">字符串规则策略</param>
         /// <returns></returns>
-        public bool AddParameters(object obj, StringCase stringCase=StringCase.Snake)
+        public bool AddParameters(object obj, StringCase stringCase = StringCase.Snake)
         {
             var type = obj.GetType();
             MemberInfo[] properties = type.GetProperties();
@@ -73,6 +106,31 @@ namespace OmniPay.Core.Request
                 }
 
             }
+        }
+
+        /// <summary>
+        ///     将数据转换成Json格式数据
+        /// </summary>
+        /// <returns></returns>
+        public string ToJson()
+        {
+            if (_values.Count != 0)
+            {
+                var sb = new StringBuilder();
+                sb.Append("{");
+                foreach (var (key, value) in _values)
+                {
+                    var val = value;
+
+
+                    sb.AppendFormat(key, value);
+                }
+
+                sb.Append("}");
+            }
+
+
+            return string.Empty;
         }
 
         /// <summary>
@@ -162,12 +220,12 @@ namespace OmniPay.Core.Request
         /// </summary>
         /// <typeparam name="T">类型</typeparam>
         /// <returns></returns>
-        public T ToObject<T>(StringCase stringCase=StringCase.Snake)
+        public T ToObject<T>(StringCase stringCase = StringCase.Snake)
         {
             var type = typeof(T);
             var obj = Activator.CreateInstance(type);
             var properties = type.GetProperties();
-            
+
             foreach (var item in properties)
             {
                 var key = stringCase switch
@@ -246,16 +304,17 @@ namespace OmniPay.Core.Request
         /// <returns></returns>
         public string GetStringValue(string key)
         {
-           return GetValue(key)?.ToString();
+            return GetValue(key)?.ToString();
         }
         /// <summary>
         ///     根据参数名删除
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public void Remove(string key) {
+        public void Remove(string key)
+        {
             _values.Remove(key);
         }
-        public virtual void Execute(){ }
+        public virtual void Execute() { }
     }
 }

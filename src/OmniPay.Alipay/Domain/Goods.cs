@@ -1,4 +1,6 @@
-﻿namespace OmniPay.Alipay.Domain
+﻿using Newtonsoft.Json;
+
+namespace OmniPay.Alipay.Domain
 {
     public class Goods
     {
@@ -15,6 +17,7 @@
         /// <summary>
         ///     商品名称
         /// </summary>
+        [JsonProperty("goods_name")]
         public string Name { get; set; }
 
         /// <summary>

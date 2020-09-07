@@ -14,9 +14,9 @@ namespace OmniPay.Wechatpay.Utils
         /// <param name="data">数据</param>
         /// <param name="sign">签名</param>
         /// <returns></returns>
-        public static bool VerifyData<TModel,TResponse>(BaseRequest<TModel, TResponse> request, string sign)
+        public static bool VerifyData<TModel, TResponse>(BaseRequest<TModel, TResponse> request, string sign)
         {
-           return request.GetSign()==sign;
+            return request.GetSign() == sign;
         }
 
         #endregion

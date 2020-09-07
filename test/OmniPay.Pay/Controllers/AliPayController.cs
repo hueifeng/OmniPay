@@ -25,11 +25,22 @@ namespace OmniPay.Pay.Controllers
         public async Task<OkObjectResult> ScanPay(string Body, string Out_Trade_No, int Total_Amount)
         {
             var request = new ScanPayRequest();
-            request.AddParameters(new ScanPayModel()
+            request.AddParameters(new ScanPayModel
             {
                 Body = Body,
                 OutTradeNo = Out_Trade_No,
-                TotalAmount = Total_Amount
+                TotalAmount = Total_Amount,
+                Subject = "测试扫码支付标题",
+                GoodsDetail = new List<Goods>
+                {
+                    new Goods
+                    {
+                        Id = "1",
+                        Name = "test name",
+                        Quantity=1,
+                        Price=20
+                    }
+                }
             });
             return Ok(await _client.ExecuteAsync(request));
         }
