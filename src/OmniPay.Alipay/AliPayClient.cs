@@ -8,6 +8,7 @@ using System;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using OmniPay.Alipay.Request;
 
 namespace OmniPay.Alipay
 {
@@ -32,7 +33,13 @@ namespace OmniPay.Alipay
         public async Task<TResponse> ExecuteAsync<TModel, TResponse>(BaseRequest<TModel, TResponse> request)
         {
             BuildParams(request);
-            string result = await HttpUtil.PostAsync($"{_alipayOptions.BaseUrl}{request.RequestUrl}", request.ToUrl());
+
+            if (request is AppPayRequest || request is WapPayRequest)
+            {
+                return (TResponse)Activator.CreateInstance(typeof(TResponse), request);
+            }
+
+            string result = await HttpUtil.PostAsync(request.RequestUrl, request.ToUrl());
             var jObject = JObject.Parse(result);
             var jToken = jObject.First.First;
             var sign = jObject.Value<string>("sign");

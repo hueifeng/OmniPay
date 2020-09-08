@@ -215,6 +215,12 @@
             <li>
                 <a href="#tabs-purchase-1">扫码支付</a>
             </li>
+            <li>
+                <a href="#tabs-purchase-2">App支付</a>
+            </li>
+            <li>
+                <a href="#tabs-purchase-3">WAP支付</a>
+            </li>
         </ul>
         <div id="tabs-purchase-1">
             <form class="api-form" asp-controller="AliPay" asp-action="ScanPay" method="post" target="_blank">
@@ -229,6 +235,54 @@
                 <p>
                     <label>金额：</label>
                     <input type="text" name="total_amount" value="1" title="单位为分。">
+                </p>
+                <p>
+                    <label>&nbsp;</label>
+                    <input type="submit" class="button" value="提交">
+                </p>
+            </form>
+            <hr/>
+            <p class="faq">
+                <a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_1" target="_blank">* 查看接口 请求参数、响应参数</a>
+            </p>
+        </div>
+        <div id="tabs-purchase-2">
+            <form class="api-form" asp-controller="AliPay" asp-action="AppPay" method="post" target="_blank">
+                <p>
+                    <label>订单号：</label>
+                    <input type="text" name="outtradeno" value="@DateTime.Now.ToString("yyyyMMddHHmmssfff")">
+                </p>
+                <p>
+                    <label>订单描述：</label>
+                    <input type="text" name="body" value="支付宝App支付测试">
+                </p>
+                <p>
+                    <label>金额：</label>
+                    <input type="text" name="totalamount" value="1" title="单位为分。">
+                </p>
+                <p>
+                    <label>&nbsp;</label>
+                    <input type="submit" class="button" value="提交">
+                </p>
+            </form>
+            <hr/>
+            <p class="faq">
+                <a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_1" target="_blank">* 查看接口 请求参数、响应参数</a>
+            </p>
+        </div>
+        <div id="tabs-purchase-3">
+            <form class="api-form" asp-controller="AliPay" asp-action="WapPay" method="post" target="_blank">
+                <p>
+                    <label>订单号：</label>
+                    <input type="text" name="outtradeno" value="@DateTime.Now.ToString("yyyyMMddHHmmssfff")">
+                </p>
+                <p>
+                    <label>订单描述：</label>
+                    <input type="text" name="body" value="支付宝WAP支付测试">
+                </p>
+                <p>
+                    <label>金额：</label>
+                    <input type="text" name="totalamount" value="1" title="单位为分。">
                 </p>
                 <p>
                     <label>&nbsp;</label>

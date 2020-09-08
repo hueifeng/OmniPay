@@ -1,6 +1,9 @@
 ﻿namespace OmniPay.Alipay.Domain
 {
-    public class AppPayModel
+    /// <summary>
+    ///     app支付
+    /// </summary>
+    public class AppPayModel : BasePayModel
     {
 
     }

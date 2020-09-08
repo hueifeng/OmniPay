@@ -134,6 +134,30 @@ namespace OmniPay.Core.Request
         }
 
         /// <summary>
+        /// 将网关数据转换为表单数据
+        /// </summary>
+        /// <param name="url">请求地址</param>
+        /// <returns></returns>
+        public string ToForm(string url)
+        {
+            var html = new StringBuilder();
+            html.AppendLine("<body>");
+            html.AppendLine($"<form name='gateway' method='post' action ='{url}'>");
+            foreach (var item in _values)
+            {
+                html.AppendLine($"<input type='hidden' name='{item.Key}' value='{item.Value}'>");
+            }
+            html.AppendLine("</form>");
+            html.AppendLine("<script language='javascript' type='text/javascript'>");
+            html.AppendLine("document.gateway.submit();");
+            html.AppendLine("</script>");
+            html.AppendLine("</body>");
+
+            return html.ToString();
+        }
+
+
+        /// <summary>
         /// 将数据转成Xml格式数据
         /// </summary>
         /// <returns></returns>
