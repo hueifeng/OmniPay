@@ -2,9 +2,9 @@
 
 namespace OmniPay.Core.Exceptions
 {
-    public class FreePayException:Exception
+    public class OmniPayException : Exception
     {
-        public FreePayException(string message)
+        public OmniPayException(string message)
          : base(message)
         {
         }

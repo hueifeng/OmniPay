@@ -40,9 +40,9 @@ namespace OmniPay.Alipay
                 !CheckSign(jToken.ToString(Formatting.None), sign, _alipayOptions.AlipayPublicKey, _alipayOptions.SignType))
             {
                 _logger.LogError("Signature verification failed:{0}", result);
-                throw new FreePayException("Signature verification failed.");
+                throw new OmniPayException("Signature verification failed.");
             }
-            
+
             var baseResponse = (BaseResponse)(object)jToken.ToObject<TResponse>();
             baseResponse.Raw = result;
             baseResponse.Sign = sign;
@@ -53,7 +53,7 @@ namespace OmniPay.Alipay
         {
             if (string.IsNullOrEmpty(_alipayOptions.AppId))
             {
-                throw new FreePayException(nameof(_alipayOptions.AppId));
+                throw new OmniPayException(nameof(_alipayOptions.AppId));
             }
             request.Add("app_id", _alipayOptions.AppId);
             request.Add("format", _alipayOptions.Format);

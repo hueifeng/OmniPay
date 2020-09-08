@@ -39,7 +39,7 @@ namespace OmniPay.Wechatpay
             if (string.IsNullOrEmpty(repsign) &&!SignatureUtil.VerifyData(request,repsign))
             {
                 _logger.LogError("Signature verification failed:{0}",result);
-                throw new FreePayException("Signature verification failed.");
+                throw new OmniPayException("Signature verification failed.");
             }
             return (TResponse)(object)baseResponse;
         }
@@ -47,7 +47,7 @@ namespace OmniPay.Wechatpay
         {
             if (string.IsNullOrEmpty(_weChatPayOptions.AppId))
             {
-                throw new FreePayException(nameof(_weChatPayOptions.AppId));
+                throw new OmniPayException(nameof(_weChatPayOptions.AppId));
             }
             request.Add("appid", _weChatPayOptions.AppId);
             request.Add("mch_id", _weChatPayOptions.Key);
