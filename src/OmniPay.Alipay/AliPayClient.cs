@@ -32,7 +32,7 @@ namespace OmniPay.Alipay
         public async Task<TResponse> ExecuteAsync<TModel, TResponse>(BaseRequest<TModel, TResponse> request)
         {
             BuildParams(request);
-            string result = await HttpUtil.PostAsync("https://openapi.alipaydev.com" + request.RequestUrl, request.ToUrl());
+            string result = await HttpUtil.PostAsync($"{_alipayOptions.BaseUrl}{request.RequestUrl}", request.ToUrl());
             var jObject = JObject.Parse(result);
             var jToken = jObject.First.First;
             var sign = jObject.Value<string>("sign");
