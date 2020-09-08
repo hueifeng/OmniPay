@@ -10,6 +10,15 @@ namespace OmniPay.Core.Utils
     /// </summary>
     public static class EncryptUtil
     {
+        #region 私有字段
+
+        /// <summary>
+        /// 默认编码
+        /// </summary>
+        private static readonly string _defaultCharset = "UTF-8";
+
+        #endregion
+
         public static string RSA(string data, string privateKey, string signType)
         {
             return RSA(data, privateKey, "UTF-8", signType, false);
@@ -65,6 +74,165 @@ namespace OmniPay.Core.Utils
 
             return Convert.ToBase64String(signatureBytes);
         }
+
+        /// <summary>
+        ///     RSA2验签
+        /// </summary>
+        /// <param name="data">数据</param>
+        /// <param name="sign">签名</param>
+        /// <param name="publicKey">公钥</param>
+        /// <param name="signType">签名类型</param>
+        /// <returns></returns>
+        public static bool RSAVerifyData(string data, string sign, string publicKey, string signType)
+        {
+            return RASVerifyData(data, sign, publicKey, _defaultCharset, signType, false);
+        }
+
+        private static bool RASVerifyData(string signContent, string sign, string publicKeyPem, string charset, string signType, bool keyFromFile)
+        {
+            try
+            {
+                var sPublicKeyPEM = publicKeyPem;
+
+                if (keyFromFile)
+                {
+                    sPublicKeyPEM = File.ReadAllText(publicKeyPem);
+                }
+                var rsa = CreateRsaProviderFromPublicKey(sPublicKeyPEM, signType);
+                var bVerifyResultOriginal = false;
+
+                if ("RSA2".Equals(signType))
+                {
+                    bVerifyResultOriginal = rsa.VerifyData(Encoding.GetEncoding(charset).GetBytes(signContent),
+                        Convert.FromBase64String(sign), HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
+                }
+                else
+                {
+                    bVerifyResultOriginal = rsa.VerifyData(Encoding.GetEncoding(charset).GetBytes(signContent),
+                        Convert.FromBase64String(sign), HashAlgorithmName.SHA1, RSASignaturePadding.Pkcs1);
+                }
+
+                return bVerifyResultOriginal;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private static RSA CreateRsaProviderFromPublicKey(string publicKeyString, string signType)
+        {
+            byte[] seqOid = { 0x30, 0x0D, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x01, 0x01, 0x05, 0x00 };
+            var seq = new byte[15];
+
+            var x509Key = Convert.FromBase64String(publicKeyString);
+            using var mem = new MemoryStream(x509Key);
+            using var binr = new BinaryReader(mem);
+            byte bt = 0;
+            ushort twobytes = 0;
+
+            twobytes = binr.ReadUInt16();
+            if (twobytes == 0x8130)
+            {
+                binr.ReadByte();
+            }
+            else if (twobytes == 0x8230)
+            {
+                binr.ReadInt16();
+            }
+            else
+            {
+                return null;
+            }
+
+            seq = binr.ReadBytes(15);
+            if (!CompareBytearrays(seq, seqOid))
+            {
+                return null;
+            }
+
+            twobytes = binr.ReadUInt16();
+            if (twobytes == 0x8103)
+            {
+                binr.ReadByte();
+            }
+            else if (twobytes == 0x8203)
+            {
+                binr.ReadInt16();
+            }
+            else
+            {
+                return null;
+            }
+
+            bt = binr.ReadByte();
+            if (bt != 0x00)
+            {
+                return null;
+            }
+
+            twobytes = binr.ReadUInt16();
+            if (twobytes == 0x8130)
+            {
+                binr.ReadByte();
+            }
+            else if (twobytes == 0x8230)
+            {
+                binr.ReadInt16();
+            }
+            else
+            {
+                return null;
+            }
+
+            twobytes = binr.ReadUInt16();
+            byte lowbyte = 0x00;
+            byte highbyte = 0x00;
+
+            if (twobytes == 0x8102)
+            {
+                lowbyte = binr.ReadByte();
+            }
+            else if (twobytes == 0x8202)
+            {
+                highbyte = binr.ReadByte();
+                lowbyte = binr.ReadByte();
+            }
+            else
+            {
+                return null;
+            }
+            byte[] modint = { lowbyte, highbyte, 0x00, 0x00 };
+            var modsize = BitConverter.ToInt32(modint, 0);
+
+            var firstbyte = binr.PeekChar();
+            if (firstbyte == 0x00)
+            {
+                binr.ReadByte();
+                modsize -= 1;
+            }
+
+            var modulus = binr.ReadBytes(modsize);
+
+            if (binr.ReadByte() != 0x02)
+            {
+                return null;
+            }
+            int expbytes = binr.ReadByte();
+            var exponent = binr.ReadBytes(expbytes);
+
+            var rsa = System.Security.Cryptography.RSA.Create();
+            rsa.KeySize = signType == "RSA" ? 1024 : 2048;
+            var rsaKeyInfo = new RSAParameters
+            {
+                Modulus = modulus,
+                Exponent = exponent
+            };
+            rsa.ImportParameters(rsaKeyInfo);
+
+            return rsa;
+        }
+
         private static RSA LoadCertificateFile(string filename, string signType)
         {
             using var fs = File.OpenRead(filename);
@@ -83,6 +251,24 @@ namespace OmniPay.Core.Utils
             {
                 return null;
             }
+        }
+
+        private static bool CompareBytearrays(byte[] a, byte[] b)
+        {
+            if (a.Length != b.Length)
+            {
+                return false;
+            }
+            var i = 0;
+            foreach (var c in a)
+            {
+                if (c != b[i])
+                {
+                    return false;
+                }
+                i++;
+            }
+            return true;
         }
 
         private static RSA LoadCertificateString(string strKey, string signType)

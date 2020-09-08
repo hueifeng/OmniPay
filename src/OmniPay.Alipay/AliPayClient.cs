@@ -6,6 +6,7 @@ using OmniPay.Core.Request;
 using OmniPay.Core.Utils;
 using System;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace OmniPay.Alipay
@@ -34,8 +35,17 @@ namespace OmniPay.Alipay
             string result = await HttpUtil.PostAsync("https://openapi.alipaydev.com" + request.RequestUrl, request.ToUrl());
             var jObject = JObject.Parse(result);
             var jToken = jObject.First.First;
-            //baseResponse.Raw = result;
+            var sign = jObject.Value<string>("sign");
+            if (!string.IsNullOrEmpty(sign) &&
+                !CheckSign(jToken.ToString(Formatting.None), sign, _alipayOptions.AlipayPublicKey, _alipayOptions.SignType))
+            {
+                _logger.LogError("Signature verification failed:{0}", result);
+                throw new FreePayException("Signature verification failed.");
+            }
+            
             var baseResponse = (BaseResponse)(object)jToken.ToObject<TResponse>();
+            baseResponse.Raw = result;
+            baseResponse.Sign = sign;
             return (TResponse)(object)baseResponse;
         }
 
@@ -54,6 +64,18 @@ namespace OmniPay.Alipay
             request.Add("biz_content", request.ToStringCaseObj(request).ToJson());
             request.Add("sign", EncryptUtil.RSA(request.ToUrl(false), _alipayOptions.PrivateKey, _alipayOptions.SignType));
             request.RequestUrl = _alipayOptions.BaseUrl + request.RequestUrl;
+        }
+
+        internal static bool CheckSign(string data, string sign, string alipayPublicKey, string signType)
+        {
+            var result = EncryptUtil.RSAVerifyData(data, sign, alipayPublicKey, signType);
+            if (!result)
+            {
+                data = data.Replace("/", "\\/");
+                result = EncryptUtil.RSAVerifyData(data, sign, alipayPublicKey, signType);
+            }
+
+            return result;
         }
 
 
