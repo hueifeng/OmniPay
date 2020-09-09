@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace OmniPay.Core.Hosting
 {
@@ -10,5 +11,6 @@ namespace OmniPay.Core.Hosting
         /// <param name="context">The HTTP context.</param>
         /// <returns></returns>
         IEndpointResult Process(HttpContext context);
+
     }
 }

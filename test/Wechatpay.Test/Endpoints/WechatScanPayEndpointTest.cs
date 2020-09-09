@@ -7,6 +7,7 @@ using OmniPay.Core.Results;
 using OmniPay.Wechatpay;
 using OmniPay.Wechatpay.Endpoints;
 using OmniPay.Wechatpay.Endpoints.Result;
+using OmniPay.Wechatpay.Validation;
 using Xunit;
 
 namespace Wechatpay.Test.Endpoints
@@ -17,6 +18,7 @@ namespace Wechatpay.Test.Endpoints
         private ILogger<WechatScanPayEndpoint> logger = new LoggerFactory ().CreateLogger<WechatScanPayEndpoint> ();
         IWeChatPayClient _client;
         private WechatScanPayEndpoint _subject;
+        private IScanPayValidator _validator;
 
         private void init () {
             var someOptions = Options.Create (new WeChatPayOptions {
@@ -26,7 +28,7 @@ namespace Wechatpay.Test.Endpoints
                     MchId = "1900009641"
             });
             _client = new WeChatPayClient (someOptions, wechatpaylogger);
-            _subject = new WechatScanPayEndpoint (logger, _client);
+            _subject = new WechatScanPayEndpoint (logger, _client, _validator);
         }
         public WechatScanPayEndpointTest () {
             this.init ();

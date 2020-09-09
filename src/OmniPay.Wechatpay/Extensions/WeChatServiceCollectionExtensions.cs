@@ -1,8 +1,11 @@
 ﻿using System;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using OmniPay.Core.Hosting;
 using OmniPay.Wechatpay.Endpoints;
+using OmniPay.Wechatpay.Validation;
+using OmniPay.Wechatpay.Validation.Default;
 using Endpoint = OmniPay.Core.Hosting.Endpoint;
 
 namespace OmniPay.Wechatpay.Extensions
@@ -23,6 +26,12 @@ namespace OmniPay.Wechatpay.Extensions
             services.AddSingleton(new Endpoint("wechatPublicPay", "/pay-api/Wechatpay/PublicPay", typeof(WechatPublicPayEndpoint)));
             services.AddSingleton(new Endpoint("wechatAppletPay", "/pay-api/Wechatpay/AppletPay", typeof(WechatAppletPayEndpoint)));
             return services.AddWeChatPayServices(action);
+        }
+
+        public static IServiceCollection AddValidators(this IServiceCollection services)
+        {
+            services.TryAddTransient<IScanPayValidator, ScanPayValidator>();
+            return services;
         }
 
         private static IServiceCollection AddWeChatPayServices(this IServiceCollection services, Action<WeChatPayOptions> action)

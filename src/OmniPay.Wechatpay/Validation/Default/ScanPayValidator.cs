@@ -5,9 +5,12 @@ namespace OmniPay.Wechatpay.Validation.Default
 {
     public class ScanPayValidator : IScanPayValidator
     {
-        public Task ValidateAsync(IFormCollection parameters)
+        public async Task<ValidationResult> ValidateAsync(HttpContext context)
         {
-            throw new System.NotImplementedException();
+            ValidationResult result = new ValidationResult();
+            result.ErrorDescription = "≤‚ ‘∞°";
+            result.Error = "¥ÌŒÛ¡À";
+            return result;
         }
     }
 }

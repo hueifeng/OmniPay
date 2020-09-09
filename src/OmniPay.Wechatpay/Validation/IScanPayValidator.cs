@@ -5,6 +5,6 @@ namespace OmniPay.Wechatpay.Validation
 {
     public interface IScanPayValidator
     {
-         Task ValidateAsync(IFormCollection parameters);
+        Task<ValidationResult> ValidateAsync(HttpContext context);
     }
 }
