@@ -28,6 +28,15 @@ namespace OmniPay.Wechatpay.Extensions
             return services.AddWeChatPayServices(action);
         }
 
+        /// <summary>
+        ///     验证
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
+        /// <remarks>
+        ///     该验证设计目的主要用于自动api控制层，当然他的当前局限是不可以按照指定模型输出内容
+        ///     在后期的模块设计中可以考虑该模块的自定义模型输出
+        /// </remarks>
         public static IServiceCollection AddValidators(this IServiceCollection services)
         {
             services.TryAddTransient<IScanPayValidator, ScanPayValidator>();
