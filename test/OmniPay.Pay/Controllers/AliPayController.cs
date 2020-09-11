@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using OmniPay.Alipay;
 using OmniPay.Alipay.Domain;
+using OmniPay.Alipay.Enums;
 using OmniPay.Alipay.Request;
 using AppPayModel = OmniPay.Alipay.Domain.AppPayModel;
 using AppPayRequest = OmniPay.Alipay.Request.AppPayRequest;
@@ -16,6 +17,7 @@ namespace OmniPay.Pay.Controllers
     public class AliPayController : ControllerBase
     {
         private readonly IAliPayClient _client;
+
         public AliPayController(IAliPayClient client)
         {
             this._client = client;
@@ -86,8 +88,151 @@ namespace OmniPay.Pay.Controllers
             return Ok(await _client.ExecuteAsync(request));
         }
 
+        /// <summary>
+        /// 交易查询
+        /// </summary>
+        /// <param name="outTradeNo"></param>
+        /// <param name="tradeNo"></param>
+        /// <returns></returns>
+        public async Task<OkObjectResult> TradeQuery(string outTradeNo, string tradeNo) 
+        {
+            var request = new TradeQueryRequest();
+            request.AddParameters(new
+            {
+                TradeNo = tradeNo,
+                OutTradeNo = outTradeNo,
+            });
+            return Ok(await _client.ExecuteAsync(request));
+        }
 
+        /// <summary>
+        /// 交易退款
+        /// </summary>
+        /// <param name="outTradeNo"></param>
+        /// <param name="tradeNo"></param>
+        /// <param name="totalAmount"></param>
+        /// <returns></returns>
+        public async Task<OkObjectResult> TradeRefund(string outTradeNo, string tradeNo, decimal refundAmount) 
+        {
+            var request = new TradeRefundRequest();
+            request.AddParameters(new
+            {
+                TradeNo = tradeNo,
+                OutTradeNo = outTradeNo,
+                RefundAmount = refundAmount,
+            });
+            return Ok(await _client.ExecuteAsync(request));
+        }
 
+        /// <summary>
+        /// 退款查询
+        /// </summary>
+        /// <returns></returns>
+        public async Task<OkObjectResult> RefundQuery(string outTradeNo, string tradeNo, string outRequestNo) 
+        {
+            var request = new RefundQueryRequest();
+            request.AddParameters(new
+            {
+                TradeNo = tradeNo,
+                OutTradeNo = outTradeNo,
+                OutRequestNo = outRequestNo
+            });
+            return Ok(await _client.ExecuteAsync(request));
+        }
 
+        /// <summary>
+        /// 交易撤销
+        /// </summary>
+        /// <param name="outTradeNo"></param>
+        /// <param name="tradeNo"></param>
+        /// <returns></returns>
+        public async Task<OkObjectResult> TradeCancel(string outTradeNo, string tradeNo) 
+        {
+            var request = new TradeCancelRequest();
+            request.AddParameters(new
+            {
+                TradeNo = tradeNo,
+                OutTradeNo = outTradeNo,
+            });
+            return Ok(await _client.ExecuteAsync(request));
+        }
+
+        /// <summary>
+        /// 交易关闭
+        /// </summary>
+        /// <param name="outTradeNo"></param>
+        /// <param name="tradeNo"></param>
+        /// <returns></returns>
+        public async Task<OkObjectResult> TradeClose(string outTradeNo, string tradeNo)
+        {
+            var request = new TradeCloseRequest();
+            request.AddParameters(new
+            {
+                TradeNo = tradeNo,
+                OutTradeNo = outTradeNo,
+            });
+            return Ok(await _client.ExecuteAsync(request));
+        }
+
+        /// <summary>
+        /// 单笔转账
+        /// </summary>
+        /// <param name="outBizNo"></param>
+        /// <param name="transAmount"></param>
+        /// <param name="identity"></param>
+        /// <param name="identityType"></param>
+        /// <returns></returns>
+        public async Task<OkObjectResult> Transfer(string outBizNo, decimal transAmount, string identity)
+        {
+            var request = new TransferRequest();
+            request.AddParameters(new
+            {
+                OutBizNo = outBizNo,
+                TransAmount = transAmount,
+                ProductCode = TransProductCode.TRANS_ACCOUNT_NO_PWD.ToString(),
+                BizScene = TransBizScene.DIRECT_TRANSFER.ToString(),
+                PayeeInfo = new  
+                {
+                    identity = identity,
+                    name = "张敬文",
+                    identity_type = TransIdentityType.ALIPAY_LOGON_ID.ToString()
+                }
+
+            });
+            return Ok(await _client.ExecuteAsync(request));
+        }
+
+        /// <summary>
+        /// 转账订单查询
+        /// </summary>
+        /// <param name="outBizNo"></param>
+        /// <param name="orderId"></param>
+        /// <returns></returns>
+        public async Task<OkObjectResult> TransferQuery(string outBizNo, string orderId) 
+        {
+            var request = new TransferQueryRequest();
+            request.AddParameters(new
+            {
+                OutBizNo = outBizNo,
+                OrderId = orderId,                
+            });
+            return Ok(await _client.ExecuteAsync(request));
+        }
+
+        /// <summary>
+        /// 下载对账单
+        /// </summary>
+        /// <param name="billDate"></param>
+        /// <returns></returns>
+        public async Task<OkObjectResult> BillDownload(string billDate) 
+        {
+            var request = new BillDownloadRequest();
+            request.AddParameters(new
+            {
+                BillType = BillType.Trade.ToString().ToLower(),
+                BillDate = billDate,
+            });
+            return Ok(await _client.ExecuteAsync(request));
+        }
     }
 }

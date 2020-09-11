@@ -122,13 +122,11 @@ namespace OmniPay.Core.Request
                 {
                     var val = value;
 
-
                     sb.AppendFormat(key, value);
                 }
 
                 sb.Append("}");
             }
-
 
             return string.Empty;
         }
