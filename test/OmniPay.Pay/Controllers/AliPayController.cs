@@ -89,6 +89,46 @@ namespace OmniPay.Pay.Controllers
         }
 
         /// <summary>
+        /// PC网站支付
+        /// </summary>
+        /// <param name="outTradeNo"></param>
+        /// <param name="totalAmount"></param>
+        /// <returns></returns>
+        public async Task<OkObjectResult> WebPagePay(string outTradeNo, decimal totalAmount) 
+        {
+            var request = new WebPagePayRequest();
+            request.AddParameters(new
+            {
+                OutTradeNo = outTradeNo,
+                ProductCode = "FAST_INSTANT_TRADE_PAY",
+                TotalAmount = totalAmount,
+                Subject = "测试PC支付标题"
+            });
+            return Ok(await _client.ExecuteAsync(request));
+        }
+
+        /// <summary>
+        /// 条码支付
+        /// </summary>
+        /// <param name="outTradeNo"></param>
+        /// <param name="authCode"></param>
+        /// <param name="totalAmount"></param>
+        /// <returns></returns>
+        public async Task<OkObjectResult> BarCodePay(string outTradeNo, string authCode, decimal totalAmount) 
+        {
+            var request = new BarCodePayRequest();
+            request.AddParameters(new
+            {
+                OutTradeNo = outTradeNo,
+                Scene = "bar_code",
+                AuthCode = authCode,
+                TotalAmount = totalAmount,
+                Subject = "测试条码支付"
+            });
+            return Ok(await _client.ExecuteAsync(request));
+        }
+
+        /// <summary>
         /// 交易查询
         /// </summary>
         /// <param name="outTradeNo"></param>
@@ -221,6 +261,8 @@ namespace OmniPay.Pay.Controllers
 
         /// <summary>
         /// 下载对账单
+        /// 注意：这个接口是下载离线账单的，需要T+1天生成账单，不能查询当日或者是当月的账单，如果日期是当天或者是
+        /// 当月的会返回“参数不合法”
         /// </summary>
         /// <param name="billDate"></param>
         /// <returns></returns>
@@ -229,7 +271,7 @@ namespace OmniPay.Pay.Controllers
             var request = new BillDownloadRequest();
             request.AddParameters(new
             {
-                BillType = BillType.Trade.ToString().ToLower(),
+                BillType = BillType.SignCustomer.ToString().ToLower(),
                 BillDate = billDate,
             });
             return Ok(await _client.ExecuteAsync(request));

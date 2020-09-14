@@ -326,11 +326,55 @@
                     <a href="https://opendocs.alipay.com/apis" target="_blank">* 查看接口 请求参数、响应参数</a>
                 </p>
             </div>
+            <div id="tabs-purchase-4">
+                <form class="api-form" asp-controller="AliPay" asp-action="WebPagePay" method="post" target="_blank">
+                    <p>
+                        <label>商户订单号：</label>
+                        <input type="text" name="outtradeno" value="@DateTime.Now.ToString("yyyyMMddHHmmssfff")">
+                    </p>
+                    <p>
+                        <label>金额：</label>
+                        <input type="text" name="totalamount" value="1.00" title="单位为元，支持两位小数">
+                    </p>
+                    <p>
+                        <label>&nbsp;</label>
+                        <input type="submit" class="button" value="提交">
+                    </p>
+                </form>
+                <hr />
+                <p class="faq">
+                    <a href="https://opendocs.alipay.com/apis" target="_blank">* 查看接口 请求参数、响应参数</a>
+                </p>
+            </div>
+            <div id="tabs-purchase-6">
+                <form class="api-form" asp-controller="AliPay" asp-action="BarCodePay" method="post" target="_blank">
+                    <p>
+                        <label>商户订单号：</label>
+                        <input type="text" name="outtradeno" value="@DateTime.Now.ToString("yyyyMMddHHmmssfff")">
+                    </p>
+                    <p>
+                        <label>支付授权码：</label>
+                        <input type="text" name="authCode" value="28763443825664394">
+                    </p>
+                    <p>
+                        <label>金额：</label>
+                        <input type="text" name="totalamount" value="1.00" title="单位为元，支持两位小数">
+                    </p>
+                    <p>
+                        <label>&nbsp;</label>
+                        <input type="submit" class="button" value="提交">
+                    </p>
+                </form>
+                <hr />
+                <p class="faq">
+                    <a href="https://opendocs.alipay.com/apis" target="_blank">* 查看接口 请求参数、响应参数</a>
+                </p>
+            </div>
             <div id="tabs-purchase-7">
                 <form class="api-form" asp-controller="AliPay" asp-action="TradeQuery" method="post" target="_blank">
                     <p>
                         <label>商户订单号：</label>
-                        <input type="text" name="outtradeno" value="">
+                        <input type="text" name="outtradeno" value="@DateTime.Now.ToString("yyyyMMddHHmmssfff")">
                     </p>
                     <p>
                         <label>支付宝交易号：</label>
@@ -350,7 +394,7 @@
                 <form class="api-form" asp-controller="AliPay" asp-action="TradeRefund" method="post" target="_blank">
                     <p>
                         <label>商户订单号：</label>
-                        <input type="text" name="outtradeno" value="">
+                        <input type="text" name="outtradeno" value="@DateTime.Now.ToString("yyyyMMddHHmmssfff")">
                     </p>
                     <p>
                         <label>支付宝交易号：</label>
@@ -374,7 +418,7 @@
                 <form class="api-form" asp-controller="AliPay" asp-action="RefundQuery" method="post" target="_blank">
                     <p>
                         <label>商户订单号：</label>
-                        <input type="text" name="outtradeno" value="">
+                        <input type="text" name="outtradeno" value="@DateTime.Now.ToString("yyyyMMddHHmmssfff")">
                     </p>
                     <p>
                         <label>支付宝交易号：</label>
@@ -398,7 +442,7 @@
                 <form class="api-form" asp-controller="AliPay" asp-action="TradeCancel" method="post" target="_blank">
                     <p>
                         <label>商户订单号：</label>
-                        <input type="text" name="outtradeno" value="">
+                        <input type="text" name="outtradeno" value="@DateTime.Now.ToString("yyyyMMddHHmmssfff")">
                     </p>
                     <p>
                         <label>支付宝交易号：</label>
@@ -418,7 +462,7 @@
                 <form class="api-form" asp-controller="AliPay" asp-action="TradeClose" method="post" target="_blank">
                     <p>
                         <label>商户订单号：</label>
-                        <input type="text" name="outtradeno" value="">
+                        <input type="text" name="outtradeno" value="@DateTime.Now.ToString("yyyyMMddHHmmssfff")">
                     </p>
                     <p>
                         <label>支付宝交易号：</label>
@@ -482,7 +526,7 @@
                 <form class="api-form" asp-controller="AliPay" asp-action="BillDownload" method="post" target="_blank">
                     <p>
                         <label>商户订单号：</label>
-                        <input type="text" name="outbizno" value="@DateTime.Now.ToString("yyyy-MM-dd")">
+                        <input type="text" name="billdate" value="2020-05-01">
                     </p>
                     <p>
                         <label>&nbsp;</label>

@@ -8,6 +8,7 @@ namespace OmniPay.Alipay.Enums
     {
         /// <summary>
         /// 商户基于支付宝交易收单的业务账单
+        /// 只有当面付接口可以下载trade类型的账单
         /// </summary>
         Trade,
 
