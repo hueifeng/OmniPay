@@ -19,6 +19,7 @@ namespace OmniPay.Core.Utils
 
         #endregion
 
+        #region RSA
         public static string RSA(string data, string privateKey, string signType)
         {
             return RSA(data, privateKey, "UTF-8", signType, false);
@@ -419,6 +420,55 @@ namespace OmniPay.Core.Utils
             binr.BaseStream.Seek(-1, SeekOrigin.Current);
             return count;
         }
+        #endregion
+
+        #region HMACSHA256加密
+
+        /// <summary>
+        /// HMACSHA256加密
+        /// </summary>
+        /// <param name="data">数据</param>
+        /// <param name="key">密钥</param>
+        /// <returns></returns>
+        public static string HMACSHA256(string data, string key)
+        {
+            var byteData = Encoding.UTF8.GetBytes(data);
+            var byteKey = Encoding.UTF8.GetBytes(key);
+            var hmacsha256 = new HMACSHA256(byteKey);
+            var result = hmacsha256.ComputeHash(byteData);
+            return BitConverter.ToString(result).Replace("-", "").ToLower();
+        }
+
+        #endregion
+
+        #region MD5
+
+        /// <summary>
+        ///     MD5加密
+        /// </summary>
+        /// <param name="data">数据</param>
+        /// <returns></returns>
+        public static string MD5(string data)
+        {
+            return MD5(data, Encoding.UTF8);
+        }
+
+        /// <summary>
+        ///     MD5加密
+        /// </summary>
+        /// <param name="data">数据</param>
+        /// <param name="encoding">编码</param>
+        /// <returns></returns>
+        public static string MD5(string data, Encoding encoding)
+        {
+            var md5 = System.Security.Cryptography.MD5.Create();
+            var dataByte = md5.ComputeHash(encoding.GetBytes(data));
+
+            return BitConverter.ToString(dataByte).Replace("-", "");
+        }
+
+        #endregion
+
 
     }
 }

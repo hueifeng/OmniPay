@@ -23,7 +23,7 @@ namespace Wechatpay.Test.Endpoints
                 AppId = "wxdace645e0bc2c424",
                     AppSecret = "4693afc6b2084885ca9fbc2355b97827",
                     BaseUrl = "https://api.mch.weixin.qq.com",
-                    Key = "1900009641"
+                    MchId = "1900009641"
             });
             _client = new WeChatPayClient (someOptions, wechatpaylogger);
             _subject = new WechatQueryEndpoint (logger, _client);

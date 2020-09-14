@@ -16,6 +16,11 @@
         /// </summary>
         public string Key { get; set; }
         /// <summary>
+        ///     Merchant Id
+        /// </summary>
+        public string MchId { get; set; }
+
+        /// <summary>
         ///     App Secret
         /// </summary>
         public string AppSecret { get; set; }

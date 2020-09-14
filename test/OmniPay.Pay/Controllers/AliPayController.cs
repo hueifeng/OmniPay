@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using OmniPay.Alipay;
 using OmniPay.Alipay.Domain;
 using OmniPay.Alipay.Enums;
 using OmniPay.Alipay.Request;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using AppPayModel = OmniPay.Alipay.Domain.AppPayModel;
 using AppPayRequest = OmniPay.Alipay.Request.AppPayRequest;
 using ScanPayModel = OmniPay.Alipay.Domain.ScanPayModel;
@@ -276,5 +274,6 @@ namespace OmniPay.Pay.Controllers
             });
             return Ok(await _client.ExecuteAsync(request));
         }
+
     }
 }

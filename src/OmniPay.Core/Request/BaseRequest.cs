@@ -265,21 +265,6 @@ namespace OmniPay.Core.Request
             }
             return (T)obj;
         }
-        public string GetSign()
-        {
-            var key = "b7c996fbda5a9633ee4feb6b991c3919";
-            var data = string.Join("&",
-                _values
-                    .Select(a => $"{a.Key}={a.Value}"));
-            data += $"&key={key}";
-
-            var byteData = Encoding.UTF8.GetBytes(data);
-            var byteKey = Encoding.UTF8.GetBytes(key);
-            var hmacsha256 = new HMACSHA256(byteKey);
-            var result = hmacsha256.ComputeHash(byteData);
-            return BitConverter.ToString(result).Replace("-", "").ToUpper();
-        }
-
 
         /// <summary>
         /// 将网关数据转换为Url格式数据

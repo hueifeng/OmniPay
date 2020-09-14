@@ -22,7 +22,7 @@ namespace OmniPay.Pay
         {
             services.AddWeChatPay(options=>{
                 Configuration.GetSection("WeChatPays").Bind(options);
-            });
+            }).AddValidators();
 
             services.AddAliPay(options=> {
                 Configuration.GetSection("AliPays").Bind(options);
