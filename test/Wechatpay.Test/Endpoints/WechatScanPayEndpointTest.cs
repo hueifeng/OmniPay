@@ -28,7 +28,7 @@ namespace Wechatpay.Test.Endpoints
                     MchId = "1900009641"
             });
             _client = new WeChatPayClient (someOptions, wechatpaylogger,null);
-            _subject = new WechatScanPayEndpoint (logger, _client, _validator);
+            _subject = new WechatScanPayEndpoint (logger, _client);
         }
         public WechatScanPayEndpointTest () {
             this.init ();
