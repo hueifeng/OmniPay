@@ -1,7 +1,5 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
-using OmniPay.Alipay.Endpoints;
-using OmniPay.Core.Hosting;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace OmniPay.Alipay.Extensions
 {
@@ -9,9 +7,8 @@ namespace OmniPay.Alipay.Extensions
     {
         public static IServiceCollection AddAliPay(this IServiceCollection services, Action<AlipayOptions> action)
         {
-            services.AddTransient<IEndpointRouter, EndpointRouter>();
-            services.AddSingleton<AliScanPayEndpoint>();
-            services.AddSingleton(new Endpoint("aliScanPay", "/pay-api/alipay/ScanPay", typeof(AliScanPayEndpoint)));
+            //services.AddSingleton<AliScanPayEndpoint>();
+            //services.AddSingleton(new Endpoint("aliScanPay", "/pay-api/alipay/ScanPay", typeof(AliScanPayEndpoint)));
             return services.AddAliServices(action);
         }
 

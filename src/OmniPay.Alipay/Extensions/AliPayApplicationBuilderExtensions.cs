@@ -16,8 +16,8 @@ namespace OmniPay.Alipay.Extensions
         public static IApplicationBuilder UseAliOmniPay(this IApplicationBuilder app)
         {
             app.UseMiddleware<AliPayMiddleware>();
-            var httpContextAccessor = app.ApplicationServices.GetRequiredService<IHttpContextAccessor>();
-            HttpUtil.Configure(httpContextAccessor);
+            //var httpContextAccessor = app.ApplicationServices.GetRequiredService<IHttpContextAccessor>();
+            //HttpUtil.Configure(httpContextAccessor);
             return app;
         }
     }

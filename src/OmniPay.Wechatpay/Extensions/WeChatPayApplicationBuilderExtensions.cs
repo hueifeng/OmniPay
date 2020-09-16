@@ -22,8 +22,8 @@ namespace OmniPay.Wechatpay.Extensions
         public static IApplicationBuilder UseOmniPay(this IApplicationBuilder app)
         {
             app.UseMiddleware<WechatPayMiddleware>();
-            var httpContextAccessor = app.ApplicationServices.GetRequiredService<IHttpContextAccessor>();
-            HttpUtil.Configure(httpContextAccessor);
+            //var httpContextAccessor = app.ApplicationServices.GetRequiredService<IHttpContextAccessor>();
+            //HttpUtil.Configure(httpContextAccessor);
             return app;
         }
     }

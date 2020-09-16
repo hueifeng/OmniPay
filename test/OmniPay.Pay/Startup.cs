@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OmniPay.Alipay.Extensions;
+using OmniPay.Core.Configuration.DependencyInjection;
 using OmniPay.Wechatpay.Extensions;
 
 namespace OmniPay.Pay
@@ -20,14 +21,16 @@ namespace OmniPay.Pay
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddWeChatPay(options=>{
-                Configuration.GetSection("WeChatPays").Bind(options);
-            }).AddValidators();
-
-            services.AddAliPay(options=> {
-                Configuration.GetSection("AliPays").Bind(options);
+            services.AddHttpClient();
+            services.AddOmniPayService(builder =>
+            {
+                builder.Services.AddWeChatPay(options => {
+                    Configuration.GetSection("WeChatPays").Bind(options);
+                }).AddValidators();
+                builder.Services.AddAliPay(options => {
+                    Configuration.GetSection("AliPays").Bind(options);
+                });
             });
-
             services.AddControllersWithViews();
         }
 
@@ -41,7 +44,7 @@ namespace OmniPay.Pay
 
             app.UseStaticFiles();
             app.UseRouting();
-
+            
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
@@ -49,8 +52,6 @@ namespace OmniPay.Pay
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}");
             });
-            app.UseOmniPay();   
-            app.UseAliOmniPay();
         }
     }
 }

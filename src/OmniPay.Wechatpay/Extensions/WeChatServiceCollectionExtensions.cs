@@ -1,12 +1,9 @@
-﻿using System;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using OmniPay.Core.Hosting;
-using OmniPay.Wechatpay.Endpoints;
 using OmniPay.Wechatpay.Validation;
 using OmniPay.Wechatpay.Validation.Default;
-using Endpoint = OmniPay.Core.Hosting.Endpoint;
+using System;
 
 namespace OmniPay.Wechatpay.Extensions
 {
@@ -14,17 +11,16 @@ namespace OmniPay.Wechatpay.Extensions
     {
         public static IServiceCollection AddWeChatPay(this IServiceCollection services, Action<WeChatPayOptions> action)
         {
-            services.AddTransient<IEndpointRouter, EndpointRouter>();
-            services.AddSingleton<WechatScanPayEndpoint>();
-            services.AddSingleton<WechatWapPayEndpoint>();
-            services.AddSingleton<WechatAppPayEndpoint>();
-            services.AddSingleton<WechatPublicPayEndpoint>();
-            services.AddSingleton<WechatAppletPayEndpoint>();
-            services.AddSingleton(new Endpoint("wechatScanPay", "/pay-api/Wechatpay/ScanPay", typeof(WechatScanPayEndpoint)));
-            services.AddSingleton(new Endpoint("wechatWapPay", "/pay-api/Wechatpay/WapPay", typeof(WechatWapPayEndpoint)));
-            services.AddSingleton(new Endpoint("wechatAppPay", "/pay-api/Wechatpay/AppPay", typeof(WechatAppPayEndpoint)));
-            services.AddSingleton(new Endpoint("wechatPublicPay", "/pay-api/Wechatpay/PublicPay", typeof(WechatPublicPayEndpoint)));
-            services.AddSingleton(new Endpoint("wechatAppletPay", "/pay-api/Wechatpay/AppletPay", typeof(WechatAppletPayEndpoint)));
+            //services.AddSingleton<WechatScanPayEndpoint>();
+            //services.AddSingleton<WechatWapPayEndpoint>();
+            //services.AddSingleton<WechatAppPayEndpoint>();
+            //services.AddSingleton<WechatPublicPayEndpoint>();
+            //services.AddSingleton<WechatAppletPayEndpoint>();
+            //services.AddSingleton(new Endpoint("wechatScanPay", "/pay-api/Wechatpay/ScanPay", typeof(WechatScanPayEndpoint)));
+            //services.AddSingleton(new Endpoint("wechatWapPay", "/pay-api/Wechatpay/WapPay", typeof(WechatWapPayEndpoint)));
+            //services.AddSingleton(new Endpoint("wechatAppPay", "/pay-api/Wechatpay/AppPay", typeof(WechatAppPayEndpoint)));
+            //services.AddSingleton(new Endpoint("wechatPublicPay", "/pay-api/Wechatpay/PublicPay", typeof(WechatPublicPayEndpoint)));
+            //services.AddSingleton(new Endpoint("wechatAppletPay", "/pay-api/Wechatpay/AppletPay", typeof(WechatAppletPayEndpoint)));
             return services.AddWeChatPayServices(action);
         }
 
@@ -49,7 +45,7 @@ namespace OmniPay.Wechatpay.Extensions
             {
                 services.Configure<WeChatPayOptions>(action.Invoke);
             }
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IWeChatPayClient, WeChatPayClient>();
             return services;
         }
