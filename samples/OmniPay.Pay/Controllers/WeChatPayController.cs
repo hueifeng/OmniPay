@@ -144,5 +144,29 @@ namespace OmniPay.Pay.Controllers
             return Ok(await _client.ExecuteAsync(request));
         }
 
+       /// <summary>
+       ///      申请退款
+       /// </summary>
+       /// <param name="transactionId"></param>
+       /// <param name="outTradeNo"></param>
+       /// <param name="outRefundNo"></param>
+       /// <param name="refundFee"></param>
+       /// <param name="refundDesc"></param>
+       /// <returns></returns>
+        [HttpPost]
+        public async Task<OkObjectResult> Refund(string transactionId,string outTradeNo,string outRefundNo,int refundFee,
+            string refundDesc)
+        {
+            var request = new RefundRequest();
+            request.AddParameters(new RefundModel()
+            {
+                OutTradeNo = outTradeNo,
+                RefundFee = refundFee,
+                TransactionId = transactionId,
+                OutRefundNo = outRefundNo,
+                RefundDesc = refundDesc
+            });
+            return Ok(await _client.ExecuteAsync(request));
+        }
     }
 }

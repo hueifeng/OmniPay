@@ -46,10 +46,10 @@ namespace OmniPay.Core.Utils
             return streamTask;
         }
 
-        public async Task<string> PostAsync(string url, string request, JsonSerializerOptions options = null, params (string, object)[] headers)
+        public async Task<string> PostAsync(string url, string request, string logicalName, JsonSerializerOptions options = null, params (string, object)[] headers)
         {
             _ = _httpClientFactory ?? throw new NullReferenceException("No IHttpClientFactory provided, please add AddHttpClient() in configure services!");
-            var httpClient = _httpClientFactory.CreateClient();
+            var httpClient = _httpClientFactory.CreateClient(logicalName);
 
             var dataByte = Encoding.UTF8.GetBytes(request);
 

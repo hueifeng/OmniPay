@@ -6,6 +6,8 @@ using Microsoft.Extensions.Hosting;
 using OmniPay.Alipay.Extensions;
 using OmniPay.Core.Configuration.DependencyInjection;
 using OmniPay.Wechatpay.Extensions;
+using System.Net.Http;
+using System.Security.Cryptography.X509Certificates;
 
 namespace OmniPay.Pay
 {
@@ -21,13 +23,23 @@ namespace OmniPay.Pay
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHttpClient();
+            var clientCertificate =
+                new X509Certificate2(
+                    "Certs/apiclient_cert.p12", "1233410002");
+            var handler = new HttpClientHandler();
+            handler.ClientCertificates.Add(clientCertificate);
+            services.AddHttpClient("WeChatPaysHttpClientName", c =>
+            {
+            }).ConfigurePrimaryHttpMessageHandler(() => handler);
+
             services.AddOmniPayService(builder =>
             {
-                builder.Services.AddWeChatPay(options => {
+                builder.Services.AddWeChatPay(options =>
+                {
                     Configuration.GetSection("WeChatPays").Bind(options);
                 }).AddValidators();
-                builder.Services.AddAliPay(options => {
+                builder.Services.AddAliPay(options =>
+                {
                     Configuration.GetSection("AliPays").Bind(options);
                 });
             });
@@ -44,7 +56,7 @@ namespace OmniPay.Pay
 
             app.UseStaticFiles();
             app.UseRouting();
-            
+
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {

@@ -39,9 +39,10 @@ namespace OmniPay.Core.Utils
         /// </summary>
         /// <param name="url"></param>
         /// <param name="request"></param>
+        /// <param name="logicalName"></param>
         /// <param name="options"></param>
         /// <param name="headers"></param>
         /// <returns></returns>
-        Task<string> PostAsync(string url, string request, JsonSerializerOptions options = null, params (string, object)[] headers);
+        Task<string> PostAsync(string url, string request, string logicalName, JsonSerializerOptions options = null, params (string, object)[] headers);
     }
 }
