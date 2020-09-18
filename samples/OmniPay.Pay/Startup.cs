@@ -8,6 +8,7 @@ using OmniPay.Core.Configuration.DependencyInjection;
 using OmniPay.Wechatpay.Extensions;
 using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
+using System.Text;
 
 namespace OmniPay.Pay
 {
@@ -54,6 +55,7 @@ namespace OmniPay.Pay
                 app.UseDeveloperExceptionPage();
             }
 
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             app.UseStaticFiles();
             app.UseRouting();
 
