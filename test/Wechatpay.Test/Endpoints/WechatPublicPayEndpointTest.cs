@@ -1,8 +1,10 @@
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using OmniPay.Core.Results;
+using OmniPay.Core.Utils;
 using OmniPay.Wechatpay;
 using OmniPay.Wechatpay.Endpoints;
 using OmniPay.Wechatpay.Endpoints.Result;
@@ -17,7 +19,8 @@ namespace Wechatpay.Test.Endpoints
         private ILogger<WeChatPayClient> wechatpaylogger = new LoggerFactory ().CreateLogger<WeChatPayClient> ();
         private ILogger<WechatPublicPayEndpoint> logger = new LoggerFactory ().CreateLogger<WechatPublicPayEndpoint> ();
         IWeChatPayClient _client;
-        private WechatPublicPayEndpoint _subject;
+        private WechatPublicPayEndpoint _subject; 
+        
 
         private void init () {
             var someOptions = Options.Create (new WeChatPayOptions {
@@ -26,7 +29,7 @@ namespace Wechatpay.Test.Endpoints
                     BaseUrl = "https://api.mch.weixin.qq.com",
                     MchId = "1900009641"
             });
-            _client = new WeChatPayClient (someOptions, wechatpaylogger);
+            _client = new WeChatPayClient (someOptions, wechatpaylogger,null);
             _subject = new WechatPublicPayEndpoint (logger, _client);
         }
         public WechatPublicPayEndpointTest () {

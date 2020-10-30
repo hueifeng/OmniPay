@@ -1,7 +1,5 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
-using OmniPay.Alipay.Endpoints;
-using OmniPay.Core.Hosting;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace OmniPay.Alipay.Extensions
 {

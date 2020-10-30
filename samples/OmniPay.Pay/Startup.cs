@@ -4,8 +4,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OmniPay.Alipay.Extensions;
+using OmniPay.Core.Configuration.DependencyInjection;
 using OmniPay.Unionpay.Extensions;
 using OmniPay.Wechatpay.Extensions;
+using System.Net.Http;
+using System.Text;
 
 namespace OmniPay.Pay
 {
@@ -21,16 +24,31 @@ namespace OmniPay.Pay
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddWeChatPay(options=>{
-                Configuration.GetSection("WeChatPays").Bind(options);
-            }).AddValidators();
+            //微信支付中有些接口需要对证书配置
+            //var clientCertificate =
+            //    new X509Certificate2(
+            //        "Certs/apiclient_cert.p12", "1233410002");
+            var handler = new HttpClientHandler();
+            //handler.ClientCertificates.Add(clientCertificate);
+            //以命名式客户端处理，可延伸相关特性
+            services.AddHttpClient("WeChatPaysHttpClientName", c =>
+            {
+            }).ConfigurePrimaryHttpMessageHandler(() => handler);
 
-            services.AddAliPay(options=> {
-                Configuration.GetSection("AliPays").Bind(options);
-            });
-
-            services.AddUnionPay(options => {
-                Configuration.GetSection("Unionpays").Bind(options);
+            services.AddOmniPayService(builder =>
+            {
+                builder.Services.AddWeChatPay(options =>
+                {
+                    Configuration.GetSection("WeChatPays").Bind(options);
+                }).AddValidators();
+                builder.Services.AddAliPay(options =>
+                {
+                    Configuration.GetSection("AliPays").Bind(options);
+                });
+				builder.Services.AddUnionPay(options =>
+                {
+                    Configuration.GetSection("Unionpays").Bind(options);
+                });
             });
 
             services.AddControllersWithViews();
@@ -44,6 +62,7 @@ namespace OmniPay.Pay
                 app.UseDeveloperExceptionPage();
             }
 
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             app.UseStaticFiles();
             app.UseRouting();
 
@@ -54,9 +73,11 @@ namespace OmniPay.Pay
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}");
             });
-            app.UseOmniPay();   
-            app.UseAliOmniPay();
-            app.UseUnionPay();
+
+            // app.UseOmniPay();   
+            // app.UseAliOmniPay();
+            // app.UseUnionPay();
+
         }
     }
 }

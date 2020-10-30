@@ -12,14 +12,11 @@ namespace OmniPay.Wechatpay.Endpoints
     {
         private readonly ILogger<WechatScanPayEndpoint> _logger;
         private readonly IWeChatPayClient _client;
-        private readonly IScanPayValidator _validator;
 
-        public WechatScanPayEndpoint(ILogger<WechatScanPayEndpoint> logger, IWeChatPayClient client,
-            IScanPayValidator validator)
+        public WechatScanPayEndpoint(ILogger<WechatScanPayEndpoint> logger, IWeChatPayClient client)
         {
             this._logger = logger;
             this._client = client;
-            this._validator = validator;
         }
 
         public IEndpointResult Process(HttpContext context)
@@ -32,11 +29,11 @@ namespace OmniPay.Wechatpay.Endpoints
                 return new StatusCodeResult(HttpStatusCode.MethodNotAllowed);
             }
 
-            var validateResult = _validator.ValidateAsync(context).GetAwaiter().GetResult();
-            if (validateResult.IsError)
-            {
-                return Error(validateResult.Error);
-            }
+            //var validateResult = _validator.ValidateAsync(context).GetAwaiter().GetResult();
+            //if (validateResult.IsError)
+            //{
+            //    return Error(validateResult.Error);
+            //}
             _logger.LogTrace("End WechatScanPay request. result type: {0}", this?.GetType().ToString() ?? "-none-");
             return new ScanPayResult(_client);
         }

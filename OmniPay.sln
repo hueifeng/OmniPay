@@ -18,15 +18,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmniPay.Pay", "test\OmniPay.Pay\OmniPay.Pay.csproj", "{12020D59-4378-4849-99CC-9FEF818B0864}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmniPay.Core", "src\OmniPay.Core\OmniPay.Core.csproj", "{4EE2E97F-7070-4C78-A382-D7C4F7CCA3F7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wechatpay.Test", "test\Wechatpay.Test\Wechatpay.Test.csproj", "{5CC0C897-2325-4851-958E-E00F8A28550E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmniPay.Alipay", "src\OmniPay.Alipay\OmniPay.Alipay.csproj", "{8DAD9EA3-4A61-4843-8697-BC4C5C9BFE9C}"
 EndProject
+<<<<<<< HEAD
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmniPay.Unionpay", "src\OmniPay.Unionpay\OmniPay.Unionpay.csproj", "{94AEF135-EBB4-49FC-90A1-D27DAB205876}"
+=======
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{9907DC21-7353-4DFD-A298-54A30C6784E7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmniPay.Pay", "samples\OmniPay.Pay\OmniPay.Pay.csproj", "{C3416D37-F867-448F-8528-4DE352A4B928}"
+>>>>>>> origin/develop
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,10 +42,6 @@ Global
 		{4F57892F-25E8-4244-A8F8-7C84C7BE1A5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F57892F-25E8-4244-A8F8-7C84C7BE1A5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F57892F-25E8-4244-A8F8-7C84C7BE1A5C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{12020D59-4378-4849-99CC-9FEF818B0864}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{12020D59-4378-4849-99CC-9FEF818B0864}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{12020D59-4378-4849-99CC-9FEF818B0864}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{12020D59-4378-4849-99CC-9FEF818B0864}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4EE2E97F-7070-4C78-A382-D7C4F7CCA3F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4EE2E97F-7070-4C78-A382-D7C4F7CCA3F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EE2E97F-7070-4C78-A382-D7C4F7CCA3F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -54,21 +54,31 @@ Global
 		{8DAD9EA3-4A61-4843-8697-BC4C5C9BFE9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DAD9EA3-4A61-4843-8697-BC4C5C9BFE9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DAD9EA3-4A61-4843-8697-BC4C5C9BFE9C}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
 		{94AEF135-EBB4-49FC-90A1-D27DAB205876}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{94AEF135-EBB4-49FC-90A1-D27DAB205876}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94AEF135-EBB4-49FC-90A1-D27DAB205876}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94AEF135-EBB4-49FC-90A1-D27DAB205876}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+		{C3416D37-F867-448F-8528-4DE352A4B928}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3416D37-F867-448F-8528-4DE352A4B928}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3416D37-F867-448F-8528-4DE352A4B928}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3416D37-F867-448F-8528-4DE352A4B928}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> origin/develop
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4F57892F-25E8-4244-A8F8-7C84C7BE1A5C} = {3642F616-626D-4205-8F66-68615D3F7D6C}
-		{12020D59-4378-4849-99CC-9FEF818B0864} = {719D3223-895D-4B19-B7EF-B37BE5F8017C}
 		{4EE2E97F-7070-4C78-A382-D7C4F7CCA3F7} = {3642F616-626D-4205-8F66-68615D3F7D6C}
 		{5CC0C897-2325-4851-958E-E00F8A28550E} = {719D3223-895D-4B19-B7EF-B37BE5F8017C}
 		{8DAD9EA3-4A61-4843-8697-BC4C5C9BFE9C} = {3642F616-626D-4205-8F66-68615D3F7D6C}
+<<<<<<< HEAD
 		{94AEF135-EBB4-49FC-90A1-D27DAB205876} = {3642F616-626D-4205-8F66-68615D3F7D6C}
+=======
+		{C3416D37-F867-448F-8528-4DE352A4B928} = {9907DC21-7353-4DFD-A298-54A30C6784E7}
+>>>>>>> origin/develop
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7E7D1B2E-48E6-4A24-8815-2CF293AA888E}

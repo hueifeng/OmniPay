@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System;
+using System.Net.Http;
+using System.Text;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using OmniPay.Core.Exceptions;
 using OmniPay.Core.Request;
@@ -12,11 +15,14 @@ namespace OmniPay.Wechatpay
     {
         private readonly WeChatPayOptions _weChatPayOptions;
         private readonly ILogger<WeChatPayClient> _logger;
+        private readonly IHttpHandler _httpHandler;
 
-        public WeChatPayClient(IOptions<WeChatPayOptions> weChatPayOptions, ILogger<WeChatPayClient> logger)
+        public WeChatPayClient(IOptions<WeChatPayOptions> weChatPayOptions, ILogger<WeChatPayClient> logger,
+            IHttpHandler httpHandler)
         {
             _weChatPayOptions = weChatPayOptions.Value;
             _logger = logger;
+            _httpHandler = httpHandler;
         }
 
         /// <summary>
@@ -29,12 +35,15 @@ namespace OmniPay.Wechatpay
         public async Task<TResponse> ExecuteAsync<TModel, TResponse>(BaseRequest<TModel, TResponse> request)
         {
             BuildParams(request);
-            string result = await HttpUtil.PostAsync(request.RequestUrl, request.ToXml());
+            (string, object)[] tuple ={
+                    ("Content-Type", "application/x-www-form-urlencoded;charset=utf-8"),
+                };
+            var result = await _httpHandler.PostAsync(request.RequestUrl,request.ToXml(), _weChatPayOptions.HttpClientName, null, tuple);
             request.FromXml(result);
             var baseResponse = (BaseResponse)(object)request.ToObject<TResponse>();
             baseResponse.Raw = result;
-            var repsign = request.GetStringValue("sign");
-            if (string.IsNullOrEmpty(repsign) && !CheckSign(request, repsign, _weChatPayOptions.Key))
+            var repSign = request.GetStringValue("sign");
+            if (string.IsNullOrEmpty(repSign) && !CheckSign(request, repSign, _weChatPayOptions.Key))
             {
                 _logger.LogError("Signature verification failed:{0}", result);
                 throw new OmniPayException("Signature verification failed.");

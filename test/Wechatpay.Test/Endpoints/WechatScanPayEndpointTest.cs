@@ -27,8 +27,8 @@ namespace Wechatpay.Test.Endpoints
                     BaseUrl = "https://api.mch.weixin.qq.com",
                     MchId = "1900009641"
             });
-            _client = new WeChatPayClient (someOptions, wechatpaylogger);
-            _subject = new WechatScanPayEndpoint (logger, _client, _validator);
+            _client = new WeChatPayClient (someOptions, wechatpaylogger,null);
+            _subject = new WechatScanPayEndpoint (logger, _client);
         }
         public WechatScanPayEndpointTest () {
             this.init ();

@@ -16,7 +16,7 @@ namespace OmniPay.Wechatpay.Domain
         /// <summary>
         ///     机器IP
         /// </summary>
-        public string SpbillCreateIp { get; set; } = HttpUtil.LocalIpAddress;
+        public string SpbillCreateIp { get; set; }
         /// <summary>
         ///     商品ID
         /// </summary>

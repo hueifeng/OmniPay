@@ -24,25 +24,25 @@
         ///     App Secret
         /// </summary>
         public string AppSecret { get; set; }
-        /// <summary>
-        ///     certificate path
-        /// </summary>
-        public string SslCertPath { get; set; }
-        /// <summary>
-        ///     Certificate password
-        /// </summary>
-        public string SslCertPassword { get; set; }
+
         /// <summary>
         ///     Notice the URL   
         /// </summary>
         public string NotifyUrl { get; set; }
+
         /// <summary>
         ///     Merchants public key
         /// </summary>
         public string PublicKey { get; set; }
+
         /// <summary>
         ///     BaseUrl
         /// </summary>
         public string BaseUrl { get; set; }
+
+        /// <summary>
+        ///    The logical name of the <see cref="T:System.Net.Http.HttpClient" /> to configure.
+        /// </summary>
+        public string HttpClientName { get; set; }
     }
 }

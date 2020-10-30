@@ -16,11 +16,14 @@ namespace OmniPay.Alipay
     {
         private readonly AlipayOptions _alipayOptions;
         private readonly ILogger<AliPayClient> _logger;
+        private readonly IHttpHandler _httpHandler;
 
-        public AliPayClient(IOptions<AlipayOptions> alioptions, ILogger<AliPayClient> logger)
+        public AliPayClient(IOptions<AlipayOptions> alioptions, ILogger<AliPayClient> logger, 
+            IHttpHandler httpHandler)
         {
             this._alipayOptions = alioptions.Value;
             this._logger = logger;
+            this._httpHandler = httpHandler;
         }
 
         /// <summary>
@@ -38,8 +41,8 @@ namespace OmniPay.Alipay
             {
                 return (TResponse)Activator.CreateInstance(typeof(TResponse), request);
             }
-   
-            string result = await HttpUtil.PostAsync(request.RequestUrl, request.ToUrl());
+
+            string result = await _httpHandler.PostAsync(request.RequestUrl, request.ToUrl());
             var jObject = JObject.Parse(result);
             var jToken = jObject.First.First;
             var sign = jObject.Value<string>("sign");
