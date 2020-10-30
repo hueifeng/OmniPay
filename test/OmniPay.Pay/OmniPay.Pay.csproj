@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AlipaySDKNet.Standard" Version="4.3.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.0" />
   </ItemGroup>
@@ -13,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\OmniPay.Alipay\OmniPay.Alipay.csproj" />
     <ProjectReference Include="..\..\src\OmniPay.Core\OmniPay.Core.csproj" />
+    <ProjectReference Include="..\..\src\OmniPay.Unionpay\OmniPay.Unionpay.csproj" />
     <ProjectReference Include="..\..\src\OmniPay.Wechatpay\OmniPay.Wechatpay.csproj" />
   </ItemGroup>
 

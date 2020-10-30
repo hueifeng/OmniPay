@@ -171,6 +171,7 @@ namespace OmniPay.Core.Utils
             {
                 ServicePointManager.ServerCertificateValidationCallback =
                         new RemoteCertificateValidationCallback(CheckValidationResult);
+            
             }
 
             var dataByte = Encoding.UTF8.GetBytes(data);
@@ -178,7 +179,7 @@ namespace OmniPay.Core.Utils
             request.Method = "POST";
             request.ContentType = "application/x-www-form-urlencoded;charset=utf-8";
             request.ContentLength = dataByte.Length;
-
+            request.AllowAutoRedirect = false;
             if (cert != null)
             {
                 request.ClientCertificates.Add(cert);

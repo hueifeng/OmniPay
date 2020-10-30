@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OmniPay.Alipay.Extensions;
+using OmniPay.Unionpay.Extensions;
 using OmniPay.Wechatpay.Extensions;
 
 namespace OmniPay.Pay
@@ -26,6 +27,10 @@ namespace OmniPay.Pay
 
             services.AddAliPay(options=> {
                 Configuration.GetSection("AliPays").Bind(options);
+            });
+
+            services.AddUnionPay(options => {
+                Configuration.GetSection("Unionpays").Bind(options);
             });
 
             services.AddControllersWithViews();
@@ -51,6 +56,7 @@ namespace OmniPay.Pay
             });
             app.UseOmniPay();   
             app.UseAliOmniPay();
+            app.UseUnionPay();
         }
     }
 }

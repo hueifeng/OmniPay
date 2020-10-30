@@ -5,7 +5,7 @@ using OmniPay.Core.Request;
 
 namespace OmniPay.Alipay.Request
 {
-    public class BarCodePayRequest : BaseRequest<ScanPayModel, ScanPayResponse>
+    public class BarCodePayRequest : BaseRequest<BarCodePayModel, ScanPayResponse>
     {
         public BarCodePayRequest()
         {

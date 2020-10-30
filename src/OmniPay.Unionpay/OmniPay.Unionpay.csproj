@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\OmniPay.Core\OmniPay.Core.csproj" />
+  </ItemGroup>
+
+</Project>

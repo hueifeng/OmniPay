@@ -78,4 +78,5 @@ namespace OmniPay.Alipay.Domain
         /// </summary>
         public string BusinessParams { get; set; }
     }
+
 }

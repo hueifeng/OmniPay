@@ -9,9 +9,9 @@ namespace OmniPay.Alipay.Extensions
     {
         public static IServiceCollection AddAliPay(this IServiceCollection services, Action<AlipayOptions> action)
         {
-            services.AddTransient<IEndpointRouter, EndpointRouter>();
-            services.AddSingleton<AliScanPayEndpoint>();
-            services.AddSingleton(new Endpoint("aliScanPay", "/pay-api/alipay/ScanPay", typeof(AliScanPayEndpoint)));
+            //services.AddTransient<IEndpointRouter, EndpointRouter>();
+            //services.AddSingleton<AliScanPayEndpoint>();
+            //services.AddSingleton(new Endpoint("aliScanPay", "/pay-api/alipay/ScanPay", typeof(AliScanPayEndpoint)));
             return services.AddAliServices(action);
         }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Reflection;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Security.Cryptography;
 using System.Text;
 using System.Xml;
@@ -322,6 +323,7 @@ namespace OmniPay.Core.Request
         {
             _values.Remove(key);
         }
+
         public virtual void Execute() { }
     }
 }

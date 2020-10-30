@@ -8,7 +8,7 @@ namespace OmniPay.Alipay.Request
     {
         public WebPagePayRequest()
         {
-            RequestUrl = "/gateway.do?charset=UTF-8";
+            RequestUrl = "/gateway.do";
             Add("method", "alipay.trade.page.pay");
         }
     }
