@@ -98,13 +98,13 @@ namespace OmniPay.Unionpay
             //UnionPayUntil.Sign();
             //var signDigest = SecurityUtil.Sha256(strData, System.Text.Encoding.UTF8);
             //var stringSignDigest = BitConverter.ToString(signDigest).Replace("-", "").ToLower();
-            
+
             //string stringSign = Convert.ToBase64String(byteSign);
 
-            //var stringSignDigest = SHA256.Compute(strData);
-            //var strSign = UnionPayUntil.SignSha256WithRsa(stringSignDigest, SignCertificate.key);
+            var stringSignDigest = SHA256.Compute(strData);
+            var strSign = UnionPayUntil.SignSha256WithRsa(stringSignDigest, SignCertificate.key);
 
-            //request.Add("signature", strSign);
+            request.Add("signature", strSign);
 
             request.RequestUrl = _unionPayOptions.BaseUrl + request.RequestUrl;
         }
