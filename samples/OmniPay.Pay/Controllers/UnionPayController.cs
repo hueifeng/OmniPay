@@ -30,7 +30,7 @@ namespace OmniPay.Pay.Controllers
             request.AddParameters(new FrontTransModel
             {
                 TxnAmt = TxnAmt,
-                OrderId = OrderId,
+                OrderId = OrderId
             }, StringCase.Camel);
             return Ok(await _client.ExecuteAsync(request));
         }

@@ -51,7 +51,7 @@ namespace OmniPay.Unionpay
             RootCertificate = UnionPayUntil.GetCertificate(_unionPayOptions.RootCertPath);
         }
 
-      
+
 
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace OmniPay.Unionpay
         public async Task<TResponse> ExecuteAsync<TModel, TResponse>(BaseRequest<TModel, TResponse> request)
         {
             BuildParams(request);
-            if (request is FrontTransRequest)
+            if (request is FrontTransRequest || request is BackTransRequest)
             {
                 return (TResponse)Activator.CreateInstance(typeof(TResponse), request);
             }
@@ -77,7 +77,7 @@ namespace OmniPay.Unionpay
         }
 
         private void BuildParams<TModel, TResponse>(BaseRequest<TModel, TResponse> request)
-        {           
+        {
             request.Add("version", _unionPayOptions.Version);
             request.Add("encoding", _unionPayOptions.Encoding);
             request.Add("bizType", _unionPayOptions.BizType);
@@ -87,7 +87,7 @@ namespace OmniPay.Unionpay
             request.Add("txnType", _unionPayOptions.TxnType);
             request.Add("txnSubType", _unionPayOptions.TxnSubType);
             request.Add("accessType", _unionPayOptions.AccessType);
-            request.Add("frontUrl",_unionPayOptions.FrontUrl);
+            request.Add("frontUrl", _unionPayOptions.FrontUrl);
             request.Add("signMethod", _unionPayOptions.SignMethod);
             request.Add("channelType", _unionPayOptions.ChannelType);
             request.Add("merId", _unionPayOptions.MerId);

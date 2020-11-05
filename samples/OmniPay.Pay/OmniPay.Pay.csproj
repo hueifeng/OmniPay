@@ -18,6 +18,12 @@
     <ProjectReference Include="..\..\src\OmniPay.Wechatpay\OmniPay.Wechatpay.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Certs\">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 

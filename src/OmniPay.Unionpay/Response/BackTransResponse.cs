@@ -2,9 +2,9 @@
 
 namespace OmniPay.Unionpay.Response
 {
-    public class FrontTransResponse
+    public class BackTransResponse
     {
-        public FrontTransResponse(FrontTransRequest request)
+        public BackTransResponse(BackTransRequest request)
         {
             Html = request.ToForm(request.RequestUrl);
         }

@@ -25,13 +25,13 @@ namespace OmniPay.Pay
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //Î¢ÐÅÖ§¸¶ÖÐÓÐÐ©½Ó¿ÚÐèÒª¶ÔÖ¤ÊéÅäÖÃ
+            //å¾®ä¿¡æ”¯ä»˜ä¸­æœ‰äº›æŽ¥å£éœ€è¦å¯¹è¯ä¹¦é…ç½®
             //var clientCertificate =
             //    new X509Certificate2(
             //        "Certs/apiclient_cert.p12", "1233410002");
             var handler = new HttpClientHandler();
             //handler.ClientCertificates.Add(clientCertificate);
-            //ÒÔÃüÃûÊ½¿Í»§¶Ë´¦Àí£¬¿ÉÑÓÉìÏà¹ØÌØÐÔ
+            //ä»¥å‘½åå¼å®¢æˆ·ç«¯å¤„ç†ï¼Œå¯å»¶ä¼¸ç›¸å…³ç‰¹æ€§
             services.AddHttpClient("WeChatPaysHttpClientName", c =>
             {
             }).ConfigurePrimaryHttpMessageHandler(() => handler);
@@ -46,7 +46,7 @@ namespace OmniPay.Pay
                 {
                     Configuration.GetSection("AliPays").Bind(options);
                 });
-				builder.Services.AddUnionPay(options =>
+                builder.Services.AddUnionPay(options =>
                 {
                     Configuration.GetSection("Unionpays").Bind(options);
                 });
