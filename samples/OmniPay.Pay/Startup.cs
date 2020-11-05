@@ -8,6 +8,7 @@ using OmniPay.Core.Configuration.DependencyInjection;
 using OmniPay.Unionpay.Extensions;
 using OmniPay.Wechatpay.Extensions;
 using System.Net.Http;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace OmniPay.Pay
