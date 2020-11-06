@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <form name='gateway' method='post' action='https://gateway.test.95516.com/gateway/api/frontTransReq.do'>
+        <input type='hidden' name='accessType' value='0'>
+        <input type='hidden' name='bizType' value='000202'>
+        <input type='hidden' name='certId' value='69629715588'>
+        <input type='hidden' name='channelType' value='07'>
+        <input type='hidden' name='currencyCode' value='156'>
+        <input type='hidden' name='encoding' value='UTF-8'>
+        <input type='hidden' name='frontUrl' value='http://localhost:6113/'>
+        <input type='hidden' name='merId' value='777290058110048'>
+        <input type='hidden' name='orderId' value='20201106091915964'>
+        <input type='hidden' name='signature' value='H8qf2i+9yBvpkElJfjJjBhdkn59B08dUIZ1+BWuT5XoEbiLKlu7gj2YPhmctiQaKd/j0ET1z6gSiR5YDlK1SZL9WK8kwfhB3SYHUmhfTTrM+BmjKtvVzk+urfZMJIBBtmnkvC/MM+BbyyqZBs+xtAj1eplogC8LN+1uAMW8dKstsXh+FPEVw6+TUNjDC1fC/f4VdnIj7j+PT7wHjcsd+zYyfzpD2/Fc8Fujq950GZUwzzDp3JEPl8Q7u08m+V7BXXQ6d8ZyhTwGUorTP4VsA8R4adXkOlQY3jwSg0Jf9h76UHJVrLe3EbB7F5L5A+rmRLpBMekNNBaNtECpXw9JzIQ=='>
+        <input type='hidden' name='signMethod' value='01'>
+        <input type='hidden' name='txnAmt' value='1'>
+        <input type='hidden' name='txnSubType' value='01'>
+        <input type='hidden' name='txnTime' value='20201106091923'>
+        <input type='hidden' name='txnType' value='01'>
+        <input type='hidden' name='version' value='5.1.0'>
+    </form>
+    <script language='javascript' type='text/javascript'>document.gateway.submit();</script>
+</body>
+</html>
+
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=System.Text.UTF8Encoding" />
+</head>
+<body onload="OnLoadSubmit();">
+    <form id="pay_form" action="https://gateway.test.95516.com/gateway/api/frontTransReq.do" method="post">
+    <input type="hidden" name="version" id="version" value="5.1.0" />
+    <input type="hidden" name="encoding" id="encoding" value="UTF-8" />
+    <input type="hidden" name="txnType" id="txnType" value="01" />
+    <input type="hidden" name="txnSubType" id="txnSubType" value="01" />
+    <input type="hidden" name="bizType" id="bizType" value="000201" />
+    <input type="hidden" name="signMethod" id="signMethod" value="01" />
+    <input type="hidden" name="channelType" id="channelType" value="08" />
+    <input type="hidden" name="accessType" id="accessType" value="0" />
+    <input type="hidden" name="frontUrl" id="frontUrl" value="http://localhost:8080/demo/api_02_b2b/FrontRcvResponse.aspx" />
+    <input type="hidden" name="backUrl" id="backUrl" value="http://222.222.222.222:8080/demo/api_02_b2b/BackRcvResponse.aspx" />
+    <input type="hidden" name="currencyCode" id="currencyCode" value="156" />
+    <input type="hidden" name="payTimeout" id="payTimeout" value="20201106095402" />
+    <input type="hidden" name="merId" id="merId" value="777290058110048" />
+    <input type="hidden" name="orderId" id="orderId" value="20201106093901185" />
+    <input type="hidden" name="txnTime" id="txnTime" value="20201106093901" />
+    <input type="hidden" name="txnAmt" id="txnAmt" value="1000" />
+    <input type="hidden" name="riskRateInfo" id="riskRateInfo" value="{commodityName=测试商品名称}" />
+    <input type="hidden" name="certId" id="certId" value="69629715588" />
+    <input type="hidden" name="signature" id="signature" value="HhuFlonktG7Pi8SLPBclftqABWnH14Hx6YJ4D8jcOsmvN0NFeongnldWwTo+k2qrdiFcELR7eHxHndO+onFTeVqMuuGCp2nmfBBpVuH8tU3HiWWb21c7SK26exPxzqjnmLZgKmwpHdfaW1l5QS7jqbz7y15McjXJCa7oPHKtdHGkPmCM1MIpyVMpNlNSiWEzTAcZ6f3yp5Bpfa0WyjkgD2yiJc2gjk0LqS4V1nlNgOs3g19Mn7WYAmKM0Dqz3XrDNLTg67RDZfUA6Ce0C4oeF4ooB7XKb84zeB+rtD3Kr3fYR38kpwB3J4ZDlgi9WFrrYPCLJzVQBnjiAkIorRL20w==" />
+    </form>
+    <script type="text/javascript">
+<!--
+        function OnLoadSubmit() {
+            document.getElementById("pay_form").submit();
+        }
+//-->
+    </script>
+</body>
+</html>

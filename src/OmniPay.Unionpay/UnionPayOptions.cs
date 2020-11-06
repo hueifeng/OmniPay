@@ -19,7 +19,7 @@ namespace OmniPay.Unionpay
         /// <summary>
         /// 产品类型
         /// </summary>
-        public string BizType => "000202";
+        public string BizType => "000201";
 
         /// <summary>
         /// 订单发送时间
@@ -64,7 +64,7 @@ namespace OmniPay.Unionpay
         /// <summary>
         /// 渠道类型
         /// </summary>
-        public string ChannelType => "07";
+        public string ChannelType => "08";
 
         /// <summary>
         /// 商户代码

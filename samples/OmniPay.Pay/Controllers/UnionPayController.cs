@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using OmniPay.Core.Utils;
 using OmniPay.Unionpay;
 using OmniPay.Unionpay.Domain;
 using OmniPay.Unionpay.Request;
+using System.Threading.Tasks;
 
 namespace OmniPay.Pay.Controllers
 {
@@ -24,13 +21,13 @@ namespace OmniPay.Pay.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public async Task<OkObjectResult> FrontTrans(string TxnAmt, string OrderId)
+        public async Task<OkObjectResult> FrontTrans(string txnAmt, string orderId)
         {
             var request = new FrontTransRequest();
             request.AddParameters(new FrontTransModel
             {
-                TxnAmt = TxnAmt,
-                OrderId = OrderId
+                TxnAmt = txnAmt,
+                OrderId = orderId
             }, StringCase.Camel);
             return Ok(await _client.ExecuteAsync(request));
         }
@@ -40,13 +37,13 @@ namespace OmniPay.Pay.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public async Task<OkObjectResult> BackTrans(string TxnAmt, string OrderId)
+        public async Task<OkObjectResult> BackTrans(string txnAmt, string orderId)
         {
             var request = new BackTransRequest();
             request.AddParameters(new BackTransModel
             {
-                TxnAmt = TxnAmt,
-                OrderId = OrderId,
+                TxnAmt = txnAmt,
+                OrderId = orderId,
             }, StringCase.Camel);
             return Ok(await _client.ExecuteAsync(request));
         }

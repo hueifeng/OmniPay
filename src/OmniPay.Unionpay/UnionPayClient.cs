@@ -7,9 +7,6 @@ using OmniPay.Core.Utils;
 using OmniPay.Unionpay.Request;
 using OmniPay.Unionpay.Response;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using static OmniPay.Core.Utils.UnionPayUntil;
 
@@ -78,20 +75,39 @@ namespace OmniPay.Unionpay
 
         private void BuildParams<TModel, TResponse>(BaseRequest<TModel, TResponse> request)
         {
-            request.Add("version", _unionPayOptions.Version);
-            request.Add("encoding", _unionPayOptions.Encoding);
-            request.Add("bizType", _unionPayOptions.BizType);
-            request.Add("txnTime", _unionPayOptions.TxnTime);
-            request.Add("backUrl", _unionPayOptions.BackUrl);
-            request.Add("currencyCode", _unionPayOptions.CurrencyCode);
-            request.Add("txnType", _unionPayOptions.TxnType);
-            request.Add("txnSubType", _unionPayOptions.TxnSubType);
-            request.Add("accessType", _unionPayOptions.AccessType);
-            request.Add("frontUrl", _unionPayOptions.FrontUrl);
-            request.Add("signMethod", _unionPayOptions.SignMethod);
-            request.Add("channelType", _unionPayOptions.ChannelType);
-            request.Add("merId", _unionPayOptions.MerId);
-            request.Add("certId", SignCertificate.certId);
+            //request.Add("version", _unionPayOptions.Version);
+            //request.Add("encoding", _unionPayOptions.Encoding);
+            //request.Add("bizType", _unionPayOptions.BizType);
+            //request.Add("txnTime", _unionPayOptions.TxnTime);
+            //request.Add("backUrl", _unionPayOptions.BackUrl);
+            //request.Add("currencyCode", _unionPayOptions.CurrencyCode);
+            //request.Add("txnType", _unionPayOptions.TxnType);
+            //request.Add("txnSubType", _unionPayOptions.TxnSubType);
+            //request.Add("accessType", _unionPayOptions.AccessType);
+            //request.Add("frontUrl", _unionPayOptions.FrontUrl);
+            //request.Add("signMethod", _unionPayOptions.SignMethod);
+            //request.Add("channelType", _unionPayOptions.ChannelType);
+            //request.Add("merId", _unionPayOptions.MerId);
+            //request.Add("certId", SignCertificate.certId);
+
+            request.Add("version", "5.1.0");
+            request.Add("encoding", "UTF-8");
+            request.Add("txnType", "01");
+            request.Add("txnSubType", "01");
+            request.Add("bizType", "000201");
+            request.Add("signMethod", "01");
+            request.Add("channelType", "08");
+            request.Add("accessType", "0");
+            request.Add("frontUrl", "http://localhost:8080/demo/api_02_b2b/FrontRcvResponse.aspx");
+            request.Add("backUrl", "http://222.222.222.222:8080/demo/api_02_b2b/BackRcvResponse.aspx");
+            request.Add("currencyCode", "156");
+            request.Add("payTimeout", "20201106095402");
+            request.Add("merId", "777290058110048");
+            request.Add("orderId", "20201106093901185");
+            request.Add("txnTime", "20201106093901");
+            request.Add("txnAmt", "1000");
+            request.Add("riskRateInfo", "{commodityName=测试商品名称}");
+            request.Add("certId", "69629715588");
             var strData = request.ToUrl();
 
 
