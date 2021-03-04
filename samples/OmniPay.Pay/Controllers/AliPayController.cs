@@ -1,7 +1,4 @@
-﻿using Aop.Api;
-using Aop.Api.Request;
-using Aop.Api.Response;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using OmniPay.Alipay;
 using OmniPay.Alipay.Domain;
 using OmniPay.Alipay.Enums;
