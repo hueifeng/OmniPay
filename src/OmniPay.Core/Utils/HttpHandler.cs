@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -49,15 +51,19 @@ namespace OmniPay.Core.Utils
         public async Task<string> PostAsync(string url, string request, string logicalName, JsonSerializerOptions options = null, params (string, object)[] headers)
         {
             _ = _httpClientFactory ?? throw new NullReferenceException("No IHttpClientFactory provided, please add AddHttpClient() in configure services!");
-            var httpClient = _httpClientFactory.CreateClient(logicalName);
+            HttpClient httpClient;
+            if (logicalName == null)
+            {
+                httpClient = _httpClientFactory.CreateClient();
+            }
+            else
+            {
+                httpClient = _httpClientFactory.CreateClient(logicalName);
+            }
 
-            var dataByte = Encoding.UTF8.GetBytes(request);
-
-            var response = await httpClient.PostAsync(url, new ByteArrayContent(dataByte));
-
-            response.EnsureSuccessStatusCode();
-
-            var streamTask = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var reqContent = new StringContent(request, Encoding.UTF8, "application/x-www-form-urlencoded");
+            var resp = await httpClient.PostAsync(url, reqContent);
+            var streamTask = await resp.Content.ReadAsStringAsync().ConfigureAwait(false);
             return streamTask;
         }
     }
