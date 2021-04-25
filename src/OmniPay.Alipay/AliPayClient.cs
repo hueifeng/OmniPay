@@ -18,7 +18,7 @@ namespace OmniPay.Alipay
         private readonly ILogger<AliPayClient> _logger;
         private readonly IHttpHandler _httpHandler;
 
-        public AliPayClient(IOptions<AlipayOptions> alioptions, ILogger<AliPayClient> logger, 
+        public AliPayClient(IOptions<AlipayOptions> alioptions, ILogger<AliPayClient> logger,
             IHttpHandler httpHandler)
         {
             this._alipayOptions = alioptions.Value;
@@ -36,13 +36,12 @@ namespace OmniPay.Alipay
         public async Task<TResponse> ExecuteAsync<TModel, TResponse>(BaseRequest<TModel, TResponse> request)
         {
             BuildParams(request);
-
-            if (request is AppPayRequest || request is WapPayRequest)
+            if (request is AppPayRequest || request is WapPayRequest || request is WebPagePayRequest)
             {
                 return (TResponse)Activator.CreateInstance(typeof(TResponse), request);
             }
-
-            string result = await _httpHandler.PostAsync(request.RequestUrl, request.ToUrl());
+            string result = await _httpHandler.PostAsync(request.RequestUrl, request.ToUrl(), null
+                , null, null);
             var jObject = JObject.Parse(result);
             var jToken = jObject.First.First;
             var sign = jObject.Value<string>("sign");
@@ -84,7 +83,7 @@ namespace OmniPay.Alipay
                 data = data.Replace("/", "\\/");
                 result = EncryptUtil.RSAVerifyData(data, sign, alipayPublicKey, signType);
             }
-            
+
             return result;
         }
     }

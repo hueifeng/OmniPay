@@ -167,12 +167,12 @@ namespace OmniPay.Core.Utils
         /// <returns></returns>
         public static string Post(string url, string data, X509Certificate2 cert = null)
         {
-            if (url.StartsWith("https", StringComparison.OrdinalIgnoreCase))
-            {
-                ServicePointManager.ServerCertificateValidationCallback =
-                        new RemoteCertificateValidationCallback(CheckValidationResult);
+            //if (url.StartsWith("https", StringComparison.OrdinalIgnoreCase))
+            //{
+            //    ServicePointManager.ServerCertificateValidationCallback =
+            //            new RemoteCertificateValidationCallback(CheckValidationResult);
             
-            }
+            //}
 
             var dataByte = Encoding.UTF8.GetBytes(data);
             var request = (HttpWebRequest)WebRequest.Create(url);
