@@ -1,7 +1,4 @@
-﻿using System;
-using System.Net.Http;
-using System.Text;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using OmniPay.Core.Exceptions;
 using OmniPay.Core.Request;
@@ -35,10 +32,7 @@ namespace OmniPay.Wechatpay
         public async Task<TResponse> ExecuteAsync<TModel, TResponse>(BaseRequest<TModel, TResponse> request)
         {
             BuildParams(request);
-            (string, object)[] tuple ={
-                    ("Content-Type", "application/x-www-form-urlencoded;charset=utf-8"),
-                };
-            var result = await _httpHandler.PostAsync(request.RequestUrl, request.ToXml(), _weChatPayOptions.HttpClientName, null, tuple);
+            var result = await _httpHandler.PostAsync(request.RequestUrl, request.ToXml(), _weChatPayOptions.HttpClientName, null);
             request.FromXml(result);
             var baseResponse = (BaseResponse)(object)request.ToObject<TResponse>();
             baseResponse.Raw = result;

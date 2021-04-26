@@ -40,8 +40,7 @@ namespace OmniPay.Alipay
             {
                 return (TResponse)Activator.CreateInstance(typeof(TResponse), request);
             }
-            string result = await _httpHandler.PostAsync(request.RequestUrl, request.ToUrl(), null
-                , null, null);
+            string result = await _httpHandler.PostAsync(request.RequestUrl, request.ToUrl());
             var jObject = JObject.Parse(result);
             var jToken = jObject.First.First;
             var sign = jObject.Value<string>("sign");

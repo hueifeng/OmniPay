@@ -21,7 +21,7 @@ namespace OmniPay.Core.Utils
         /// <param name="options"></param>
         /// <param name="headers"></param>
         /// <returns></returns>
-        Task<T> GetAsync<T>(string url, JsonSerializerOptions? options = null, params (string, object)[] headers);
+        Task<T> GetAsync<T>(string url, JsonSerializerOptions? options = null);
 
         /// <summary>
         ///     异步POST请求
@@ -31,7 +31,7 @@ namespace OmniPay.Core.Utils
         /// <param name="options"></param>
         /// <param name="headers"></param>
         /// <returns></returns>
-        Task<string> PostAsync(string url, object request, JsonSerializerOptions options = null, params (string, object)[] headers);
+        Task<string> PostAsync(string url, string request, JsonSerializerOptions options = null);
 
 
         /// <summary>
@@ -43,6 +43,6 @@ namespace OmniPay.Core.Utils
         /// <param name="options"></param>
         /// <param name="headers"></param>
         /// <returns></returns>
-        Task<string> PostAsync(string url, string request, string logicalName, JsonSerializerOptions options = null, params (string, object)[] headers);
+        Task<string> PostAsync(string url, string request, string logicalName, JsonSerializerOptions options = null);
     }
 }
