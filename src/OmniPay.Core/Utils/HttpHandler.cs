@@ -23,7 +23,7 @@ namespace OmniPay.Core.Utils
             return _httpClientFactory.CreateClient(name);
         }
 
-        public async Task<T> GetAsync<T>(string url, JsonSerializerOptions options = null, params (string, object)[] headers)
+        public async Task<T> GetAsync<T>(string url, JsonSerializerOptions options = null)
         {
             _ = _httpClientFactory ?? throw new NullReferenceException("No IHttpClientFactory provided, please add AddHttpClient() in configure services!");
             var httpClient = _httpClientFactory.CreateClient();
@@ -33,34 +33,21 @@ namespace OmniPay.Core.Utils
             return await JsonSerializer.DeserializeAsync<T>(await streamTask.ConfigureAwait(false), options);
         }
 
-        public async Task<string> PostAsync(string url, object request, JsonSerializerOptions options = null, params (string, object)[] headers)
+        public async Task<string> PostAsync(string url, string request, JsonSerializerOptions options = null)
         {
             _ = _httpClientFactory ?? throw new NullReferenceException("No IHttpClientFactory provided, please add AddHttpClient() in configure services!");
             var httpClient = _httpClientFactory.CreateClient();
 
-            var bytesToPost = JsonSerializer.SerializeToUtf8Bytes(request, request.GetType(), options);
-
-            var response = await httpClient.PostAsync(url, new ByteArrayContent(bytesToPost));
-
-            response.EnsureSuccessStatusCode();
-
+            var reqContent = new StringContent(request, Encoding.UTF8, "application/x-www-form-urlencoded");
+            var response = await httpClient.PostAsync(url, reqContent);
             var streamTask = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             return streamTask;
         }
 
-        public async Task<string> PostAsync(string url, string request, string logicalName, JsonSerializerOptions options = null, params (string, object)[] headers)
+        public async Task<string> PostAsync(string url, string request, string logicalName, JsonSerializerOptions options = null)
         {
             _ = _httpClientFactory ?? throw new NullReferenceException("No IHttpClientFactory provided, please add AddHttpClient() in configure services!");
-            HttpClient httpClient;
-            if (logicalName == null)
-            {
-                httpClient = _httpClientFactory.CreateClient();
-            }
-            else
-            {
-                httpClient = _httpClientFactory.CreateClient(logicalName);
-            }
-
+            var httpClient = _httpClientFactory.CreateClient(logicalName);
             var reqContent = new StringContent(request, Encoding.UTF8, "application/x-www-form-urlencoded");
             var resp = await httpClient.PostAsync(url, reqContent);
             var streamTask = await resp.Content.ReadAsStringAsync().ConfigureAwait(false);
