@@ -20,7 +20,7 @@ namespace OmniPay.Pay.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public async Task<OkObjectResult> ScanPay(string Body,string Out_Trade_No,int Total_Amount)
+        public async Task<OkObjectResult> ScanPay(string Body, string Out_Trade_No, int Total_Amount)
         {
             var request = new ScanPayRequest();
             request.AddParameters(new ScanPayModel()
@@ -58,9 +58,9 @@ namespace OmniPay.Pay.Controllers
         /// <param name="Total_Amount"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<OkObjectResult> AppPay(string Body,string Out_Trade_No,int Total_Amount)
+        public async Task<OkObjectResult> AppPay(string Body, string Out_Trade_No, int Total_Amount)
         {
-            var request=new AppPayRequest();
+            var request = new AppPayRequest();
             request.AddParameters(new AppPayModel()
             {
                 Body = Body,
@@ -79,9 +79,9 @@ namespace OmniPay.Pay.Controllers
         /// <param name="OpenId"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<OkObjectResult> PublicPay(string Body,string OutTradeNo,int TotalAmount,string OpenId)
+        public async Task<OkObjectResult> PublicPay(string Body, string OutTradeNo, int TotalAmount, string OpenId)
         {
-            var request=new PublicPayRequest();
+            var request = new PublicPayRequest();
             request.AddParameters(new PublicPayModel()
             {
                 Body = Body,
@@ -89,7 +89,7 @@ namespace OmniPay.Pay.Controllers
                 TotalFee = TotalAmount,
                 OpenId = OpenId
             });
-            return Ok(await  _client.ExecuteAsync(request));
+            return Ok(await _client.ExecuteAsync(request));
         }
 
         /// <summary>
@@ -97,9 +97,9 @@ namespace OmniPay.Pay.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public async Task<OkObjectResult> AppletPay(string Body,string OutTradeNo,int TotalAmount,string OpenId)
+        public async Task<OkObjectResult> AppletPay(string Body, string OutTradeNo, int TotalAmount, string OpenId)
         {
-            var request=new AppletPayRequest();
+            var request = new AppletPayRequest();
             request.AddParameters(new AppletPayModel()
             {
                 Body = Body,
@@ -122,8 +122,8 @@ namespace OmniPay.Pay.Controllers
             var request = new QueryRequest();
             request.AddParameters(new QueryModel()
             {
-                 TransactionId = TradeNo,
-                 OutTradeNo = OuttradeNo
+                TransactionId = TradeNo,
+                OutTradeNo = OuttradeNo
             });
             return Ok(await _client.ExecuteAsync(request));
         }
@@ -144,17 +144,17 @@ namespace OmniPay.Pay.Controllers
             return Ok(await _client.ExecuteAsync(request));
         }
 
-       /// <summary>
-       ///      申请退款
-       /// </summary>
-       /// <param name="transactionId"></param>
-       /// <param name="outTradeNo"></param>
-       /// <param name="outRefundNo"></param>
-       /// <param name="refundFee"></param>
-       /// <param name="refundDesc"></param>
-       /// <returns></returns>
+        /// <summary>
+        ///      申请退款
+        /// </summary>
+        /// <param name="transactionId"></param>
+        /// <param name="outTradeNo"></param>
+        /// <param name="outRefundNo"></param>
+        /// <param name="refundFee"></param>
+        /// <param name="refundDesc"></param>
+        /// <returns></returns>
         [HttpPost]
-        public async Task<OkObjectResult> Refund(string transactionId,string outTradeNo,string outRefundNo,int refundFee,
+        public async Task<OkObjectResult> Refund(string transactionId, string outTradeNo, string outRefundNo, int refundFee,
             string refundDesc)
         {
             var request = new RefundRequest();
