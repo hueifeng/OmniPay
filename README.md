@@ -1,7 +1,7 @@
 OmniPay
 ===============
 
-![GitHub](https://img.shields.io/github/license/hueifeng/OmniPay)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/hueifeng/OmniPay/blob/master/LICENSE)
 [![Build Status](https://dev.azure.com/dotnetserverprojects/OmniPay/_apis/build/status/omnipaypay20200709180728%20-%20CI?branchName=master)](https://dev.azure.com/dotnetserverprojects/OmniPay/_build/latest?definitionId=1&branchName=master)
 
 OmniPay支付SDK，主要打造微信支付，支付宝支付，以及银联支付等，使用OmniPay可以简化订单的创建、查询、退款和回调通知等操作
