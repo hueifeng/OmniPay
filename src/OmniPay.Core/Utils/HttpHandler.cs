@@ -48,6 +48,11 @@ namespace OmniPay.Core.Utils
         {
             _ = _httpClientFactory ?? throw new NullReferenceException("No IHttpClientFactory provided, please add AddHttpClient() in configure services!");
             var httpClient = _httpClientFactory.CreateClient(logicalName);
+            if (logicalName == null)
+            {
+                httpClient = _httpClientFactory.CreateClient();
+            }
+
             var reqContent = new StringContent(request, Encoding.UTF8, "application/x-www-form-urlencoded");
             var resp = await httpClient.PostAsync(url, reqContent);
             var streamTask = await resp.Content.ReadAsStringAsync().ConfigureAwait(false);
